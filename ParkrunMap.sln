@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Scraping.Parsers", "src\ParkrunMap.Scraping.Parsers\ParkrunMap.Scraping.Parsers.csproj", "{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Scraping.Tests", "test\ParkrunMap.Scraping.Tests\ParkrunMap.Scraping.Tests.csproj", "{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.Scraping.Parsers.Tests", "test\ParkrunMap.Scraping.Parsers.Tests\ParkrunMap.Scraping.Parsers.Tests.csproj", "{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Data.Mongo", "src\ParkrunMap.Data.Mongo\ParkrunMap.Data.Mongo.csproj", "{CC1E2C6C-F319-402D-B862-325387C170C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.Data.Mongo", "src\ParkrunMap.Data.Mongo\ParkrunMap.Data.Mongo.csproj", "{CC1E2C6C-F319-402D-B862-325387C170C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Data.Mongo.Tests", "test\ParkrunMap.Data.Mongo.Tests\ParkrunMap.Data.Mongo.Tests.csproj", "{6CDDB97E-C9AE-465F-88A4-8809B7933B40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.Data.Mongo.Tests", "test\ParkrunMap.Data.Mongo.Tests\ParkrunMap.Data.Mongo.Tests.csproj", "{6CDDB97E-C9AE-465F-88A4-8809B7933B40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Domain", "src\ParkrunMap.Domain\ParkrunMap.Domain.csproj", "{724B3CCD-893C-4A19-9DE9-F4DC36C81897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.Domain", "src\ParkrunMap.Domain\ParkrunMap.Domain.csproj", "{724B3CCD-893C-4A19-9DE9-F4DC36C81897}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.FunctionsApp", "src\ParkrunMap.FunctionsApp\ParkrunMap.FunctionsApp.csproj", "{06479087-189A-41A4-BBD9-463EC40A88CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Scraping", "src\ParkrunMap.Scraping\ParkrunMap.Scraping.csproj", "{21570133-F6FC-4925-9177-34CA4971280A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.FunctionsApp.Tests", "test\ParkrunMap.FunctionsApp.Tests\ParkrunMap.FunctionsApp.Tests.csproj", "{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +39,18 @@ Global
 		{724B3CCD-893C-4A19-9DE9-F4DC36C81897}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{724B3CCD-893C-4A19-9DE9-F4DC36C81897}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{724B3CCD-893C-4A19-9DE9-F4DC36C81897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06479087-189A-41A4-BBD9-463EC40A88CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06479087-189A-41A4-BBD9-463EC40A88CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06479087-189A-41A4-BBD9-463EC40A88CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06479087-189A-41A4-BBD9-463EC40A88CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21570133-F6FC-4925-9177-34CA4971280A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21570133-F6FC-4925-9177-34CA4971280A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21570133-F6FC-4925-9177-34CA4971280A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21570133-F6FC-4925-9177-34CA4971280A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParkrunMap.Scraping.Parsers
+namespace ParkrunMap.Scraping.Parkruns
 {
     public class Parkrun
     {

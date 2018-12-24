@@ -1,9 +1,10 @@
 using System;
 using System.IO;
 using FluentAssertions;
+using ParkrunMap.Scraping.Parkruns;
 using Xunit;
 
-namespace ParkrunMap.Scraping.Parsers.Tests
+namespace ParkrunMap.Scraping.Tests.Parkruns
 {
     public class GeoXmlParserTests
     {
@@ -12,7 +13,7 @@ namespace ParkrunMap.Scraping.Parsers.Tests
         {
             using (var geoXml = File.OpenRead(@".\data\geo.xml"))
             {
-                var parkruns = new GeoXmlParser().Parse(geoXml);
+                var parkruns = new GeoXmlParser(new ParkrunXElementValidator()).Parse(geoXml);
 
                 parkruns.Should().BeEquivalentTo(new[]
                 {

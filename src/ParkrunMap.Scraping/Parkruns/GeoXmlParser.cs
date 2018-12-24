@@ -4,10 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace ParkrunMap.Scraping.Parsers
+namespace ParkrunMap.Scraping.Parkruns
 {
     public class GeoXmlParser
     {
+        private readonly ParkrunXElementValidator _validator;
+
+        public GeoXmlParser(ParkrunXElementValidator validator)
+        {
+            _validator = validator;
+        }
+
         public IReadOnlyCollection<Parkrun> Parse(Stream stream)
         {
             var document = XDocument.Load(stream);
@@ -22,7 +29,8 @@ namespace ParkrunMap.Scraping.Parsers
                     });
 
             var parkruns = new List<Parkrun>();
-            foreach (var element in document.Descendants("e"))
+
+            foreach (var element in document.Descendants("e").Where(_validator.IsValid))
             {
                 var id = (int)element.Attribute("id");
                 var name = (string)element.Attribute("m");

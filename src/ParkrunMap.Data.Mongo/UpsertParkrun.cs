@@ -9,7 +9,7 @@ namespace ParkrunMap.Data.Mongo
 {
     public class UpsertParkrun
     {
-        public class Handler : AsyncRequestHandler<UpsertParkrun.Command>
+        public class Handler : AsyncRequestHandler<UpsertParkrun.Request>
         {
             private readonly IMongoCollection<Domain.Parkrun> _collection;
 
@@ -18,7 +18,7 @@ namespace ParkrunMap.Data.Mongo
                 _collection = collection;
             }
 
-            protected override async Task Handle(UpsertParkrun.Command request, CancellationToken cancellationToken)
+            protected override async Task Handle(UpsertParkrun.Request request, CancellationToken cancellationToken)
             {
                 var filter = Builders<Domain.Parkrun>.Filter.Eq(x => x.GeoXmlId, request.GeoXmlId);
                 var update = Builders<Domain.Parkrun>.Update.Set(x => x.Name, request.Name)
@@ -33,7 +33,7 @@ namespace ParkrunMap.Data.Mongo
             }
         }
 
-        public class Command : IRequest
+        public class Request : IRequest
         {
             public int GeoXmlId { get; set; }
 

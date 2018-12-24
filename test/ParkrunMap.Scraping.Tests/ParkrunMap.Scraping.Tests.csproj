@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoFixture" Version="4.6.0" />
     <PackageReference Include="FluentAssertions" Version="5.5.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -18,14 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ParkrunMap.Data.Mongo\ParkrunMap.Data.Mongo.csproj" />
-    <ProjectReference Include="..\..\src\ParkrunMap.Domain\ParkrunMap.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ParkrunMap.Scraping\ParkrunMap.Scraping.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>..\..\..\..\..\Users\kevin.smith\.nuget\packages\mongodb.driver\2.7.2\lib\netstandard1.5\MongoDB.Driver.dll</HintPath>
-    </Reference>
+    <None Update="data\geo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

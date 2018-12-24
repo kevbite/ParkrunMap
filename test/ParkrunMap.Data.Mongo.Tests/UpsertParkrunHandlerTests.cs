@@ -28,9 +28,9 @@ namespace ParkrunMap.Data.Mongo.Tests
             var database = client.GetDatabase(Guid.NewGuid().ToString());
             var collection = database.GetCollection<Parkrun>(Guid.NewGuid().ToString());
 
-            IRequestHandler<UpsertParkrun.Command, Unit> handler = new UpsertParkrun.Handler(collection);
+            IRequestHandler<UpsertParkrun.Request, Unit> handler = new UpsertParkrun.Handler(collection);
 
-            var command = _fixture.Create<UpsertParkrun.Command>();
+            var command = _fixture.Create<UpsertParkrun.Request>();
 
             await handler.Handle(command, CancellationToken.None);
 
