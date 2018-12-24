@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\..\..\..\Users\kevin.smith\.nuget\packages\mongodb.bson\2.7.2\lib\netstandard1.5\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\..\..\..\Users\kevin.smith\.nuget\packages\mongodb.driver\2.7.2\lib\netstandard1.5\MongoDB.Driver.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

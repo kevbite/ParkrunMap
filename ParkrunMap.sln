@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Scraping.Parsers", "src\ParkrunMap.Scraping.Parsers\ParkrunMap.Scraping.Parsers.csproj", "{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.Scraping.Parsers.Tests", "test\ParkrunMap.Scraping.Parsers.Tests\ParkrunMap.Scraping.Parsers.Tests.csproj", "{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.Data.Mongo", "src\ParkrunMap.Data.Mongo\ParkrunMap.Data.Mongo.csproj", "{CC1E2C6C-F319-402D-B862-325387C170C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.Data.Mongo.Tests", "test\ParkrunMap.Data.Mongo.Tests\ParkrunMap.Data.Mongo.Tests.csproj", "{6CDDB97E-C9AE-465F-88A4-8809B7933B40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.Domain", "src\ParkrunMap.Domain\ParkrunMap.Domain.csproj", "{724B3CCD-893C-4A19-9DE9-F4DC36C81897}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD7E6C2-3185-4DB3-BE0F-C992F6303735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC1E2C6C-F319-402D-B862-325387C170C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1E2C6C-F319-402D-B862-325387C170C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1E2C6C-F319-402D-B862-325387C170C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC1E2C6C-F319-402D-B862-325387C170C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CDDB97E-C9AE-465F-88A4-8809B7933B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CDDB97E-C9AE-465F-88A4-8809B7933B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CDDB97E-C9AE-465F-88A4-8809B7933B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CDDB97E-C9AE-465F-88A4-8809B7933B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724B3CCD-893C-4A19-9DE9-F4DC36C81897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724B3CCD-893C-4A19-9DE9-F4DC36C81897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724B3CCD-893C-4A19-9DE9-F4DC36C81897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724B3CCD-893C-4A19-9DE9-F4DC36C81897}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E2E249FA-E04F-4738-B07B-E02A62B70176}
+	EndGlobalSection
+EndGlobal

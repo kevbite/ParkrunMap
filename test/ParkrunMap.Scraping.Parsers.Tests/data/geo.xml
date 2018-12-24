@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<geo>
+  <r id="1" n="World" la="-8.000000" lo="20.000000" z="1" pid="" u="">
+    <r id="3" n="Australia" la="-24.926294" lo="133.505859" z="4" pid="1" u="http://www.parkrun.com.au">
+      <r id="4" n="Queensland" la="-25.264568" lo="148.293457" z="6" pid="3" u=""/>
+    </r>
+    <r id="55" n="Italy" la="41.900000" lo="12.500000" z="6" pid="1" u="http://www.parkrun.it"/>
+    <r id="2" n="UK" la="54.597527" lo="-2.460938" z="5" pid="1" u="http://www.parkrun.org.uk">
+      <r id="13" n="East Midlands" la="52.595751" lo="-1.020530" z="9" pid="2" u=""/>
+      <r id="18" n="Yorkshire and the Humber" la="53.599024" lo="-0.711364" z="8" pid="2" u=""/>
+    </r>
+  </r>
+  <e n="brightwater" m="Brightwater" c="3" id="1032" r="4" la="-26.708909" lo="153.113665"/>
+  <e n="firenze" m="Firenze" c="44" id="1744" r="55" la="43.785132" lo="11.209331"/>
+  <e n="mansfield" m="Mansfield" c="97" id="174" r="13" la="53.174034" lo="-1.183844"/>
+  <e n="clumberpark" m="Clumber Park" c="97" id="572" r="13" la="53.268022" lo="-1.065717"/>
+  <e n="york" m="York" c="97" id="96" r="18" la="53.935375" lo="-1.101379"/>
+</geo>

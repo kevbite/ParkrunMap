@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.6.0" />
+    <PackageReference Include="FluentAssertions" Version="5.5.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ParkrunMap.Data.Mongo\ParkrunMap.Data.Mongo.csproj" />
+    <ProjectReference Include="..\..\src\ParkrunMap.Domain\ParkrunMap.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\..\..\..\Users\kevin.smith\.nuget\packages\mongodb.driver\2.7.2\lib\netstandard1.5\MongoDB.Driver.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
