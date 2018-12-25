@@ -10,7 +10,8 @@ namespace ParkrunMap.Data.Mongo
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<UpsertParkrun.Handler>().AsImplementedInterfaces().InstancePerDependency();
-
+            builder.RegisterType<QueryParkrunByRegion.Handler>().AsImplementedInterfaces().InstancePerDependency();
+            
             var mongoUrl = Environment.GetEnvironmentVariable("MongoDbUrl");
 
             builder.Register(context => new MongoClient(mongoUrl))

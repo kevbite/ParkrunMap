@@ -3,28 +3,27 @@ using AutoMapper;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using ParkrunMap.FunctionsApp.UpsertParkrun;
-using ParkrunMap.Scraping;
 using ParkrunMap.Scraping.Parkruns;
 
-namespace ParkrunMap.FunctionsApp.PullParkruns
+namespace ParkrunMap.FunctionsApp.PollParkruns
 {
-    public class PullParkrunsTimerFunction
+    public class PollParkrunsTimerFunction
     {
         private readonly ILogger _logger;
         private readonly ParkrunScraper _parkrunScraper;
         private readonly IMapper _mapper;
 
-        public PullParkrunsTimerFunction(ILogger logger, ParkrunScraper parkrunScraper, IMapper mapper)
+        public PollParkrunsTimerFunction(ILogger logger, ParkrunScraper parkrunScraper, IMapper mapper)
         {
             _logger = logger;
             _parkrunScraper = parkrunScraper;
             _mapper = mapper;
         }
-
+        
         [FunctionName("PullParkrunsTimerFunction")]
-        public static async Task Run([TimerTrigger("0 2 * * *", RunOnStartup=true)]TimerInfo myTimer, [Queue("parkrun-upserts", Connection = "AzureWebJobsStorage")] ICollector<UpsertParkrunMessage> messageCollector, ILogger logger)
+        public static async Task Run([TimerTrigger("0 0 2 * * *")]TimerInfo myTimer, [Queue("parkrun-upserts", Connection = "AzureWebJobsStorage")] ICollector<UpsertParkrunMessage> messageCollector, ILogger logger)
         {
-            var function1 = Container.Instance.Resolve<PullParkrunsTimerFunction>(logger);
+            var function1 = Container.Instance.Resolve<PollParkrunsTimerFunction>(logger);
             await function1.Run(messageCollector)
                 .ConfigureAwait(false);
         }

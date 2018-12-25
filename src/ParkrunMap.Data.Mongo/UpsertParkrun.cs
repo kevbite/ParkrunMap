@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using MongoDB.Driver;
 using MongoDB.Driver.GeoJsonObjectModel;
+using ParkrunMap.Domain;
 
 namespace ParkrunMap.Data.Mongo
 {
