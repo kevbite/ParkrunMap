@@ -1,7 +1,8 @@
 using Autofac;
 using AutoMapper;
 using ParkrunMap.Data.Mongo;
-using ParkrunMap.FunctionsApp.PollParkruns;
+using ParkrunMap.FunctionsApp.DownloadGeoXml;
+using ParkrunMap.FunctionsApp.ParseGeoXml;
 using ParkrunMap.FunctionsApp.QueryParkrunsByRegion;
 using ParkrunMap.FunctionsApp.UpsertParkrun;
 using ParkrunMap.Scraping;
@@ -27,7 +28,8 @@ namespace ParkrunMap.FunctionsApp
 
         private static void RegisterFunctions(ContainerBuilder builder)
         {
-            builder.RegisterType<PollParkrunsTimerFunction>().AsSelf();
+            builder.RegisterType<DownloadGeoXmlTimerFunction>().AsSelf();
+            builder.RegisterType<ParseGeoXmlFunction>().AsSelf();       
             builder.RegisterType<UpsertParkrunQueueFunction>().AsSelf();
             builder.RegisterType<QueryParkrunsByRegionFunction>().AsSelf();
         }

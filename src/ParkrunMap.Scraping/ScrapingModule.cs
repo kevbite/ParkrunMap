@@ -8,7 +8,7 @@ namespace ParkrunMap.Scraping
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(x => new ParkrunScraper(x.ResolveNamed<HttpClient>("parkrun-scraper-client"), x.Resolve<GeoXmlParser>()))
+            builder.Register(x => new GeoXmlDownloader(x.ResolveNamed<HttpClient>("geo-xml-client")))
                 .AsSelf();
 
             builder.RegisterType<ParkrunXElementValidator>().AsSelf();
@@ -17,7 +17,7 @@ namespace ParkrunMap.Scraping
 
             builder.RegisterType<HttpClient>()
                 .AsSelf()
-                .Named<HttpClient>("parkrun-scraper-client");
+                .Named<HttpClient>("geo-xml-client");
 
             base.Load(builder);
         }

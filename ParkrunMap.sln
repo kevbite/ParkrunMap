@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.FunctionsApp", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Scraping", "src\ParkrunMap.Scraping\ParkrunMap.Scraping.csproj", "{21570133-F6FC-4925-9177-34CA4971280A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkrunMap.FunctionsApp.Tests", "test\ParkrunMap.FunctionsApp.Tests\ParkrunMap.FunctionsApp.Tests.csproj", "{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.FunctionsApp.Tests", "test\ParkrunMap.FunctionsApp.Tests\ParkrunMap.FunctionsApp.Tests.csproj", "{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

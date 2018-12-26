@@ -2,7 +2,7 @@
 using ParkrunMap.FunctionsApp.UpsertParkrun;
 using ParkrunMap.Scraping.Parkruns;
 
-namespace ParkrunMap.FunctionsApp.PollParkruns
+namespace ParkrunMap.FunctionsApp.ParseGeoXml
 {
     public class ParkrunToUpsertParkrunMessageProfile : Profile
     {
