@@ -14,7 +14,7 @@ class ParkrunMap extends Component {
   render() {
     return (
       <Map
-        defaultCenter={this.props.location}
+        center={this.props.location}
         parkruns={this.props.parkruns}
         onParkrunMarkerClick={() => alert('Hello')}
       />

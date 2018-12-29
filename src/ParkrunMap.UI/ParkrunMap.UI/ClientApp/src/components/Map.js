@@ -20,7 +20,8 @@ const ParkrunMap = compose(
 )((props) =>
   <GoogleMap
     defaultZoom={12}
-    defaultCenter={{ lat: props.defaultCenter.latitude, lng: props.defaultCenter.longitude}}
+    defaultCenter={{ lat: props.center.latitude, lng: props.center.longitude}}
+    center={{ lat: props.center.latitude, lng: props.center.longitude}}
   >
     {props.parkruns && props.parkruns.map(parkrun => <Marker key={parkrun.name} position={{ lat: parkrun.lat, lng: parkrun.lon }} onClick={props.onParkrunMarkerClick} />)}
   </GoogleMap>
