@@ -3,18 +3,19 @@ using System.Threading.Tasks;
 
 namespace ParkrunMap.Scraping.Parkruns
 {
-    public class GeoXmlDownloader
+    public class CancellationsPageDownloader
     {
         private readonly HttpClient _httpClient;
 
-        public GeoXmlDownloader(HttpClient httpClient)
+        public CancellationsPageDownloader(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
-        public async Task<byte[]> Download()
+
+        public async Task<byte[]> DownloadAsync()
         {
             var response = await _httpClient
-                .GetAsync("https://www.parkrun.org.uk/wp-content/themes/parkrun/xml/geo.xml")
+                .GetAsync("https://www.parkrun.org.uk/cancellations/")
                 .ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();

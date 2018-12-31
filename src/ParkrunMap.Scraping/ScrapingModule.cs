@@ -8,6 +8,9 @@ namespace ParkrunMap.Scraping
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.Register(x => new CancellationsPageDownloader(x.ResolveNamed<HttpClient>("cancellations-page-client")))
+                .AsSelf();
+
             builder.Register(x => new GeoXmlDownloader(x.ResolveNamed<HttpClient>("geo-xml-client")))
                 .AsSelf();
 
@@ -18,6 +21,10 @@ namespace ParkrunMap.Scraping
             builder.RegisterType<HttpClient>()
                 .AsSelf()
                 .Named<HttpClient>("geo-xml-client");
+
+            builder.RegisterType<HttpClient>()
+                .AsSelf()
+                .Named<HttpClient>("cancellations-page-client");
 
             base.Load(builder);
         }
