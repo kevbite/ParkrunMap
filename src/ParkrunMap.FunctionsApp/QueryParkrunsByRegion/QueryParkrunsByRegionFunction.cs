@@ -43,7 +43,7 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByRegion
                     .ConfigureAwait(false);
 
                 return new OkObjectResult(response.Parkruns.Select(x => new
-                    { x.Name, x.Uri, lat = x.Location.Coordinates.Latitude, lon = x.Location.Coordinates.Longitude }));
+                    { x.Name, Uri = x.Website, lat = x.Location.Coordinates.Latitude, lon = x.Location.Coordinates.Longitude }));
             }
           
             return new BadRequestObjectResult($"Unknown region '{region}'");

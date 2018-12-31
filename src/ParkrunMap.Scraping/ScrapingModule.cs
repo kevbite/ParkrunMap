@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using Autofac;
+using ParkrunMap.Scraping.Cancellations;
 using ParkrunMap.Scraping.Parkruns;
 
 namespace ParkrunMap.Scraping
@@ -15,6 +16,8 @@ namespace ParkrunMap.Scraping
                 .AsSelf();
 
             builder.RegisterType<ParkrunXElementValidator>().AsSelf();
+
+            builder.RegisterType<CancellationsParser>().AsSelf();
 
             builder.RegisterType<GeoXmlParser>().AsSelf();
 

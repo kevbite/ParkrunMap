@@ -45,7 +45,9 @@ namespace ParkrunMap.Data.Mongo.Tests
 
             var command = _fixture.Build<AddParkrunCancellation.Request>()
                 .With(x => x.Date, _fixture.Create<DateTime>().Date)
-                .With(x => x.Uri, parkrun.Uri).Create();
+                .With(x => x.WebsiteDomain, parkrun.Website.Domain)
+                .With(x => x.WebsitePath, parkrun.Website.Path)
+                .Create();
             
             await _handler.Handle(command, CancellationToken.None);
 
@@ -90,7 +92,9 @@ namespace ParkrunMap.Data.Mongo.Tests
 
             var command = _fixture.Build<AddParkrunCancellation.Request>()
                 .With(x => x.Date, parkrun.Cancellations[1].Date)
-                .With(x => x.Uri, parkrun.Uri).Create();
+                .With(x => x.WebsiteDomain, parkrun.Website.Domain)
+                .With(x => x.WebsitePath, parkrun.Website.Path)
+                .Create();
 
             await _handler.Handle(command, CancellationToken.None);
 

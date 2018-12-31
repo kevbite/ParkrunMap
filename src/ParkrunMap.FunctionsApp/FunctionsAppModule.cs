@@ -2,11 +2,9 @@ using Autofac;
 using Autofac.Core;
 using AutoMapper;
 using ParkrunMap.Data.Mongo;
-using ParkrunMap.FunctionsApp.DownloadGeoXml;
 using ParkrunMap.FunctionsApp.ParkrunCancellation;
-using ParkrunMap.FunctionsApp.ParseGeoXml;
+using ParkrunMap.FunctionsApp.Parkruns;
 using ParkrunMap.FunctionsApp.QueryParkrunsByRegion;
-using ParkrunMap.FunctionsApp.UpsertParkrun;
 using ParkrunMap.Scraping;
 
 namespace ParkrunMap.FunctionsApp
@@ -28,6 +26,9 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<ParkrunCancellationToUpsertParkrunCancellationMessageProfile>()
                 .As<Profile>();
 
+            builder.RegisterType<AddParkrunCancellationMessageToAddParkrunCancellationRequestProfile>()
+                .As<Profile>();
+
             builder.RegisterType<CloudBlockBlobUpdater>()
                 .AsSelf();
 
@@ -37,10 +38,13 @@ namespace ParkrunMap.FunctionsApp
         private static void RegisterFunctions(ContainerBuilder builder)
         {
             builder.RegisterType<DownloadGeoXmlTimerFunction>().AsSelf();
-            builder.RegisterType<DownloadCancellationsPageFunction>().AsSelf();
             builder.RegisterType<ParseGeoXmlFunction>().AsSelf();       
             builder.RegisterType<UpsertParkrunQueueFunction>().AsSelf();
             builder.RegisterType<QueryParkrunsByRegionFunction>().AsSelf();
+
+            builder.RegisterType<ParseCancellationsPageFunction>().AsSelf();
+            builder.RegisterType<AddParkrunCancellationQueueFunction>().AsSelf();
+            builder.RegisterType<DownloadCancellationsPageFunction>().AsSelf();
         }
     }
 }

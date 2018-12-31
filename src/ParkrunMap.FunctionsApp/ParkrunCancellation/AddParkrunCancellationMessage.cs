@@ -1,6 +1,6 @@
 using System;
 
-namespace ParkrunMap.FunctionsApp.AddParkrunCancellation
+namespace ParkrunMap.FunctionsApp.ParkrunCancellation
 {
     public class AddParkrunCancellationMessage
     {
@@ -8,7 +8,9 @@ namespace ParkrunMap.FunctionsApp.AddParkrunCancellation
 
         public string Name { get; set; }
 
-        public Uri Uri { get; set; }
+        public string WebsiteDomain { get; set; }
+
+        public string WebsitePath { get; set; }
 
         public string Reason { get; set; }
     }

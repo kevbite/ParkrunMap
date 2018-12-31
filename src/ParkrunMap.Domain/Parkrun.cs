@@ -18,7 +18,7 @@ namespace ParkrunMap.Domain
 
         public string Name { get; set; }
 
-        public Uri Uri { get; set; }
+        public ParkrunWebsite Website { get; set; }
 
         public string Region { get; set; }
 
@@ -27,11 +27,5 @@ namespace ParkrunMap.Domain
         public GeoJsonPoint<GeoJson2DGeographicCoordinates> Location { get; set; }
 
         public IReadOnlyList<Cancellation> Cancellations { get; set; }    
-    }
-
-    public class Cancellation
-    {
-        public DateTime Date { get; set; }
-        public string Reason { get; set; }
     }
 }

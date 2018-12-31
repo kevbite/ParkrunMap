@@ -37,7 +37,8 @@ namespace ParkrunMap.Scraping.Cancellations
                             continue;
                         }
 
-                        var cancellation = new ParkrunCancellation(date, parkrunTitle.Trim(), new Uri(parkrunUri), reason);
+                        var uri = new Uri(parkrunUri);
+                        var cancellation = new ParkrunCancellation(date, parkrunTitle.Trim(), uri.Host, uri.PathAndQuery.TrimEnd('/'), reason);
 
                         cancellations.Add(cancellation);
                     }

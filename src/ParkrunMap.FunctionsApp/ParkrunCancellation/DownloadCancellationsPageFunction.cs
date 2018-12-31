@@ -7,10 +7,6 @@ using ParkrunMap.Scraping.Parkruns;
 
 namespace ParkrunMap.FunctionsApp.ParkrunCancellation
 {
-    public class DownloadFilePaths
-    {
-        public const string CancellationsHtml = "downloads/cancellations.html";
-    }
     public class DownloadCancellationsPageFunction
     {
         private readonly CancellationsPageDownloader _cancellationsPageDownloader;
@@ -21,7 +17,7 @@ namespace ParkrunMap.FunctionsApp.ParkrunCancellation
             _cancellationsPageDownloader = cancellationsPageDownloader;
             _cloudBlockBlobUpdater = cloudBlockBlobUpdater(logger);
         }
-
+ 
         [FunctionName("DownloadCancellationsPageFunction")]
         public static async Task Run([TimerTrigger("0 0 */2 * * *", RunOnStartup = true)]TimerInfo myTimer,
             [Blob(DownloadFilePaths.CancellationsHtml, Connection = "AzureWebJobsStorage")]

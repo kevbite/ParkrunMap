@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 
-namespace ParkrunMap.FunctionsApp.UpsertParkrun
+namespace ParkrunMap.FunctionsApp.Parkruns
 {
     public class UpsertParkrunQueueFunction
     {
@@ -18,8 +18,10 @@ namespace ParkrunMap.FunctionsApp.UpsertParkrun
             _mediator = mediator;
         }
 
-        [FunctionName("UpsertParkrunQueueFunction")]
-        public static async Task Run([QueueTrigger("parkrun-upserts", Connection = "AzureWebJobsStorage")]UpsertParkrunMessage message, ILogger logger, CancellationToken cancellationToken)
+        [FunctionName(nameof(UpsertParkrunQueueFunction))]
+        public static async Task Run([QueueTrigger(QueueNames.UpsertParkrun, Connection = "AzureWebJobsStorage")]UpsertParkrunMessage message,
+            ILogger logger,
+            CancellationToken cancellationToken)
         {
             await Container.Instance.Resolve<UpsertParkrunQueueFunction>(logger).Run(message, cancellationToken);
         }

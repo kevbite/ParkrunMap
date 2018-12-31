@@ -8,15 +8,18 @@ namespace ParkrunMap.Scraping.Cancellations
 
         public string Name { get; }
 
-        public Uri Uri { get; }
+        public string WebsiteDomain { get; }
+
+        public string WebsitePath { get; }
 
         public string Reason { get; }
 
-        public ParkrunCancellation(DateTime date, string name, Uri uri, string reason)
+        public ParkrunCancellation(DateTime date, string name, string websiteDomain, string websitePath, string reason)
         {
             Date = date;
             Name = name;
-            Uri = uri;
+            WebsiteDomain = websiteDomain;
+            WebsitePath = websitePath;
             Reason = reason;
         }
     }

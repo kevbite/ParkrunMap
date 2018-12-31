@@ -1,6 +1,7 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 
-namespace ParkrunMap.FunctionsApp.UpsertParkrun
+namespace ParkrunMap.FunctionsApp.Parkruns
 {
     public class UpsertParkrunMessageToUpsertParkrunRequestProfile : Profile
     {

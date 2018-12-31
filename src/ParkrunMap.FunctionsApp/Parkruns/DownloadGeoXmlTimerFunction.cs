@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Blob;
 using ParkrunMap.Scraping.Parkruns;
 
-namespace ParkrunMap.FunctionsApp.DownloadGeoXml
+namespace ParkrunMap.FunctionsApp.Parkruns
 {
     public class DownloadGeoXmlTimerFunction
     {
@@ -18,10 +18,10 @@ namespace ParkrunMap.FunctionsApp.DownloadGeoXml
             _cloudBlockBlobUpdater = cloudBlockBlobUpdater(logger);
         }
 
-        [FunctionName("DownloadGeoXmlTimerFunction")]
+        [FunctionName(nameof(DownloadGeoXmlTimerFunction))]
         public static async Task Run([TimerTrigger("0 0 2 * * *", RunOnStartup = true)]
             TimerInfo myTimer,
-            [Blob("downloads/geo.xml", Connection = "AzureWebJobsStorage")]
+            [Blob(DownloadFilePaths.GeoXml, Connection = "AzureWebJobsStorage")]
             CloudBlockBlob geoXml,
             ILogger logger)
         {

@@ -47,23 +47,16 @@ namespace ParkrunMap.Scraping.Parkruns
                     region = null;
                 }
 
-                var uri = BuildParkrunUri(country.Uri, n);
+                var uri = new Uri(country.Uri);
+                var websiteDomain = uri.Host;
+                var websitePath = $"/{n}";
 
-                var parkrun = new Parkrun(id, name, uri, region?.Name, country.Name, latitude, longitude);
+                var parkrun = new Parkrun(id, name, websiteDomain, websitePath, region?.Name, country.Name, latitude, longitude);
 
                 parkruns.Add(parkrun);
             }
 
             return parkruns;
-        }
-
-        private static Uri BuildParkrunUri(string regionUri, string n)
-        {
-            var uriBuilder = new UriBuilder(regionUri);
-
-            uriBuilder.Path = n;
-
-            return uriBuilder.Uri;
         }
     }
 }

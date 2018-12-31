@@ -4,7 +4,6 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using ParkrunMap.FunctionsApp.AddParkrunCancellation;
 
 namespace ParkrunMap.FunctionsApp.ParkrunCancellation
 {

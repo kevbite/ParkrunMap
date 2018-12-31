@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using ParkrunMap.FunctionsApp.AddParkrunCancellation;
 using ParkrunMap.Scraping.Cancellations;
 
 namespace ParkrunMap.FunctionsApp.ParkrunCancellation
@@ -40,7 +39,7 @@ namespace ParkrunMap.FunctionsApp.ParkrunCancellation
 
             foreach (var cancellation in cancellations)
             {
-                _logger.LogInformation("Sending upsert parkrun cancellation message for {ParkrunName}", cancellation.Name);
+                _logger.LogInformation("Sending add parkrun cancellation message for {ParkrunName}", cancellation.Name);
 
                 var message = _mapper.Map<AddParkrunCancellationMessage>(cancellation);
 

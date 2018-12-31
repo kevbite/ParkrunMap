@@ -21,7 +21,9 @@ namespace ParkrunMap.Data.Mongo
 
             protected override async Task Handle(Request request, CancellationToken cancellationToken)
             {
-                var filter = Builders<Parkrun>.Filter.Eq(x => x.Uri, request.Uri);
+                var filter = Builders<Parkrun>.Filter.Eq(x => x.Website.Path, request.WebsitePath)
+                    & Builders<Parkrun>.Filter.Eq(x => x.Website.Domain, request.WebsiteDomain);
+
                 var cancellationsFilter = Builders<Cancellation>.Filter.Eq(x => x.Date, request.Date);
 
                 var pullCancellation = Builders<Parkrun>.Update.PullFilter(x => x.Cancellations, cancellationsFilter);
@@ -35,7 +37,7 @@ namespace ParkrunMap.Data.Mongo
 
                 if (updateResult.MatchedCount == 0)
                 {
-                    throw new Exception($"Could not find parkrun with uri {request.Uri}");
+                    throw new Exception($"Could not find parkrun with website {request.WebsiteDomain}{request.WebsitePath}");
                 }
             }
         }
@@ -46,7 +48,9 @@ namespace ParkrunMap.Data.Mongo
 
             public string Name { get; set; }
 
-            public Uri Uri { get; set; }
+            public string WebsiteDomain { get; set; }
+
+            public string WebsitePath { get; set; }
 
             public string Reason { get; set; }
         }

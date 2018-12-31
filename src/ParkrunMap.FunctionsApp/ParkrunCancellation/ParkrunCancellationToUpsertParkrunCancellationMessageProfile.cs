@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using ParkrunMap.FunctionsApp.AddParkrunCancellation;
+using AutoMapper;
 
 namespace ParkrunMap.FunctionsApp.ParkrunCancellation
 {

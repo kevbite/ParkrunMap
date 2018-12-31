@@ -39,7 +39,10 @@ namespace ParkrunMap.Data.Mongo.Tests
             using (new AssertionScope())
             {
                 actual.Should().BeEquivalentTo(command,
-                    opt => opt.Excluding(x => x.Latitude).Excluding(x => x.Longitude));
+                    opt => opt.Excluding(x => x.Latitude).Excluding(x => x.Longitude).Excluding(x => x.WebsiteDomain).Excluding(x => x.WebsitePath));
+
+                actual.Website.Domain.Should().Be(command.WebsiteDomain);
+                actual.Website.Path.Should().Be(command.WebsitePath);
 
                 actual.Location.Type.Should().Be(GeoJsonObjectType.Point);
                 actual.Location.Coordinates.Latitude.Should().Be(command.Latitude);

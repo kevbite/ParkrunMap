@@ -11,7 +11,8 @@ namespace ParkrunMap.Data.Mongo
         {
             builder.RegisterType<UpsertParkrun.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<QueryParkrunByRegion.Handler>().AsImplementedInterfaces().InstancePerDependency();
-            
+            builder.RegisterType<AddParkrunCancellation.Handler>().AsImplementedInterfaces().InstancePerDependency();
+          
             var mongoUrl = Environment.GetEnvironmentVariable("MongoDbUrl");
 
             builder.Register(context => new MongoClient(mongoUrl))
