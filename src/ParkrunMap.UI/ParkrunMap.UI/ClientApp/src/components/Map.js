@@ -108,7 +108,7 @@ class Map extends React.Component {
 
 const ComposedComponent = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAvs9kC7xNv1oQbkjzeC106u8s43r5HoXA&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{
       position: `absolute`,
