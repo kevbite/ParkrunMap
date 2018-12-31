@@ -24,6 +24,8 @@ namespace ParkrunMap.Data.Mongo
             builder.Register(context => context.Resolve<IMongoDatabase>().GetCollection<Parkrun>("parkruns"))
                 .AsImplementedInterfaces();
 
+            builder.RegisterType<RegionPolygonProvider>().AsImplementedInterfaces();
+
             base.Load(builder);
         }
     }
