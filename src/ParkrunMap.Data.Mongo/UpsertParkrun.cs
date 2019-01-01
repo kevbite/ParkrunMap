@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using MongoDB.Driver;
@@ -10,20 +9,21 @@ namespace ParkrunMap.Data.Mongo
 {
     public class UpsertParkrun
     {
-        public class Handler : AsyncRequestHandler<UpsertParkrun.Request>
+        public class Handler : AsyncRequestHandler<Request>
         {
-            private readonly IMongoCollection<Domain.Parkrun> _collection;
+            private readonly IMongoCollection<Parkrun> _collection;
 
-            public Handler(IMongoCollection<Domain.Parkrun> collection)
+            public Handler(IMongoCollection<Parkrun> collection)
             {
                 _collection = collection;
             }
 
-            protected override async Task Handle(UpsertParkrun.Request request, CancellationToken cancellationToken)
+            protected override async Task Handle(Request request, CancellationToken cancellationToken)
             {
-                var filter = Builders<Domain.Parkrun>.Filter.Eq(x => x.GeoXmlId, request.GeoXmlId);
-                var update = Builders<Domain.Parkrun>.Update.Set(x => x.Name, request.Name)
-                    .Set(x => x.Uri, request.Uri)
+                var filter = Builders<Parkrun>.Filter.Eq(x => x.GeoXmlId, request.GeoXmlId);
+                var update = Builders<Parkrun>.Update.Set(x => x.Name, request.Name)
+                    .Set(x => x.Website.Domain, request.WebsiteDomain)
+                    .Set(x => x.Website.Path, request.WebsitePath)
                     .Set(x => x.Region, request.Region)
                     .Set(x => x.Country, request.Country)
                     .Set(x => x.Location,
@@ -40,7 +40,9 @@ namespace ParkrunMap.Data.Mongo
 
             public string Name { get; set; }
 
-            public Uri Uri { get; set; }
+            public string WebsiteDomain { get; set; }
+
+            public string WebsitePath { get; set; }
 
             public string Region { get; set; }
 

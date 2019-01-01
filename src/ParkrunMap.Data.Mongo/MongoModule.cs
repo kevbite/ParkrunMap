@@ -11,7 +11,8 @@ namespace ParkrunMap.Data.Mongo
         {
             builder.RegisterType<UpsertParkrun.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<QueryParkrunByRegion.Handler>().AsImplementedInterfaces().InstancePerDependency();
-            
+            builder.RegisterType<AddParkrunCancellation.Handler>().AsImplementedInterfaces().InstancePerDependency();
+          
             var mongoUrl = Environment.GetEnvironmentVariable("MongoDbUrl");
 
             builder.Register(context => new MongoClient(mongoUrl))
@@ -22,6 +23,8 @@ namespace ParkrunMap.Data.Mongo
 
             builder.Register(context => context.Resolve<IMongoDatabase>().GetCollection<Parkrun>("parkruns"))
                 .AsImplementedInterfaces();
+
+            builder.RegisterType<RegionPolygonProvider>().AsImplementedInterfaces();
 
             base.Load(builder);
         }

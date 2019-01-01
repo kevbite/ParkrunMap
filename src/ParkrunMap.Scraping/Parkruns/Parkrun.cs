@@ -4,11 +4,12 @@ namespace ParkrunMap.Scraping.Parkruns
 {
     public class Parkrun
     {
-        public Parkrun(int geoXmlId, string name, Uri uri, string region, string country, double latitude, double longitude)
+        public Parkrun(int geoXmlId, string name, string websiteDomain, string websitePath, string region, string country, double latitude, double longitude)
         {
             GeoXmlId = geoXmlId;
             Name = name;
-            Uri = uri;
+            WebsiteDomain = websiteDomain;
+            WebsitePath = websitePath;
             Region = region;
             Country = country;
             Latitude = latitude;
@@ -19,7 +20,9 @@ namespace ParkrunMap.Scraping.Parkruns
 
         public string Name { get; }
 
-        public Uri Uri { get; }
+        public string WebsiteDomain { get; }
+
+        public string WebsitePath { get; }
 
         public string Region { get; }
 

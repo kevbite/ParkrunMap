@@ -10,6 +10,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using ParkrunMap.Data.Mongo;
+using ParkrunMap.Domain;
 
 namespace ParkrunMap.FunctionsApp.QueryParkrunsByRegion
 {
@@ -43,7 +44,14 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByRegion
                     .ConfigureAwait(false);
 
                 return new OkObjectResult(response.Parkruns.Select(x => new
-                    { x.Name, x.Uri, lat = x.Location.Coordinates.Latitude, lon = x.Location.Coordinates.Longitude }));
+                {
+                    id = x.Id,
+                    x.Name,
+                    Uri = new Uri($"https://{x.Website.Domain}{x.Website.Path}"),
+                    lat = x.Location.Coordinates.Latitude,
+                    lon = x.Location.Coordinates.Longitude,
+                    Cancellations = x.Cancellations ?? new Cancellation[0]
+                }));
             }
           
             return new BadRequestObjectResult($"Unknown region '{region}'");

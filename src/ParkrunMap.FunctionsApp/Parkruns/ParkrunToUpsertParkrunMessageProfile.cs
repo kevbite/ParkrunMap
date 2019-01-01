@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using ParkrunMap.FunctionsApp.UpsertParkrun;
 using ParkrunMap.Scraping.Parkruns;
 
-namespace ParkrunMap.FunctionsApp.ParseGeoXml
+namespace ParkrunMap.FunctionsApp.Parkruns
 {
     public class ParkrunToUpsertParkrunMessageProfile : Profile
     {

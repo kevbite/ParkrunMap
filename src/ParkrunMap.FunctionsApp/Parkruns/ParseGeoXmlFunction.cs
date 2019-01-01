@@ -3,10 +3,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using ParkrunMap.FunctionsApp.UpsertParkrun;
 using ParkrunMap.Scraping.Parkruns;
 
-namespace ParkrunMap.FunctionsApp.ParseGeoXml
+namespace ParkrunMap.FunctionsApp.Parkruns
 {
     public class ParseGeoXmlFunction
     {
@@ -22,7 +21,9 @@ namespace ParkrunMap.FunctionsApp.ParseGeoXml
         }
 
         [FunctionName("ParseGeoXmlFunction")]
-        public static async Task Run([BlobTrigger("downloads/geo.xml", Connection = "AzureWebJobsStorage")]Stream geoXml, [Queue("parkrun-upserts", Connection = "AzureWebJobsStorage")] ICollector<UpsertParkrunMessage> messageCollector, ILogger logger)
+        public static async Task Run([BlobTrigger(DownloadFilePaths.GeoXml, Connection = "AzureWebJobsStorage")]Stream geoXml,
+            [Queue(QueueNames.UpsertParkrun, Connection = "AzureWebJobsStorage")]
+            ICollector<UpsertParkrunMessage> messageCollector, ILogger logger)
         {
             var func = Container.Instance.Resolve<ParseGeoXmlFunction>(logger);
 
