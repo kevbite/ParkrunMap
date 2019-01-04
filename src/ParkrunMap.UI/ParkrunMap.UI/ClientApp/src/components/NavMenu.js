@@ -11,16 +11,12 @@ import {
 import './NavMenu.css';
 
 export default class NavMenu extends React.Component {
-  constructor(props) {
-    super(props);
+  
+  state = {
+    isOpen: false
+  };
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
