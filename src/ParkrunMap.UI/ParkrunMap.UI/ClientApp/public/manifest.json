@@ -1,6 +1,6 @@
 {
-  "short_name": "ParkrunMap.UI",
-  "name": "ParkrunMap.UI",
+  "short_name": "Parkrun Map",
+  "name": "Unofficial Parkrun Event Map",
   "icons": [
     {
       "src": "favicon.ico",
