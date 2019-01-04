@@ -3,25 +3,21 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps";
+import {Button, CardBody, CardSubtitle,CardLink, CardTitle, CardText } from 'reactstrap';
 
 class ParkrunMarker extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.toggle = this.toggle.bind(this);
-    this.onParkrunMarkerClick = this.onParkrunMarkerClick.bind(this);
-    this.state = {
-      showInformation: false
-    };
-  }
+  state = {
+    showInformation: false
+  };
 
-  toggle() {
+  toggle = () => {
     this.setState({
       showInformation: !this.state.showInformation
     });
   }
 
-  onParkrunMarkerClick(parkrun) {
+  onParkrunMarkerClick = () => {
     this.toggle();
   }
 
@@ -64,20 +60,25 @@ class ParkrunMarker extends React.Component {
         {this.state.showInformation &&
           <InfoWindow
             onCloseClick={this.toggle}>
-            <div>
-              <strong>{this.props.parkrun.name}</strong>
-              <ul>
-                <li><a href={this.props.parkrun.uri}>Website</a></li>
+             <CardBody>
+                <CardTitle>{this.props.parkrun.name}</CardTitle>
+                <CardText></CardText>
                 {this.props.parkrun.cancellations.length > 0 &&
-                   <li>
-                     <div class="warning">Cancellations</div>
-                     <ul>
-                     {this.props.parkrun.cancellations.map(x => <li>{new Date(x.date).toDateString()}</li>)}
-                     </ul>
-                   </li>
+                  <div>
+                    <CardSubtitle>Cancellations</CardSubtitle>
+                    <ul>
+                      {this.props.parkrun.cancellations.map(x => <li>{new Date(x.date).toDateString()}</li>)}
+                    </ul>
+                  </div>
                 }
-              </ul>
-            </div>
+                <Button color="info" href={this.props.parkrun.uri}>Website</Button>
+                {' '}
+                {this.props.parkrun.cancellations.length > 0 && 
+                  <Button color="warning" href="https://www.parkrun.org.uk/cancellations/">Cancellations</Button>
+                }
+                {' '}
+                <Button color="secondary" onClick={this.toggle}>Close</Button>
+            </CardBody>
           </InfoWindow>}
 
       </Marker>);

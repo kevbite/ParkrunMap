@@ -27,7 +27,7 @@ export default class NavMenu extends React.Component {
       <div>
         <Navbar color="dark" dark expand="sm">
           <NavbarBrand href="/">
-            <img src="/favicon.ico" width="32" height="32" class="d-inline-block align-top" alt="Parkrun event map" />
+            <img src="/favicon.ico" width="32" height="32" className="d-inline-block align-top" alt="Parkrun event map" />
             Parkrun Map
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
