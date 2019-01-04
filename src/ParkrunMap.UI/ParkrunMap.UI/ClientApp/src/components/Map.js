@@ -16,6 +16,7 @@ class Map extends React.Component {
         defaultZoom={12}
         defaultCenter={{ lat: this.props.center.latitude, lng: this.props.center.longitude }}
         center={{ lat: this.props.center.latitude, lng: this.props.center.longitude }}
+        options={{streetViewControl:false}}
       >
         {this.props.parkruns &&
           this.props.parkruns.map(parkrun => <ParkrunMarker key={parkrun.name} parkrun={parkrun} />)}
