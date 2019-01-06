@@ -3,7 +3,13 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps";
-import {Button, CardBody, CardSubtitle,CardLink, CardTitle, CardText } from 'reactstrap';
+import {
+  Button,
+  CardBody,
+  CardSubtitle,
+  CardTitle,
+  CardText
+} from 'reactstrap';
 
 class ParkrunMarker extends React.Component {
 
