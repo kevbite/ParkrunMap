@@ -73,7 +73,7 @@ class ParkrunMarker extends React.Component {
                   <div>
                     <CardSubtitle>Cancellations</CardSubtitle>
                     <ul>
-                      {this.props.parkrun.cancellations.map(x => <li>{new Date(x.date).toDateString()}</li>)}
+                      {this.props.parkrun.cancellations.map(x => <li key={new Date(x.date).getTime()} >{new Date(x.date).toDateString()}</li>)}
                     </ul>
                   </div>
                 }
