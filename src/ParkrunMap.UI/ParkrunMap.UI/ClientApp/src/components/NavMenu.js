@@ -6,9 +6,11 @@ import {
   NavLink,
   NavbarBrand,
   NavbarToggler,
-  Collapse
+  Collapse,
+  Container
 } from 'reactstrap';
 import './NavMenu.css';
+import NavSpinner from './NavSpinner';
 
 export default class NavMenu extends React.Component {
   
@@ -26,11 +28,14 @@ export default class NavMenu extends React.Component {
     return (
       <div>
         <Navbar color="dark" dark expand="sm">
-          <NavbarBrand href="/">
-            <img src="/favicon.ico" width="32" height="32" className="d-inline-block align-top" alt="Parkrun event map" />
-            Parkrun Map
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
+          <Container>
+            <NavbarBrand href="/">
+              <img src="/favicon.ico" width="32" height="32" className="d-inline-block align-top" alt="Parkrun event map" />
+              Parkrun Map
+            </NavbarBrand>
+            <NavSpinner />
+            <NavbarToggler onClick={this.toggle} />
+          </Container>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
