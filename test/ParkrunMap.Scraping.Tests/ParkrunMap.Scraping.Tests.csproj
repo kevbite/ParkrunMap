@@ -27,6 +27,9 @@
     <None Update="data\geo.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="data\blackpark.course.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="data\york.course.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

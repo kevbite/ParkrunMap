@@ -1,7 +1,7 @@
 using Autofac;
-using Autofac.Core;
 using AutoMapper;
 using ParkrunMap.Data.Mongo;
+using ParkrunMap.FunctionsApp.Course;
 using ParkrunMap.FunctionsApp.ParkrunCancellation;
 using ParkrunMap.FunctionsApp.Parkruns;
 using ParkrunMap.FunctionsApp.QueryParkrunsByRegion;
@@ -29,6 +29,9 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<AddParkrunCancellationMessageToAddParkrunCancellationRequestProfile>()
                 .As<Profile>();
 
+            builder.RegisterType<ParkrunToDownloadCourseMessageProfile>()
+                .As<Profile>();
+
             builder.RegisterType<CloudBlockBlobUpdater>()
                 .AsSelf();
 
@@ -45,6 +48,8 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<ParseCancellationsPageFunction>().AsSelf();
             builder.RegisterType<AddParkrunCancellationQueueFunction>().AsSelf();
             builder.RegisterType<DownloadCancellationsPageFunction>().AsSelf();
+            builder.RegisterType<QueueUpCourseDownloadsFunction>().AsSelf();
+            builder.RegisterType<DownloadCourseFunction>().AsSelf();
         }
     }
 }

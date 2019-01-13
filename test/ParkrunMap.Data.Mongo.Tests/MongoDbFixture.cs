@@ -14,12 +14,15 @@ namespace ParkrunMap.Data.Mongo.Tests
 
         public IMongoCollection<Parkrun> Collection { get; private set; }
 
-        public Task InitializeAsync()
+        public MongoDbFixture()
         {
             Client = new MongoClient();
             Database = Client.GetDatabase(Guid.NewGuid().ToString());
             Collection = Database.GetCollection<Parkrun>(Guid.NewGuid().ToString());
+        }
 
+        public Task InitializeAsync()
+        {
             return Task.CompletedTask;
         }
 

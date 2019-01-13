@@ -42,6 +42,12 @@ namespace ParkrunMap.Scraping.Tests.Course
                     "1.5 laps (approximately) of the tarmac service road around the inside of the racecourse. Very flat, with few turns, making it a very fast course. On course map, start at green pin and head anti-clockwise round service road. Complete 1 full lap, then continue on round approximately another 1/2 lap to red Finish pin",
                     "1i-izH2wIlADvEGjfrjQ-zSfg3yc"
                 },
+                new object[]
+                {
+                    @".\data\blackpark.course.html",
+                    @"The course is one lap on firm, flat and wide tracks of compacted earth and gravel. Fast times can be expected. The start is approximately 100m along the track at the east end of the car park. All course turns are marked with direction arrows - if there is no sign you should always stay on the path you are on.",
+                    "1ImV8WgyJK51NLiTeZUC17IlnA4I"
+                },
             };
     }
 }

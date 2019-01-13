@@ -14,19 +14,26 @@ using Xunit;
 
 namespace ParkrunMap.Data.Mongo.Tests
 {
-    public class QueryParkrunByRegionTests : IClassFixture<MongoDbFixture>
+    public class QueryParkrunByRegionTests : IAsyncLifetime
     {
         private readonly Fixture _fixture;
         private readonly IRequestHandler<QueryParkrunByRegion.Request, QueryParkrunByRegion.Response> _handler;
         private readonly MongoDbFixture _mongoDbFixture;
 
-        public QueryParkrunByRegionTests(MongoDbFixture mongoDbFixture)
+        public QueryParkrunByRegionTests()
         {
-            _mongoDbFixture = mongoDbFixture;
+            _mongoDbFixture = new MongoDbFixture();
             _fixture = new Fixture();
             _fixture.Customizations.Add(new UtcRandomDateTimeSequenceGenerator());
-            _handler = new QueryParkrunByRegion.Handler(mongoDbFixture.Collection, new RegionPolygonProvider());
+            _handler = new QueryParkrunByRegion.Handler(_mongoDbFixture.Collection, new RegionPolygonProvider());
         }
+        
+        public async Task InitializeAsync()
+        {
+            await _mongoDbFixture.InitializeAsync()
+                .ConfigureAwait(false);
+        }
+
 
         [Fact]
         public async Task ShouldReturnParkrun()
@@ -101,13 +108,6 @@ namespace ParkrunMap.Data.Mongo.Tests
             }
         }
 
-        public static DateTime GetNextSaturday(DateTime start)
-        {
-            // The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
-            int daysToAdd = ((int)DayOfWeek.Saturday - (int)start.DayOfWeek + 7) % 7;
-            return start.AddDays(daysToAdd);
-        }
-
         private static GeoJsonPoint<GeoJson2DGeographicCoordinates> GetYorkUkGeoJsonPoint()
         {
             return new GeoJsonPoint<GeoJson2DGeographicCoordinates>(new GeoJson2DGeographicCoordinates(-1.098535, 53.937199));
@@ -117,6 +117,12 @@ namespace ParkrunMap.Data.Mongo.Tests
         private static GeoJsonPoint<GeoJson2DGeographicCoordinates> GetCologneGermanyGeoJsonPoint()
         {
             return new GeoJsonPoint<GeoJson2DGeographicCoordinates>(new GeoJson2DGeographicCoordinates(6.958710, 50.941219));
+        }
+
+        public async Task DisposeAsync()
+        {
+            await _mongoDbFixture.DisposeAsync()
+                .ConfigureAwait(false);
         }
     }
 }
