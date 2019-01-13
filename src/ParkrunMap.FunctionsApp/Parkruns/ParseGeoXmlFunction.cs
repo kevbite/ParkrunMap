@@ -23,7 +23,7 @@ namespace ParkrunMap.FunctionsApp.Parkruns
         [FunctionName("ParseGeoXmlFunction")]
         public static async Task Run([BlobTrigger(DownloadFilePaths.GeoXml, Connection = "AzureWebJobsStorage")]Stream geoXml,
             [Queue(QueueNames.UpsertParkrun, Connection = "AzureWebJobsStorage")]
-            ICollector<UpsertParkrunMessage> messageCollector, ILogger logger)
+            IAsyncCollector<UpsertParkrunMessage> messageCollector, ILogger logger)
         {
             var func = Container.Instance.Resolve<ParseGeoXmlFunction>(logger);
 
@@ -31,7 +31,7 @@ namespace ParkrunMap.FunctionsApp.Parkruns
                 .ConfigureAwait(false);
         }
 
-        private async Task Run(Stream geoXml, ICollector<UpsertParkrunMessage> messageCollector)
+        private async Task Run(Stream geoXml, IAsyncCollector<UpsertParkrunMessage> messageCollector)
         {
             var parkruns = _parser.Parse(geoXml);
             _logger.LogInformation("Scrapped {Count} parkruns", parkruns.Count);
@@ -42,7 +42,7 @@ namespace ParkrunMap.FunctionsApp.Parkruns
 
                 var message = _mapper.Map<UpsertParkrunMessage>(parkrun);
 
-                messageCollector.Add(message);
+                await messageCollector.AddAsync(message);
             }
         }
     }
