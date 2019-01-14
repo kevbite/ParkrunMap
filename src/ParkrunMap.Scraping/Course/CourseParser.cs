@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.WebUtilities;
@@ -18,6 +19,11 @@ namespace ParkrunMap.Scraping.Course
             {
                 {"www.parkrun.org.uk", "Course Map"},
                 {"www.parkrun.pl", "Mapa trasy"},
+                {"www.parkrun.dk", "Kort over ruten" },
+                {"www.parkrun.ru", "Карта трассы" },
+                {"www.parkrun.com.de", "Streckenplan" },
+                {"www.parkrun.fr", "Carte du parcours" },
+                {"www.parkrun.it", "Mappa Percorso" }
             };
 
         private static readonly IReadOnlyDictionary<string, string> DomainToCourseDescriptionHeaderMap =
@@ -25,6 +31,11 @@ namespace ParkrunMap.Scraping.Course
             {
                 {"www.parkrun.org.uk", "Course Description"},
                 {"www.parkrun.pl", "Opis trasy"},
+                {"www.parkrun.dk", "Beskrivelse af ruten" },
+                {"www.parkrun.ru", "Описание трассы" },
+                {"www.parkrun.com.de", "Streckenbeschreibung" },
+                {"www.parkrun.fr", "Description du parcours" },
+                {"www.parkrun.it", "Descrizione Percorso" }
             };
 
         private static readonly HttpClient HttpClient = new HttpClient();
@@ -92,17 +103,18 @@ namespace ParkrunMap.Scraping.Course
 
         private static string ParseDescription(HtmlNodeCollection headers, string domain)
         {
-            var theCourseH1 = headers.First(x => x.InnerText == DomainToCourseDescriptionHeaderMap[domain]);
+            var node = headers.First(x => x.InnerText == DomainToCourseDescriptionHeaderMap[domain]);
 
-            var textNode = theCourseH1.SelectSingleNode("following-sibling::text()");
-            var description = textNode.InnerText.Trim('\r', '\n', ' ');
+            string description = null;
 
-            if (string.IsNullOrEmpty(description))
+            while (string.IsNullOrEmpty(description))
             {
-                textNode = textNode.SelectSingleNode("following-sibling::text()");
-                description = textNode.InnerText.Trim('\r', '\n', ' ');
-            }
+                node = node.NextSibling;
 
+                var strings = Regex.Split(node.InnerText, @"(\r\n|\r|\n) *");
+
+                description = string.Join(" ", strings.Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)));
+            }
 
             return description;
         }

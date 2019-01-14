@@ -19,7 +19,7 @@ namespace ParkrunMap.FunctionsApp.ParkrunCancellation
         }
  
         [FunctionName("DownloadCancellationsPageFunction")]
-        public static async Task Run([TimerTrigger("0 0 */2 * * *", RunOnStartup = true)]TimerInfo myTimer,
+        public static async Task Run([TimerTrigger("0 0 */2 * * *")]TimerInfo myTimer,
             [Blob(DownloadFilePaths.CancellationsHtml, Connection = "AzureWebJobsStorage")]
             CloudBlockBlob geoXml,
             ILogger logger)
