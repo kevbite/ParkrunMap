@@ -33,7 +33,7 @@ namespace ParkrunMap.FunctionsApp.Course
             using (var stream = await _downloader.DownloadAsync(message.WebsiteDomain, message.WebsitePath)
                 .ConfigureAwait(false))
             {
-                var courseDetails = await _parser.Parse(stream)
+                var courseDetails = await _parser.Parse(stream, message.WebsiteDomain)
                     .ConfigureAwait(false);
 
                 _logger.LogInformation("Course Details {Description}", courseDetails.Description);

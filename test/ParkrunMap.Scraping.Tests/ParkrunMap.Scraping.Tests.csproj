@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="data\cieszyn.course.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="data\cancellations.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
