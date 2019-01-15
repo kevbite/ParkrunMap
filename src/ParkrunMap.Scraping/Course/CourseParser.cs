@@ -69,25 +69,31 @@ namespace ParkrunMap.Scraping.Course
 
             var description = ParseDescription(htmlDoc.DocumentNode, domain);
 
-            var googleMapId = await ParseGoogleMapId(htmlDoc.DocumentNode, domain);
+            var googleMapIds = await ParseGoogleMapIds(htmlDoc.DocumentNode, domain);
 
-            return new CourseDetails(description, googleMapId);
+            return new CourseDetails(description, googleMapIds);
         }
 
-        private static async Task<string> ParseGoogleMapId(HtmlNode document, string domain)
+        private static async Task<IReadOnlyCollection<string>> ParseGoogleMapIds(HtmlNode document, string domain)
         {
             var iframes = document.SelectNodes("//iframe")
                 .Select(x => x.Attributes["src"].DeEntitizeValue)
                 .Where(x => x.Contains("map"));
 
-            var uri = iframes.First();
-
-            if (TryParseGoogleMapId(uri, out var stringValues))
+            var googleMapIds = new List<string>();
+            foreach (var uri in iframes)
             {
-                return stringValues;
+                if (TryParseGoogleMapId(uri, out var stringValues))
+                {
+                    googleMapIds.Add(stringValues);
+                    continue;
+                }
+
+                googleMapIds.Add(await FollowUri(uri)
+                    .ConfigureAwait(false));
             }
 
-            return await FollowUri(uri);
+            return googleMapIds;
         }
 
         private static async Task<string> FollowUri(string uri)

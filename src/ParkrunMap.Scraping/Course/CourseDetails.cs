@@ -1,15 +1,17 @@
-﻿namespace ParkrunMap.Scraping.Course
+﻿using System.Collections.Generic;
+
+namespace ParkrunMap.Scraping.Course
 {
     public class CourseDetails
     {
-        public CourseDetails(string description, string googleMapId)
+        public CourseDetails(string description, IReadOnlyCollection<string> googleMapIds)
         {
             Description = description;
-            GoogleMapId = googleMapId;
+            GoogleMapIds = googleMapIds;
         }
 
         public string Description { get; }
 
-        public string GoogleMapId { get; }
+        public IReadOnlyCollection<string> GoogleMapIds { get; }
     }
 }
