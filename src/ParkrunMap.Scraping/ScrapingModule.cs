@@ -35,7 +35,7 @@ namespace ParkrunMap.Scraping
                 .AsSelf()
                 .Named<HttpClient>("cancellations-page-client");
 
-            builder.RegisterType<HttpClient>()
+            builder.Register(ctx => new HttpClient(new RedirectHandler(new HttpClientHandler())))
                 .AsSelf()
                 .Named<HttpClient>("course-page-client");
 

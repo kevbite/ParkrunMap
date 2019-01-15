@@ -19,11 +19,22 @@ namespace ParkrunMap.Scraping.Course
             {
                 {"www.parkrun.org.uk", "Course Map"},
                 {"www.parkrun.pl", "Mapa trasy"},
-                {"www.parkrun.dk", "Kort over ruten" },
-                {"www.parkrun.ru", "Карта трассы" },
-                {"www.parkrun.com.de", "Streckenplan" },
-                {"www.parkrun.fr", "Carte du parcours" },
-                {"www.parkrun.it", "Mappa Percorso" }
+                {"www.parkrun.dk", "Kort over ruten"},
+                {"www.parkrun.ru", "Карта трассы"},
+                {"www.parkrun.com.de", "Streckenplan"},
+                {"www.parkrun.fr", "Carte du parcours"},
+                {"www.parkrun.it", "Mappa Percorso"},
+                {"www.parkrun.co.za", "Course Map"},
+                {"www.parkrun.com.au", "Course Map"},
+                {"www.parkrun.ie", "Course Map"},
+                { "www.parkrun.sg", "Course Map"},
+                {"www.parkrun.us", "Course Map"},
+                {"www.parkrun.co.nz", "Course Map"},
+                {"www.parkrun.ca", "Course Map"},
+                {"www.parkrun.no", "Course Map"},
+                {"www.parkrun.fi", "Course Map"},
+                {"www.parkrun.my", "Course Map"},
+                {"www.parkrun.se", "Karta över banan"},
             };
 
         private static readonly IReadOnlyDictionary<string, string> DomainToCourseDescriptionHeaderMap =
@@ -31,11 +42,22 @@ namespace ParkrunMap.Scraping.Course
             {
                 {"www.parkrun.org.uk", "Course Description"},
                 {"www.parkrun.pl", "Opis trasy"},
-                {"www.parkrun.dk", "Beskrivelse af ruten" },
-                {"www.parkrun.ru", "Описание трассы" },
-                {"www.parkrun.com.de", "Streckenbeschreibung" },
-                {"www.parkrun.fr", "Description du parcours" },
-                {"www.parkrun.it", "Descrizione Percorso" }
+                {"www.parkrun.dk", "Beskrivelse af ruten"},
+                {"www.parkrun.ru", "Описание трассы"},
+                {"www.parkrun.com.de", "Streckenbeschreibung"},
+                {"www.parkrun.fr", "Description du parcours"},
+                {"www.parkrun.it", "Descrizione Percorso"},
+                {"www.parkrun.co.za", "Course Description"},
+                {"www.parkrun.com.au", "Course Description"},
+                {"www.parkrun.ie", "Course Description"},
+                {"www.parkrun.sg", "Course Description"},
+                {"www.parkrun.us", "Course Description"},
+                {"www.parkrun.co.nz", "Course Description"},
+                {"www.parkrun.ca", "Course Description"},
+                {"www.parkrun.no", "Course Description"},
+                {"www.parkrun.fi", "Course Description"},
+                {"www.parkrun.my", "Course Description"},
+                {"www.parkrun.se", "Beskrivning av banan"},
             };
 
         private static readonly HttpClient HttpClient = new HttpClient();
@@ -45,20 +67,20 @@ namespace ParkrunMap.Scraping.Course
             var htmlDoc = new HtmlDocument();
             htmlDoc.Load(stream);
 
-            var headers = htmlDoc.DocumentNode.SelectNodes("//h2");
+            var description = ParseDescription(htmlDoc.DocumentNode, domain);
 
-            var description = ParseDescription(headers, domain);
-
-            var googleMapId = await ParseGoogleMapId(headers, domain);
+            var googleMapId = await ParseGoogleMapId(htmlDoc.DocumentNode, domain);
 
             return new CourseDetails(description, googleMapId);
         }
 
-        private static async Task<string> ParseGoogleMapId(HtmlNodeCollection headers, string domain)
+        private static async Task<string> ParseGoogleMapId(HtmlNode document, string domain)
         {
-            var courseMapH1 = headers.First(x => x.InnerText == DomainToCourseMapHeaderMap[domain]);
+            var iframes = document.SelectNodes("//iframe")
+                .Select(x => x.Attributes["src"].DeEntitizeValue)
+                .Where(x => x.Contains("map"));
 
-            var uri = courseMapH1.SelectSingleNode("following-sibling::iframe").Attributes["src"].DeEntitizeValue;
+            var uri = iframes.First();
 
             if (TryParseGoogleMapId(uri, out var stringValues))
             {
@@ -101,8 +123,9 @@ namespace ParkrunMap.Scraping.Course
             return TryParseGoogleMapId(new Uri(uri), out value);
         }
 
-        private static string ParseDescription(HtmlNodeCollection headers, string domain)
+        private static string ParseDescription(HtmlNode documentNode, string domain)
         {
+            var headers = documentNode.SelectNodes("//h2");
             var node = headers.First(x => x.InnerText == DomainToCourseDescriptionHeaderMap[domain]);
 
             string description = null;

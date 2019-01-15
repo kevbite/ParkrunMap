@@ -19,7 +19,9 @@ namespace ParkrunMap.FunctionsApp.ParkrunCancellation
         }
 
         [FunctionName(nameof(AddParkrunCancellationQueueFunction))]
-        public static async Task Run([QueueTrigger(QueueNames.AddParkrunCancellation, Connection = "AzureWebJobsStorage")]AddParkrunCancellationMessage message, ILogger logger, CancellationToken cancellationToken)
+        public static async Task Run([QueueTrigger(QueueNames.AddParkrunCancellation, Connection = "AzureWebJobsStorage")]
+            AddParkrunCancellationMessage message,
+            ILogger logger, CancellationToken cancellationToken)
         {
             await Container.Instance.Resolve<AddParkrunCancellationQueueFunction>(logger).Run(message, cancellationToken);
         }
