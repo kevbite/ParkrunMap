@@ -50,6 +50,8 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<DownloadCancellationsPageFunction>().AsSelf();
             builder.RegisterType<QueueUpCourseDownloadsFunction>().AsSelf();
             builder.RegisterType<DownloadCourseFunction>().AsSelf();
+            builder.RegisterType<ParseCourseFunction>().AsSelf();
+            builder.RegisterType<UpdateCourseDetailsFunction>().AsSelf();
         }
     }
 }

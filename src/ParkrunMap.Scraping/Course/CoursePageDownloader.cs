@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ParkrunMap.Scraping.Course
@@ -13,10 +14,10 @@ namespace ParkrunMap.Scraping.Course
             _httpClient = httpClient;
         }
 
-        public async Task<Stream> DownloadAsync(string domain, string path)
+        public async Task<Stream> DownloadAsync(string domain, string path, CancellationToken cancellationToken)
         {
             var response = await _httpClient
-                .GetAsync($"https://{domain}{path}/course/")
+                .GetAsync($"https://{domain}{path}/course/", cancellationToken)
                 .ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();

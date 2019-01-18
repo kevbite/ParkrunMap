@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using ParkrunMap.Scraping.Course;
@@ -19,7 +20,7 @@ namespace ParkrunMap.Scraping.Tests.Course
             {
                 var downloader = new CoursePageDownloader(client);
 
-                var stream = await downloader.DownloadAsync("www.parkrun.org.uk", path)
+                var stream = await downloader.DownloadAsync("www.parkrun.org.uk", path, CancellationToken.None)
                     .ConfigureAwait(false);
 
                 var streamReader = new StreamReader(stream);
