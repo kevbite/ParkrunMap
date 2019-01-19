@@ -19,7 +19,7 @@ namespace ParkrunMap.FunctionsApp.Parkruns
         }
 
         [FunctionName(nameof(DownloadGeoXmlTimerFunction))]
-        public static async Task Run([TimerTrigger("0 0 2 * * *")]
+        public static async Task Run([TimerTrigger("0 0 2 * * Monday")]
             TimerInfo myTimer,
             [Blob(DownloadFilePaths.GeoXml, Connection = "AzureWebJobsStorage")]
             CloudBlockBlob geoXml,

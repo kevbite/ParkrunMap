@@ -20,7 +20,7 @@ namespace ParkrunMap.FunctionsApp.Course
         }
 
         [FunctionName("QueueUpCourseDownloadsFunction")]
-        public static async Task Run([TimerTrigger("0 0 3 * * *")] TimerInfo myTimer,
+        public static async Task Run([TimerTrigger("0 0 3 * * Monday")] TimerInfo myTimer,
             [Queue(QueueNames.DownloadCoursePage, Connection = "AzureWebJobsStorage")]
             IAsyncCollector<DownloadCourseMessage> collector, ILogger logger, CancellationToken cancellationToken)
         {
