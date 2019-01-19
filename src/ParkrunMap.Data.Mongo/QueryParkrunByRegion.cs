@@ -47,7 +47,8 @@ namespace ParkrunMap.Data.Mongo
                 project.Add("Country", 1);
                 project.Add("Region", 1);
                 project.Add("GeoXmlId", 1);
-                
+                project.Add("Course", 1);
+
                 var parkruns = await _collection.Aggregate()
                     .Match(filter)
                     .Project<Domain.Parkrun>(project)
