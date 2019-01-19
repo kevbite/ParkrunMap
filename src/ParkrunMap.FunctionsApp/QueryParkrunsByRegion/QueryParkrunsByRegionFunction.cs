@@ -50,7 +50,12 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByRegion
                     Uri = new Uri($"https://{x.Website.Domain}{x.Website.Path}"),
                     lat = x.Location.Coordinates.Latitude,
                     lon = x.Location.Coordinates.Longitude,
-                    Cancellations = x.Cancellations ?? new Cancellation[0]
+                    cancellations = x.Cancellations ?? new Cancellation[0],
+                    course = new
+                    {
+                        description = x.Course?.Description,
+                        GoogleMapIds = x.Course?.GoogleMapIds ?? new string[0]
+                    }
                 }));
             }
           
