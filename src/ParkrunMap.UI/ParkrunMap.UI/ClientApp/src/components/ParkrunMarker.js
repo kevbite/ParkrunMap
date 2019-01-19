@@ -68,7 +68,7 @@ class ParkrunMarker extends React.Component {
             onCloseClick={this.toggle}>
              <CardBody>
                 <CardTitle>{this.props.parkrun.name}</CardTitle>
-                <CardText></CardText>
+                <CardText>{this.props.parkrun.course.description}</CardText>
                 {this.props.parkrun.cancellations.length > 0 &&
                   <div>
                     <CardSubtitle>Cancellations</CardSubtitle>
