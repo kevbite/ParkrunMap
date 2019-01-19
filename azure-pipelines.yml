@@ -10,6 +10,9 @@ pool:
   vmImage: 'vs2017-win2016'
 
 steps:
+  - powershell: ./Setup-MongoDB.ps1
+    displayName: 'Setup MongoDB'
+
   - powershell: ./build.ps1
     displayName: 'Cake build'
 
