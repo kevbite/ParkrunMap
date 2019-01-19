@@ -14,11 +14,13 @@ namespace ParkrunMap.Data.Mongo
         {
             private readonly IMongoCollection<Domain.Parkrun> _collection;
             private readonly IRegionPolygonProvider _regionPolygonProvider;
+            private readonly Func<DateTime> _todayFunc;
 
-            public Handler(IMongoCollection<Domain.Parkrun> collection, IRegionPolygonProvider regionPolygonProvider)
+            public Handler(IMongoCollection<Domain.Parkrun> collection, IRegionPolygonProvider regionPolygonProvider, Func<DateTime> todayFunc)
             {
                 _collection = collection;
                 _regionPolygonProvider = regionPolygonProvider;
+                _todayFunc = todayFunc;
             }
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
@@ -27,14 +29,15 @@ namespace ParkrunMap.Data.Mongo
 
                 var filter = Builders<Domain.Parkrun>.Filter.GeoWithinPolygon(x => x.Location, polygon);
 
+                var today = _todayFunc();
                 var cancellationsFilter = new BsonDocument("$filter", new BsonDocument
                 {
                     {"input", "$Cancellations"},
                     {"as", "c"},
                     {"cond", new BsonDocument("$and", new BsonArray(new []
                     {
-                        new BsonDocument("$gte", new BsonArray(new BsonValue []{"$$c.Date", DateTime.Today})), 
-                        new BsonDocument("$lte", new BsonArray(new BsonValue []{"$$c.Date", DateTime.Today.AddDays(7 * 3)})),
+                        new BsonDocument("$gte", new BsonArray(new BsonValue []{"$$c.Date", today})), 
+                        new BsonDocument("$lte", new BsonArray(new BsonValue []{"$$c.Date", today.AddDays(7 * 3)})),
                     }))}
                 });
 

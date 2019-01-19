@@ -10,7 +10,11 @@ namespace ParkrunMap.Data.Mongo
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<UpsertParkrun.Handler>().AsImplementedInterfaces().InstancePerDependency();
-            builder.RegisterType<QueryParkrunByRegion.Handler>().AsImplementedInterfaces().InstancePerDependency();
+            builder.RegisterType<QueryParkrunByRegion.Handler>()
+                .WithParameter(TypedParameter.From<Func<DateTime>>(() => DateTime.Today))
+                .AsImplementedInterfaces()
+                .InstancePerDependency();
+
             builder.RegisterType<AddParkrunCancellation.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<QueryAllParkrunForWebsite.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<UpdateParkrunCourseDetails.Handler>().AsImplementedInterfaces().InstancePerDependency();

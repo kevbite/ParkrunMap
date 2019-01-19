@@ -19,13 +19,15 @@ namespace ParkrunMap.Data.Mongo.Tests
         private readonly Fixture _fixture;
         private readonly IRequestHandler<QueryParkrunByRegion.Request, QueryParkrunByRegion.Response> _handler;
         private readonly MongoDbFixture _mongoDbFixture;
+        private DateTime _today;
 
         public QueryParkrunByRegionTests()
         {
+            _today = new DateTime(2018, 12, 31);
             _mongoDbFixture = new MongoDbFixture();
             _fixture = new Fixture();
             _fixture.Customizations.Add(new UtcRandomDateTimeSequenceGenerator());
-            _handler = new QueryParkrunByRegion.Handler(_mongoDbFixture.Collection, new RegionPolygonProvider());
+            _handler = new QueryParkrunByRegion.Handler(_mongoDbFixture.Collection, new RegionPolygonProvider(), () => _today);
         }
         
         public async Task InitializeAsync()
@@ -67,15 +69,14 @@ namespace ParkrunMap.Data.Mongo.Tests
         [Fact]
         public async Task ShouldReturnOnlyNextThreeWeeksCancellations()
         {
-            var today = new DateTime(2018, 12, 31);
-            var yesterday = today.AddDays(-1);
-            var dateInThreeWeeks = today.AddDays(7 * 3);
+            var yesterday = _today.AddDays(-1);
+            var dateInThreeWeeks = _today.AddDays(7 * 3);
             var dateAfterThreeWeeks = dateInThreeWeeks.AddDays(1);
 
 
             var expectedCancellations = new List<Cancellation>()
             {
-                new Cancellation() {Date = today, Reason = "1"},
+                new Cancellation() {Date = _today, Reason = "1"},
                 new Cancellation() {Date = dateInThreeWeeks, Reason = "1"}
             };
 
