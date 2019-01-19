@@ -1,6 +1,7 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 var sln = "./ParkrunMap.sln";
+var artifactsDirectory = EnvironmentVariable("BUILD_ARTIFACTSTAGINGDIRECTORY") ?? "./artifacts/";
 
 Task("Clean")
     .Does(() =>
@@ -54,7 +55,7 @@ Task("Pack")
      var settings = new DotNetCorePackSettings
      {
         Configuration = configuration,
-        OutputDirectory = "./artifacts/",
+        OutputDirectory = artifactsDirectory,
         NoBuild = true
      };
 

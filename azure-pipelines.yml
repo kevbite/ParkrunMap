@@ -22,3 +22,5 @@ steps:
       testRunner: VSTest
       testResultsFiles: '**/*.trx'
       failTaskOnFailedTests: true
+
+  - task: PublishBuildArtifacts@1
