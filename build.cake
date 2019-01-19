@@ -1,7 +1,7 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 var sln = "./ParkrunMap.sln";
-var artifactsDirectory = EnvironmentVariable("BUILD_ARTIFACTSTAGINGDIRECTORY") ?? "./artifacts/";
+var artifactsDirectory = DirectoryPath.FromString(EnvironmentVariable("BUILD_ARTIFACTSTAGINGDIRECTORY") ?? "./artifacts/");
 
 Task("Clean")
     .Does(() =>
@@ -62,7 +62,16 @@ Task("Pack")
      DotNetCorePack(sln, settings);
 });
 
+Task("Zip-FunctionsApp")
+    .IsDependentOn("Pack")
+    .Does(() =>
+{
+     var publishPath = "./src/ParkrunMap.FunctionsApp/bin/Release/netstandard2.0/publish/";
+     
+     Zip(publishPath, artifactsDirectory.GetFilePath("ParkrunMap.FunctionsApp.zip"));
+});
+
 Task("Default")
-    .IsDependentOn("Pack");
+    .IsDependentOn("Zip-FunctionsApp");
 
 RunTarget(target);
