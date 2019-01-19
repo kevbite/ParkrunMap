@@ -47,8 +47,8 @@ namespace ParkrunMap.FunctionsApp.Course
             {
                 WebsiteDomain = websiteDomain,
                 WebsitePath = websitePath,
-                CourseDescription = courseDetails.Description,
-                CourseGoogleMapIds = courseDetails.GoogleMapIds
+                Description = courseDetails.Description,
+                GoogleMapIds = courseDetails.GoogleMapIds
             };
         }
     }

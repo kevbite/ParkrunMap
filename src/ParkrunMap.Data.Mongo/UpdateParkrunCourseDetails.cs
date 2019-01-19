@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using ParkrunMap.Domain;
 
 namespace ParkrunMap.Data.Mongo
 {
-    public class AddParkrunCancellation
+    public class UpdateParkrunCourseDetails
     {
         public class Handler : AsyncRequestHandler<Request>
         {
@@ -23,18 +22,12 @@ namespace ParkrunMap.Data.Mongo
             protected override async Task Handle(Request request, CancellationToken cancellationToken)
             {
                 var filter = Builders<Parkrun>.Filter.Eq(x => x.Website.Path, request.WebsitePath)
-                    & Builders<Parkrun>.Filter.Eq(x => x.Website.Domain, request.WebsiteDomain);
+                             & Builders<Parkrun>.Filter.Eq(x => x.Website.Domain, request.WebsiteDomain);
 
-                var cancellationsFilter = Builders<Cancellation>.Filter.Eq(x => x.Date, request.Date);
+                var update = Builders<Parkrun>.Update.Set(x => x.Course.Description, request.Description)
+                    .Set(x => x.Course.GoogleMapIds, request.GoogleMapIds);
 
-                var pullCancellation = Builders<Parkrun>.Update.PullFilter(x => x.Cancellations, cancellationsFilter);
-                
-                await _collection.UpdateOneAsync(filter, pullCancellation, cancellationToken: cancellationToken);
-
-                var pushCancellation = Builders<Parkrun>.Update.Push(x => x.Cancellations,
-                    new Cancellation() { Date = request.Date, Reason = request.Reason });
-
-                var updateResult = await _collection.UpdateOneAsync(filter, pushCancellation, cancellationToken: cancellationToken);
+                var updateResult = await _collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);
 
                 if (updateResult.MatchedCount == 0)
                 {
@@ -45,15 +38,13 @@ namespace ParkrunMap.Data.Mongo
 
         public class Request : IRequest
         {
-            public DateTime Date { get; set; }
-
-            public string Name { get; set; }
-
             public string WebsiteDomain { get; set; }
 
             public string WebsitePath { get; set; }
 
-            public string Reason { get; set; }
+            public string Description { get; set; }
+
+            public IReadOnlyCollection<string> GoogleMapIds { get; set; }
         }
     }
 }

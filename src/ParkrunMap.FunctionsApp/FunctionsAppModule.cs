@@ -32,6 +32,9 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<ParkrunToDownloadCourseMessageProfile>()
                 .As<Profile>();
 
+            builder.RegisterType<UpdateCourseDetailsMessageToUpdateParkrunCourseDetailsRequest>()
+                .As<Profile>();
+
             builder.RegisterType<CloudBlockBlobUpdater>()
                 .AsSelf();
 

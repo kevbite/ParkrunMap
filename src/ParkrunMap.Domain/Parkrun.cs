@@ -26,6 +26,8 @@ namespace ParkrunMap.Domain
 
         public GeoJsonPoint<GeoJson2DGeographicCoordinates> Location { get; set; }
 
-        public IReadOnlyList<Cancellation> Cancellations { get; set; }    
+        public IReadOnlyList<Cancellation> Cancellations { get; set; }
+
+        public Course Course { get; set; }
     }
 }

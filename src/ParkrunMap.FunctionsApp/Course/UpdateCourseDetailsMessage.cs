@@ -8,8 +8,8 @@ namespace ParkrunMap.FunctionsApp.Course
 
         public string WebsitePath { get; set; }
 
-        public string CourseDescription { get; set; }
+        public string Description { get; set; }
 
-        public IReadOnlyCollection<string> CourseGoogleMapIds { get; set; }
+        public IReadOnlyCollection<string> GoogleMapIds { get; set; }
     }
 }

@@ -5,6 +5,8 @@ namespace ParkrunMap.Domain
 {
     public class Course
     {
-        public Uri GoogleMapId { get; set; }
+        public string Description { get; set; }
+
+        public IReadOnlyCollection<string> GoogleMapIds { get; set; }
     }
 }
