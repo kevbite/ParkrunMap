@@ -14,20 +14,20 @@ using Xunit;
 
 namespace ParkrunMap.Data.Mongo.Tests
 {
-    public class QueryParkrunByRegionTests : IAsyncLifetime
+    public class QueryParkrunByPolygonTests : IAsyncLifetime
     {
         private readonly Fixture _fixture;
-        private readonly IRequestHandler<QueryParkrunByRegion.Request, QueryParkrunByRegion.Response> _handler;
+        private readonly IRequestHandler<QueryParkrunByPolygon.Request, QueryParkrunByPolygon.Response> _handler;
         private readonly MongoDbFixture _mongoDbFixture;
-        private DateTime _today;
+        private readonly DateTime _today;
 
-        public QueryParkrunByRegionTests()
+        public QueryParkrunByPolygonTests()
         {
             _today = new DateTime(2018, 12, 31);
             _mongoDbFixture = new MongoDbFixture();
             _fixture = new Fixture();
             _fixture.Customizations.Add(new UtcRandomDateTimeSequenceGenerator());
-            _handler = new QueryParkrunByRegion.Handler(_mongoDbFixture.Collection, new RegionPolygonProvider(), () => _today);
+            _handler = new QueryParkrunByPolygon.Handler(_mongoDbFixture.Collection, () => _today);
         }
         
         public async Task InitializeAsync()
@@ -57,8 +57,8 @@ namespace ParkrunMap.Data.Mongo.Tests
             await _mongoDbFixture.Collection.InsertManyAsync(ukParkrun.Concat(germanyParkrun))
                 .ConfigureAwait(false);
 
-            var command = _fixture.Build<QueryParkrunByRegion.Request>()
-                .With(x => x.Region, QueryParkrunByRegion.Region.UK)
+            var command = _fixture.Build<QueryParkrunByPolygon.Request>()
+                .With(x => x.Polygon, RegionPolygons.Uk)
                 .Create();
 
             var response = await _handler.Handle(command, CancellationToken.None);
@@ -95,8 +95,8 @@ namespace ParkrunMap.Data.Mongo.Tests
             await _mongoDbFixture.Collection.InsertOneAsync(parkrun)
                 .ConfigureAwait(false);
 
-            var command = _fixture.Build<QueryParkrunByRegion.Request>()
-                .With(x => x.Region, QueryParkrunByRegion.Region.UK)
+            var command = _fixture.Build<QueryParkrunByPolygon.Request>()
+                .With(x => x.Polygon, RegionPolygons.Uk)
                 .Create();
 
             var response = await _handler.Handle(command, CancellationToken.None);

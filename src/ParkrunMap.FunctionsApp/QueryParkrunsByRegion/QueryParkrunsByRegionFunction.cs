@@ -23,9 +23,17 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByRegion
             _mediator = mediator;
         }
 
+        [FunctionName("QueryParkrunsByUKRegionFunction")]
+        public static async Task<IActionResult> Run1(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "parkruns/uk")] HttpRequest req,
+            ILogger logger, CancellationToken cancellationToken)
+        {
+            return await Container.Instance.Resolve<QueryParkrunsByRegionFunction>(logger).Run("UK", cancellationToken);
+        }
+
         [FunctionName("QueryParkrunsByRegionFunction")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "parkruns/{region}")] HttpRequest req, string region,
+        public static async Task<IActionResult> Run2(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "parkruns/region/{region}")] HttpRequest req, string region,
             ILogger logger, CancellationToken cancellationToken)
         {
             return await Container.Instance.Resolve<QueryParkrunsByRegionFunction>(logger).Run(region, cancellationToken);
