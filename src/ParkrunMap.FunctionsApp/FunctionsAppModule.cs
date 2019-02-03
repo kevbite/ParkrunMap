@@ -4,6 +4,7 @@ using ParkrunMap.Data.Mongo;
 using ParkrunMap.FunctionsApp.Course;
 using ParkrunMap.FunctionsApp.ParkrunCancellation;
 using ParkrunMap.FunctionsApp.Parkruns;
+using ParkrunMap.FunctionsApp.QueryParkrunsByBox;
 using ParkrunMap.FunctionsApp.QueryParkrunsByRegion;
 using ParkrunMap.Scraping;
 
@@ -38,6 +39,9 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<CloudBlockBlobUpdater>()
                 .AsSelf();
 
+            builder.RegisterType<PolygonCreator>()
+                .As<IPolygonCreator>();
+
             base.Load(builder);
         }
 
@@ -55,6 +59,8 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<DownloadCourseFunction>().AsSelf();
             builder.RegisterType<ParseCourseFunction>().AsSelf();
             builder.RegisterType<UpdateCourseDetailsFunction>().AsSelf();
+            builder.RegisterType<QueryParkrunsByGeoBoxFunction>().AsSelf();
+            
         }
     }
 }
