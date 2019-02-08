@@ -16,11 +16,11 @@ namespace ParkrunMap.FunctionsApp.Tests.QueryParkrunsByBox
 
             polygon.Should().BeEquivalentTo(new[,]
             {
-                { bottomLeft.Lat, bottomLeft.Lon},
-                { upperRight.Lat, bottomLeft.Lon},
-                { upperRight.Lat, upperRight.Lon},
-                { bottomLeft.Lat, upperRight.Lon},
-                { bottomLeft.Lat, bottomLeft.Lon},
+                { bottomLeft.Lon, bottomLeft.Lat},
+                { upperRight.Lon, bottomLeft.Lat},
+                { upperRight.Lon, upperRight.Lat},
+                { bottomLeft.Lon, upperRight.Lat},
+                { bottomLeft.Lon, bottomLeft.Lat},
             });
         }
     }
