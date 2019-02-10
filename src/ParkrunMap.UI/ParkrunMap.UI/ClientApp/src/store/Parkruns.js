@@ -3,11 +3,11 @@ const receiveParkrunsType = 'RECEIVE_PARKRUNS';
 const initialState = { parkruns: [], isLoading: false };
 
 export const actionCreators = {
-  requestParkruns: () => async (dispatch) => {    
+  requestParkruns: (lat1, lon1, lat2, lon2) => async (dispatch) => {    
 
     dispatch({ type: requestParkrunsType });
 
-    const url = 'https://parkrun-map.azurewebsites.net/api/parkruns/uk';
+    const url = `https://parkrun-map.azurewebsites.net/api/parkruns/geobox?lat=${lat1}&lon=${lon1}&lat=${lat2}&lon=${lon2}`
     const response = await fetch(url);
     const parkruns = await response.json();
 

@@ -8,15 +8,18 @@ import { actionCreators as parkrunsActionCreators } from '../store/Parkruns';
 class ParkrunMap extends Component {
   componentWillMount() {
     this.props.locationActions.requestLocation();
-    this.props.parkrunsActions.requestParkruns();
+  }
+
+  onBoundsChanged = ({bottomLeft, topRight}) => {
+    this.props.parkrunsActions.requestParkruns(bottomLeft.lat, bottomLeft.lon, topRight.lat, topRight.lon);
   }
 
   render() {
     return (
       <Map
-        center={this.props.location}
+        onBoundsChanged={this.onBoundsChanged}
+        userLocation={this.props.location}
         parkruns={this.props.parkruns}
-        onParkrunMarkerClick={() => alert('Hello')}
       />
     );
   }
