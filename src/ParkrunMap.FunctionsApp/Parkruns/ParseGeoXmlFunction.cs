@@ -1,8 +1,11 @@
+using System;
+using System.Collections;
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using ParkrunMap.Scraping.Parkruns;
 
 namespace ParkrunMap.FunctionsApp.Parkruns
@@ -12,12 +15,14 @@ namespace ParkrunMap.FunctionsApp.Parkruns
         private readonly ILogger _logger;
         private readonly GeoXmlParser _parser;
         private readonly IMapper _mapper;
+        private readonly ParkrunOverrides _parkrunOverrides;
 
-        public ParseGeoXmlFunction(ILogger logger, GeoXmlParser parser, IMapper mapper)
+        public ParseGeoXmlFunction(ILogger logger, GeoXmlParser parser, IMapper mapper, ParkrunOverrides parkrunOverrides)
         {
             _logger = logger;
             _parser = parser;
             _mapper = mapper;
+            _parkrunOverrides = parkrunOverrides;
         }
 
         [FunctionName("ParseGeoXmlFunction")]
@@ -36,8 +41,11 @@ namespace ParkrunMap.FunctionsApp.Parkruns
             var parkruns = _parser.Parse(geoXml);
             _logger.LogInformation("Scrapped {Count} parkruns", parkruns.Count);
 
-            foreach (var parkrun in parkruns)
+            foreach (var parsedParkrun in parkruns)
             {
+                _logger.LogInformation("Applying parkrun overrides for {ParkrunName}", parsedParkrun.Name);
+
+                var parkrun = _parkrunOverrides.Apply(parsedParkrun);
                 _logger.LogInformation("Sending upsert parkrun message for {ParkrunName}", parkrun.Name);
 
                 var message = _mapper.Map<UpsertParkrunMessage>(parkrun);

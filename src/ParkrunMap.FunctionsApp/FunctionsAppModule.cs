@@ -42,6 +42,10 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<PolygonCreator>()
                 .As<IPolygonCreator>();
 
+            builder.RegisterType<ParkrunOverrides>()
+                .AsSelf();
+
+
             base.Load(builder);
         }
 
