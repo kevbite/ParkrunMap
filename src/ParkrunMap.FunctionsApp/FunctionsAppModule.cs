@@ -1,8 +1,10 @@
+using System.Net.Http;
 using Autofac;
 using AutoMapper;
 using ParkrunMap.Data.Mongo;
 using ParkrunMap.FunctionsApp.Course;
 using ParkrunMap.FunctionsApp.ParkrunCancellation;
+using ParkrunMap.FunctionsApp.ParkrunFeatures;
 using ParkrunMap.FunctionsApp.Parkruns;
 using ParkrunMap.FunctionsApp.QueryParkrunsByBox;
 using ParkrunMap.FunctionsApp.QueryParkrunsByRegion;
@@ -45,6 +47,15 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<ParkrunOverrides>()
                 .AsSelf();
 
+            builder.RegisterType<HttpClient>()
+                .AsSelf()
+                .Named<HttpClient>("questionnaire-response-downloader-client");
+
+            builder.Register(x => new QuestionnaireResponseDownloader(x.ResolveNamed<HttpClient>("questionnaire-response-downloader-client")))
+                .AsSelf();
+
+            builder.RegisterType<ParkrunQuestionnaireResponseAggregator>()
+                .AsSelf();
 
             base.Load(builder);
         }
@@ -64,7 +75,8 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<ParseCourseFunction>().AsSelf();
             builder.RegisterType<UpdateCourseDetailsFunction>().AsSelf();
             builder.RegisterType<QueryParkrunsByGeoBoxFunction>().AsSelf();
-            
+            builder.RegisterType<DownloadQuestionnaireResponsesFunction>().AsSelf();
+            builder.RegisterType<QuestionnaireResponseAggregatorFunction>().AsSelf();
         }
     }
 }

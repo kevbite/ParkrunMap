@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver.GeoJsonObjectModel;
 
@@ -10,6 +9,8 @@ namespace ParkrunMap.Domain
         public Parkrun()
         {
             Cancellations = new Cancellation[0];
+            Terrain = new TerrainType[0];
+            Features = new Features();
         }
 
         public ObjectId Id { get; set; }
@@ -29,5 +30,9 @@ namespace ParkrunMap.Domain
         public IReadOnlyList<Cancellation> Cancellations { get; set; }
 
         public Course Course { get; set; }
+
+        public Features Features { get; set; }
+
+        public IReadOnlyCollection<TerrainType> Terrain { get; set; }
     }
 }
