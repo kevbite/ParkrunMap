@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ParkrunMap.FunctionsApp.ParkrunFeatures
 {
-    public class QuestionnaireResponseAggregatorFunction
+    public class QuestionnaireResponseAggregatorQueueFunction
     {
 
         [FunctionName("QuestionnaireResponseAggregatorFunction")]
@@ -13,7 +13,7 @@ namespace ParkrunMap.FunctionsApp.ParkrunFeatures
             ParkrunQuestionnaireResponsesMessage message,
             ILogger logger)
         {
-            var func = Container.Instance.Resolve<QuestionnaireResponseAggregatorFunction>(logger);
+            var func = Container.Instance.Resolve<QuestionnaireResponseAggregatorQueueFunction>(logger);
 
             await func.Run(message)
                 .ConfigureAwait(false);

@@ -19,6 +19,7 @@ namespace ParkrunMap.Data.Mongo
             builder.RegisterType<AddParkrunCancellation.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<QueryAllParkrunForWebsite.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<UpdateParkrunCourseDetails.Handler>().AsImplementedInterfaces().InstancePerDependency();
+            builder.RegisterType<UpdateParkrunFeatures.Handler>().AsImplementedInterfaces().InstancePerDependency();
 
             var mongoUrl = Environment.GetEnvironmentVariable("MongoDbUrl");
 

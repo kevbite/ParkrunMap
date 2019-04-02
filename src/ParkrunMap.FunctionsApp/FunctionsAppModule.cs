@@ -75,8 +75,8 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<ParseCourseFunction>().AsSelf();
             builder.RegisterType<UpdateCourseDetailsFunction>().AsSelf();
             builder.RegisterType<QueryParkrunsByGeoBoxFunction>().AsSelf();
-            builder.RegisterType<DownloadQuestionnaireResponsesFunction>().AsSelf();
-            builder.RegisterType<QuestionnaireResponseAggregatorFunction>().AsSelf();
+            builder.RegisterType<DownloadQuestionnaireResponsesTimerFunction>().AsSelf();
+            builder.RegisterType<QuestionnaireResponseAggregatorQueueFunction>().AsSelf();
         }
     }
 }

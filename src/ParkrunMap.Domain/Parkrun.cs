@@ -9,7 +9,6 @@ namespace ParkrunMap.Domain
         public Parkrun()
         {
             Cancellations = new Cancellation[0];
-            Terrain = new TerrainType[0];
             Features = new Features();
         }
 
@@ -32,7 +31,5 @@ namespace ParkrunMap.Domain
         public Course Course { get; set; }
 
         public Features Features { get; set; }
-
-        public IReadOnlyCollection<TerrainType> Terrain { get; set; }
     }
 }

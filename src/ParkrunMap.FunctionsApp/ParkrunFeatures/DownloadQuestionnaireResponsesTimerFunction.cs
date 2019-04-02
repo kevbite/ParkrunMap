@@ -5,11 +5,11 @@ using Microsoft.Extensions.Logging;
 
 namespace ParkrunMap.FunctionsApp.ParkrunFeatures
 {
-    public class DownloadQuestionnaireResponsesFunction
+    public class DownloadQuestionnaireResponsesTimerFunction
     {
         private readonly QuestionnaireResponseDownloader _downloader;
 
-        public DownloadQuestionnaireResponsesFunction(QuestionnaireResponseDownloader downloader)
+        public DownloadQuestionnaireResponsesTimerFunction(QuestionnaireResponseDownloader downloader)
         {
             _downloader = downloader;
         }
@@ -19,7 +19,7 @@ namespace ParkrunMap.FunctionsApp.ParkrunFeatures
             [Queue(QueueNames.AggregateQuestionnaireResponses, Connection = "AzureWebJobsStorage")]
             IAsyncCollector<ParkrunQuestionnaireResponsesMessage> messageCollector, ILogger logger)
         {
-            var func = Container.Instance.Resolve<DownloadQuestionnaireResponsesFunction>(logger);
+            var func = Container.Instance.Resolve<DownloadQuestionnaireResponsesTimerFunction>(logger);
 
             await func.Run(messageCollector)
                 .ConfigureAwait(false);
