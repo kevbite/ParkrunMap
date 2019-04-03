@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using Autofac;
 using AutoMapper;
@@ -35,6 +36,9 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<ParkrunToDownloadCourseMessageProfile>()
                 .As<Profile>();
 
+            builder.RegisterType<ParkrunQuestionnaireResponseAggregationToUpdateParkrunFeaturesRequestProfile>()
+                .As<Profile>();
+            
             builder.RegisterType<UpdateCourseDetailsMessageToUpdateParkrunCourseDetailsRequest>()
                 .As<Profile>();
 
@@ -51,7 +55,9 @@ namespace ParkrunMap.FunctionsApp
                 .AsSelf()
                 .Named<HttpClient>("questionnaire-response-downloader-client");
 
-            builder.Register(x => new QuestionnaireResponseDownloader(x.ResolveNamed<HttpClient>("questionnaire-response-downloader-client")))
+            var googleApiKey = Environment.GetEnvironmentVariable("GoogleApiKey");
+
+            builder.Register(x => new QuestionnaireResponseDownloader(x.ResolveNamed<HttpClient>("questionnaire-response-downloader-client"), googleApiKey))
                 .AsSelf();
 
             builder.RegisterType<ParkrunQuestionnaireResponseAggregator>()
@@ -77,6 +83,7 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<QueryParkrunsByGeoBoxFunction>().AsSelf();
             builder.RegisterType<DownloadQuestionnaireResponsesTimerFunction>().AsSelf();
             builder.RegisterType<QuestionnaireResponseAggregatorQueueFunction>().AsSelf();
+            builder.RegisterType<UpdateParkrunFeaturesQueueFunction>().AsSelf();
         }
     }
 }

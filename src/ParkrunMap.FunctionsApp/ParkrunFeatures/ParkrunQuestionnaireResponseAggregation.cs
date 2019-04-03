@@ -6,6 +6,10 @@ namespace ParkrunMap.FunctionsApp.ParkrunFeatures
 
     public class ParkrunQuestionnaireResponseAggregation
     {
+        public string WebsiteDomain { get; set; }
+
+        public string WebsitePath { get; set; }
+
         public IReadOnlyCollection<TerrainType> Terrain { get; set; }
 
         public bool? WheelchairFriendly { get; set; }

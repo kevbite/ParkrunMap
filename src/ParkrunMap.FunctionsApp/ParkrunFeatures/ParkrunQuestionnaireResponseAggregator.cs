@@ -79,6 +79,8 @@ namespace ParkrunMap.FunctionsApp.ParkrunFeatures
 
             return new ParkrunQuestionnaireResponseAggregation()
             {
+                WebsiteDomain = message.Responses.First().WebsiteDomain,
+                WebsitePath = message.Responses.First().WebsitePath,
                 WheelchairFriendly = wheelchairFriendly,
                 BuggyFriendly = buggyFriendly,
                 VisuallyImpairedFriendly = visuallyImpairedFriendly,

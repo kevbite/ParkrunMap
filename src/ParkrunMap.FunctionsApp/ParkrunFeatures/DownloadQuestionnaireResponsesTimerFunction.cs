@@ -14,7 +14,7 @@ namespace ParkrunMap.FunctionsApp.ParkrunFeatures
             _downloader = downloader;
         }
 
-        [FunctionName("DownloadQuestionnaireResponsesFunction")]
+        [FunctionName(nameof(DownloadQuestionnaireResponsesTimerFunction))]
         public static async Task Run([TimerTrigger("0 0 2 * * Monday")]TimerInfo myTimer,
             [Queue(QueueNames.AggregateQuestionnaireResponses, Connection = "AzureWebJobsStorage")]
             IAsyncCollector<ParkrunQuestionnaireResponsesMessage> messageCollector, ILogger logger)

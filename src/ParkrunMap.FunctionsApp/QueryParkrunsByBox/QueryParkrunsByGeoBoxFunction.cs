@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using ParkrunMap.Data.Mongo;
 using ParkrunMap.Domain;
 
@@ -60,21 +61,42 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByBox
             var response = await _mediator.Send(request, cancellationToken)
                 .ConfigureAwait(false);
 
-            return new OkObjectResult(response.Parkruns.Select(x => new
+            return new OkObjectResult(response.Parkruns.Select(x => new ParkrunResponseObject
             {
-                id = x.Id,
-                x.Name,
+                Id = x.Id.ToString(),
+                Name = x.Name,
                 Uri = new Uri($"https://{x.Website.Domain}{x.Website.Path}"),
-                lat = x.Location.Coordinates.Latitude,
-                lon = x.Location.Coordinates.Longitude,
-                cancellations = x.Cancellations ?? new Cancellation[0],
-                course = new
+                Lat = x.Location.Coordinates.Latitude,
+                Lon = x.Location.Coordinates.Longitude,
+                Cancellations = x.Cancellations ?? new Cancellation[0],
+                Course = new ParkrunCourseResponseObject
                 {
-                    description = x.Course?.Description,
-                    GoogleMapIds = x.Course?.GoogleMapIds ?? new string[0]
+                    Description = x.Course?.Description,
+                    GoogleMapIds = x.Course?.GoogleMapIds ?? new string[0],
+                    Terrain = x.Course?.Terrain ?? new TerrainType[0]
+                },
+                Features = new ParkrunFeaturesResponseObject
+                {
+                    WheelchairFriendly = x.Features.WheelchairFriendly,
+                    BuggyFriendly = x.Features.BuggyFriendly,
+                    VisuallyImpairedFriendly = x.Features.VisuallyImpairedFriendly,
+                    Toilets = x.Features.Toilets,
+                    DogsAllowed = x.Features.DogsAllowed,
+                    Cafe = x.Features.Cafe,
+                    PostRunCoffee = x.Features.PostRunCoffee,
+                    DrinkingFountain = x.Features.DrinkingFountain,
+                    ChangingRooms = x.Features.ChangingRooms,
+                    Lockers = x.Features.Lockers,
+                    Showers = x.Features.Showers,
+                    BagDrop = x.Features.BagDrop,
+                    BabyChangingFacilities = x.Features.BabyChangingFacilities,
+                    CarParking = x.Features.CarParking,
+                    CycleParking = x.Features.CycleParking,
+                    CarParkingOptions = x.Features.CarParkingOptions,
+                    CycleParkingOptions = x.Features.CycleParkingOptions,
+                    RecommendedBuggy = x.Features.RecommendedBuggy,
                 }
             }));
-
         }
     }
 }

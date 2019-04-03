@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
+﻿using System.Linq;
 using AutoFixture;
 using FluentAssertions;
 using ParkrunMap.Domain;
@@ -473,6 +470,25 @@ namespace ParkrunMap.FunctionsApp.Tests.ParkrunFeatures
             var aggregation = _aggregator.Aggregate(message);
 
             aggregation.RecommendedBuggy.Should().BeEquivalentTo(BuggyType.Running, BuggyType.CrossCountry);
+        }
+
+        [Fact]
+        public void ShouldCopyWebsiteDomainAndPath()
+        {
+            var response = _fixture.Build<QuestionnaireResponse>()
+                .Create();
+
+            var message = _fixture.Build<ParkrunQuestionnaireResponsesMessage>()
+                .With(x => x.Responses, new[] { response })
+                .Create();
+
+            var aggregation = _aggregator.Aggregate(message);
+
+            aggregation.Should().BeEquivalentTo(new
+            {
+                response.WebsiteDomain,
+                response.WebsitePath
+            });
         }
     }
 }
