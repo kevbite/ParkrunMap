@@ -13,7 +13,7 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByBox
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
-        [JsonProperty(PropertyName = "Uri")]
+        [JsonProperty(PropertyName = "uri")]
         public Uri Uri { get; set; }
 
         [JsonProperty(PropertyName = "lat")]
