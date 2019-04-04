@@ -26,9 +26,18 @@ export const reducer = (state, action) => {
   }
 
   if (action.type === receiveParkrunsType) {
+
+    const parkruns = state.parkruns.reduce((acc, parkrun) => {
+      if(!acc.find(x => x.id === parkrun.id)){
+        acc.push(parkrun);
+      }
+    
+      return acc;
+    }, action.parkruns);
+
     return {
       ...state,
-      parkruns: action.parkruns,
+      parkruns: parkruns,
       isLoading: false
     };
   }
