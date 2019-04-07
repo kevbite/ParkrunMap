@@ -8,6 +8,8 @@ import withTracker from './withTracker';
 export default () => (
   <Layout>
     <Route exact path='/' component={withTracker(ParkrunMap)} />
+    <Route exact path='/wheelchair-friendly' component={withTracker(ParkrunMap)} />
+    <Route exact path='/buggy-friendly' component={withTracker(ParkrunMap)} />
     <Route exact path='/about' component={withTracker(About)} />
   </Layout>
 );
