@@ -12,6 +12,7 @@ import {
 import './NavMenu.css';
 import NavSpinner from './NavSpinner';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 class NavMenu extends React.Component {
 
@@ -41,29 +42,33 @@ class NavMenu extends React.Component {
             <Nav navbar>
               <NavItem>
                 <NavLink
+                  tag={Link}
                   active={this.context.router.route.location.pathname === '/'}
-                  href="/">
+                  to="/">
                   All Parkruns
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
+                  tag={Link}
                   active={this.context.router.route.location.pathname === '/wheelchair-friendly'}
-                  href="/wheelchair-friendly">
+                  to="/wheelchair-friendly">
                   Wheelchair Friendly
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
+                  tag={Link}
                   active={this.context.router.route.location.pathname === '/buggy-friendly'}
-                  href="/buggy-friendly">
+                  to="/buggy-friendly">
                   Buggy Friendly
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
+                  tag={Link}
                   active={this.context.router.route.location.pathname === '/about'}
-                  href="/about">
+                  to="/about">
                   About
                 </NavLink>
               </NavItem>
