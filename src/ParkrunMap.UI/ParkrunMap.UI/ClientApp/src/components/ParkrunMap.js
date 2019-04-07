@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Map from './Map'
 import { actionCreators as locationActionCreators } from '../store/Location';
 import { actionCreators as parkrunsActionCreators } from '../store/Parkruns';
+import { Helmet } from "react-helmet";
 
 class ParkrunMap extends Component {
   componentWillMount() {
@@ -15,13 +16,19 @@ class ParkrunMap extends Component {
   }
 
   render() {
-
     return (
-      <Map
-        onBoundsChanged={this.onBoundsChanged}
-        userLocation={this.props.location}
-        parkruns={this.props.parkruns}
-      />
+      <div>
+        <Helmet>
+          {this.props.title && <title>{this.props.title}</title>}
+          {this.props.description && <meta name="description" content={this.props.description} />}
+          {this.props.keywords && <meta name="keywords" content={this.props.keywords} />}
+        </Helmet>
+        <Map
+          onBoundsChanged={this.onBoundsChanged}
+          userLocation={this.props.location}
+          parkruns={this.props.parkruns}
+        />
+      </div>
     );
   }
 }
@@ -34,19 +41,19 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-
   const props = {
+    keywords: "Parkrun,Running,Events,Map,Cancelled",
     location: state.location.location,
     parkruns: state.parkruns.parkruns
   };
 
-  if (state.routing.location.pathname !== '/') {
+  const filters = {
+    wheelchairFriendly: state.routing.location.pathname === '/wheelchair-friendly',
+    buggyFriendly: state.routing.location.pathname === '/buggy-friendly'
+  };
 
+  if (state.routing.location.pathname !== '/') {
     var parkruns = state.parkruns.parkruns.filter(parkrun => {
-      const filters = {
-        wheelchairFriendly: state.routing.location.pathname === '/wheelchair-friendly',
-        buggyFriendly: state.routing.location.pathname === '/buggy-friendly'
-      };
       var selected = false;
       if (filters.wheelchairFriendly && parkrun.features.wheelchairFriendly) {
         selected = true;
@@ -54,9 +61,19 @@ function mapStateToProps(state) {
       if (filters.buggyFriendly && parkrun.features.buggyFriendly) {
         selected = true;
       }
-      
+
       return selected;
     });
+
+    if (filters.wheelchairFriendly) {
+      props.title = "Wheelchair friendly parkruns";
+      props.description = "Find wheelchair friendly parkruns";
+      props.keywords += ",wheelchair,disabled,accessibility";
+    } else if (filters.buggyFriendly) {
+      props.title = "Buggy friendly parkruns";
+      props.description = "Find buggy friendly parkruns";
+      props.keywords += ",buggy,baby,prams,pushchairs";
+    }
 
     props.parkruns = parkruns;
   }
