@@ -3,17 +3,18 @@ import {
   Nav,
   Navbar,
   NavItem,
-  NavLink,
   NavbarBrand,
   NavbarToggler,
+  NavLink,
   Collapse,
   Container
 } from 'reactstrap';
 import './NavMenu.css';
 import NavSpinner from './NavSpinner';
+import PropTypes from 'prop-types';
 
-export default class NavMenu extends React.Component {
-  
+class NavMenu extends React.Component {
+
   state = {
     isOpen: false
   };
@@ -37,15 +38,34 @@ export default class NavMenu extends React.Component {
             <NavbarToggler onClick={this.toggle} />
           </Container>
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav navbar>
               <NavItem>
-                <NavLink href="/">Map</NavLink>
+                <NavLink
+                  active={this.context.router.route.location.pathname === '/'}
+                  href="/">
+                  All Parkruns
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/about">About</NavLink>
+                <NavLink
+                  active={this.context.router.route.location.pathname === '/wheelchair-friendly'}
+                  href="/wheelchair-friendly">
+                  Wheelchair Friendly
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/kevbite/ParkrunMap">GitHub</NavLink>
+                <NavLink
+                  active={this.context.router.route.location.pathname === '/buggy-friendly'}
+                  href="/buggy-friendly">
+                  Buggy Friendly
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  active={this.context.router.route.location.pathname === '/about'}
+                  href="/about">
+                  About
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -54,3 +74,10 @@ export default class NavMenu extends React.Component {
     );
   }
 }
+
+
+NavMenu.contextTypes = {
+  router: PropTypes.object
+};
+
+export default NavMenu;
