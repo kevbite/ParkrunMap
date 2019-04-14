@@ -35,6 +35,7 @@ namespace ParkrunMap.Scraping.Course
                 {"www.parkrun.fi", "Course Map"},
                 {"www.parkrun.my", "Course Map"},
                 {"www.parkrun.se", "Karta över banan"},
+                {"www.parkrun.jp", "コースマップ" },
             };
 
         private static readonly IReadOnlyDictionary<string, string> DomainToCourseDescriptionHeaderMap =
@@ -58,6 +59,7 @@ namespace ParkrunMap.Scraping.Course
                 {"www.parkrun.fi", "Course Description"},
                 {"www.parkrun.my", "Course Description"},
                 {"www.parkrun.se", "Beskrivning av banan"},
+                {"www.parkrun.jp", "コースの詳細" },
             };
 
         private static readonly HttpClient HttpClient = new HttpClient();

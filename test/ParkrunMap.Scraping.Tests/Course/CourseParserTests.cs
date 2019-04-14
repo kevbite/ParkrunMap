@@ -183,6 +183,13 @@ namespace ParkrunMap.Scraping.Tests.Course
                     @".\data\hampsteadheath.course.html",
                     @"Hampstead Heath parkrun is a clockwise 2 laps course that will take you through some wonderful ancient woodlands, along the chain of ponds and up through Parliament Hill Fields. There are actually two courses that we use, and change depending on conditions - please check",
                     new []{"1AOcvRs7LjPK0JIHlRfNnpEQDPSw", "1Qf-YyM_zG9iBncp0Ba4x8SQq0_k" }
+                },
+                new object[]
+                {
+                    "www.parkrun.jp",
+                    @".\data\futakotamagawa.course.html",
+                    @"芝生の上からスタートし、多摩川に並行して西へ1キロ進みます。左折して橋を渡り、左手へ曲がり池の左側を通過し、300メートル先の大きな橋の下を通過します。その後、砂利道を800メートル進み、左折し再度橋を渡って歩道に沿ってスタート／ゴール地点まで戻ります。",
+                    new []{ "1IdTfDIjB2YGMjewOaAExkC4DIU7Y46JA" }
                 }
             };
     }
