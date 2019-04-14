@@ -12,7 +12,7 @@ import {
 import './NavMenu.css';
 import NavSpinner from './NavSpinner';
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from 'react-router-dom';
 
 class NavMenu extends React.Component {
 
@@ -27,6 +27,8 @@ class NavMenu extends React.Component {
   }
 
   render() {
+    const { location } = this.props;
+
     return (
       <div>
         <Navbar color="dark" dark expand="sm">
@@ -43,7 +45,7 @@ class NavMenu extends React.Component {
               <NavItem>
                 <NavLink
                   tag={Link}
-                  active={this.context.router.route.location.pathname === '/'}
+                  active={location.pathname === '/'}
                   to="/">
                   All Parkruns
                 </NavLink>
@@ -51,7 +53,7 @@ class NavMenu extends React.Component {
               <NavItem>
                 <NavLink
                   tag={Link}
-                  active={this.context.router.route.location.pathname === '/wheelchair-friendly'}
+                  active={location.pathname === '/wheelchair-friendly'}
                   to="/wheelchair-friendly">
                   Wheelchair Friendly
                 </NavLink>
@@ -59,7 +61,7 @@ class NavMenu extends React.Component {
               <NavItem>
                 <NavLink
                   tag={Link}
-                  active={this.context.router.route.location.pathname === '/buggy-friendly'}
+                  active={location.pathname === '/buggy-friendly'}
                   to="/buggy-friendly">
                   Buggy Friendly
                 </NavLink>
@@ -67,7 +69,7 @@ class NavMenu extends React.Component {
               <NavItem>
                 <NavLink
                   tag={Link}
-                  active={this.context.router.route.location.pathname === '/about'}
+                  active={location.pathname === '/about'}
                   to="/about">
                   About
                 </NavLink>
@@ -80,9 +82,4 @@ class NavMenu extends React.Component {
   }
 }
 
-
-NavMenu.contextTypes = {
-  router: PropTypes.object
-};
-
-export default NavMenu;
+export default withRouter(NavMenu);
