@@ -3,17 +3,19 @@ import {
   Nav,
   Navbar,
   NavItem,
-  NavLink,
   NavbarBrand,
   NavbarToggler,
+  NavLink,
   Collapse,
   Container
 } from 'reactstrap';
 import './NavMenu.css';
 import NavSpinner from './NavSpinner';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 
-export default class NavMenu extends React.Component {
-  
+class NavMenu extends React.Component {
+
   state = {
     isOpen: false
   };
@@ -25,6 +27,8 @@ export default class NavMenu extends React.Component {
   }
 
   render() {
+    const { location } = this.props;
+
     return (
       <div>
         <Navbar color="dark" dark expand="sm">
@@ -37,15 +41,38 @@ export default class NavMenu extends React.Component {
             <NavbarToggler onClick={this.toggle} />
           </Container>
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav navbar>
               <NavItem>
-                <NavLink href="/">Map</NavLink>
+                <NavLink
+                  tag={Link}
+                  active={location.pathname === '/'}
+                  to="/">
+                  All Parkruns
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/about">About</NavLink>
+                <NavLink
+                  tag={Link}
+                  active={location.pathname === '/wheelchair-friendly'}
+                  to="/wheelchair-friendly">
+                  Wheelchair Friendly
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/kevbite/ParkrunMap">GitHub</NavLink>
+                <NavLink
+                  tag={Link}
+                  active={location.pathname === '/buggy-friendly'}
+                  to="/buggy-friendly">
+                  Buggy Friendly
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  tag={Link}
+                  active={location.pathname === '/about'}
+                  to="/about">
+                  About
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -54,3 +81,5 @@ export default class NavMenu extends React.Component {
     );
   }
 }
+
+export default withRouter(NavMenu);
