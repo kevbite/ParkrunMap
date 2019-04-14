@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import Map from './Map'
 import { actionCreators as locationActionCreators } from '../store/Location';
 import { actionCreators as parkrunsActionCreators } from '../store/Parkruns';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
+import parkrunSelector from '../selectors/parkrunSelector';
 
 class ParkrunMap extends Component {
   componentWillMount() {
@@ -43,8 +44,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   const props = {
     keywords: "Parkrun,Running,Events,Map,Cancelled",
-    location: state.location.location,
-    parkruns: state.parkruns.parkruns
+    location: state.location.location
   };
 
   const filters = {
@@ -52,32 +52,19 @@ function mapStateToProps(state) {
     buggyFriendly: state.routing.location.pathname === '/buggy-friendly'
   };
 
-  if (state.routing.location.pathname !== '/') {
-    var parkruns = state.parkruns.parkruns.filter(parkrun => {
-      var selected = false;
-      if (filters.wheelchairFriendly && parkrun.features.wheelchairFriendly) {
-        selected = true;
-      }
-      if (filters.buggyFriendly && parkrun.features.buggyFriendly) {
-        selected = true;
-      }
+  props.parkruns = parkrunSelector(state.parkruns.parkruns, filters);
 
-      return selected;
-    });
 
-    if (filters.wheelchairFriendly) {
-      props.title = "Wheelchair friendly parkruns";
-      props.description = "Find wheelchair friendly parkruns";
-      props.keywords += ",wheelchair,disabled,accessibility";
-    } else if (filters.buggyFriendly) {
-      props.title = "Buggy friendly parkruns";
-      props.description = "Find buggy friendly parkruns";
-      props.keywords += ",buggy,baby,prams,pushchairs";
-    }
-
-    props.parkruns = parkruns;
+  if (filters.wheelchairFriendly) {
+    props.title = "Wheelchair friendly parkruns";
+    props.description = "Find wheelchair friendly parkruns";
+    props.keywords += ",wheelchair,disabled,accessibility";
+  } else if (filters.buggyFriendly) {
+    props.title = "Buggy friendly parkruns";
+    props.description = "Find buggy friendly parkruns";
+    props.keywords += ",buggy,baby,prams,pushchairs";
   }
-
+  
   return props;
 }
 
