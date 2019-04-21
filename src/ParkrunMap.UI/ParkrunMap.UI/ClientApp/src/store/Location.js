@@ -11,7 +11,7 @@ export const actionCreators = {
 
     dispatch({ type: requestLocationType });
 
-    if (navigator.geolocation) {
+    if (navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         position => {
           const location = { latitude: position.coords.latitude, longitude: position.coords.longitude };
