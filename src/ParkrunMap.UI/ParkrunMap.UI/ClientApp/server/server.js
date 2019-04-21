@@ -8,6 +8,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import configureStore from '../src/store/configureStore';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
+import Helmet from 'react-helmet';
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -37,7 +38,15 @@ app.get(['/', '/wheelchair-friendly', '/buggy-friendly', '/about'], function (re
         </Provider>
     );
 
-    index = index.replace(`<div id="root"></div>`, `<div id="root">${appRendered}</div>`)
+    const helmet = Helmet.renderStatic();
+
+    index = index.replace(`<div id="root"></div>`, `<div id="root">${appRendered}</div>`);
+
+    index = index.replace(/\<title\>[\w ]+\<\/title\>/g, helmet.title.toString());
+
+    index = index.replace('</head>', `${helmet.meta.toString()}${helmet.link.toString()}</head>`);
+
+    index = index.replace('<body>', `<body ${helmet.bodyAttributes.toString()}>`);
 
     res.send(index);
 });
