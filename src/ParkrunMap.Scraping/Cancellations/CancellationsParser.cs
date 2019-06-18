@@ -31,7 +31,7 @@ namespace ParkrunMap.Scraping.Cancellations
                         var parkrunUri = link.Attributes["href"].Value;
                         var reason = listItem.InnerText.Split(':').Last().Trim();
 
-                        if (parkrunTitle.EndsWith("junior parkrun"))
+                        if (parkrunUri.EndsWith("-juniors/"))
                         {
                             // We're ignoring junior parkruns
                             continue;
