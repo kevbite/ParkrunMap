@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Scraping.Tests", "test\ParkrunMap.Scraping.Tests\ParkrunMap.Scraping.Tests.csproj", "{3E9F92EB-8281-4363-A8E5-23BDED9DA6C8}"
 EndProject
@@ -16,8 +16,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.Scraping", "src\ParkrunMap.Scraping\ParkrunMap.Scraping.csproj", "{21570133-F6FC-4925-9177-34CA4971280A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.FunctionsApp.Tests", "test\ParkrunMap.FunctionsApp.Tests\ParkrunMap.FunctionsApp.Tests.csproj", "{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkrunMap.UI", "src\ParkrunMap.UI\ParkrunMap.UI\ParkrunMap.UI.csproj", "{07DAC9A9-80BC-4F7F-B608-BD0C83DA57F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +51,6 @@ Global
 		{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9626C28-280F-4AFB-BD88-BD5580E7CFCD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07DAC9A9-80BC-4F7F-B608-BD0C83DA57F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07DAC9A9-80BC-4F7F-B608-BD0C83DA57F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07DAC9A9-80BC-4F7F-B608-BD0C83DA57F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07DAC9A9-80BC-4F7F-B608-BD0C83DA57F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
