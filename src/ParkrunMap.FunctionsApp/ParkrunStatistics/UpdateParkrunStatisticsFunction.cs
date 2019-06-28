@@ -11,12 +11,10 @@ namespace ParkrunMap.FunctionsApp.ParkrunStatistics
     public class UpdateParkrunStatisticsFunction
     {
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
 
-        public UpdateParkrunStatisticsFunction(IMediator mediator, IMapper mapper)
+        public UpdateParkrunStatisticsFunction(IMediator mediator)
         {
             _mediator = mediator;
-            _mapper = mapper;
         }
 
         [FunctionName(nameof(UpdateParkrunStatisticsFunction))]
@@ -27,9 +25,7 @@ namespace ParkrunMap.FunctionsApp.ParkrunStatistics
 
         private async Task Run(UpdateParkrunStatistics.Request message, CancellationToken cancellationToken)
         {
-            var request = _mapper.Map<UpdateParkrunCourseDetails.Request>(message);
-
-            await _mediator.Send(request, cancellationToken)
+            await _mediator.Send(message, cancellationToken)
                 .ConfigureAwait(false);
         }
     }
