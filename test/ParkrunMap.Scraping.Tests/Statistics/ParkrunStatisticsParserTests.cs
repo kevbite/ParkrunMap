@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using FluentAssertions;
-using ParkrunMap.Scraping.Course;
-using ParkrunMap.Scraping.Stats;
+using ParkrunMap.Scraping.Statistics;
 using Xunit;
 
-namespace ParkrunMap.Scraping.Tests.Stats
+namespace ParkrunMap.Scraping.Tests.Statistics
 {
-    public class StatsParserTests
+    public class ParkrunStatisticsParserTests
     {
         [Theory]
         [MemberData(nameof(Data))]
@@ -17,7 +16,7 @@ namespace ParkrunMap.Scraping.Tests.Stats
         {
             using (var cancellationsPage = File.OpenRead(filePath))
             {
-                var parser = new StatsParser();
+                var parser = new StatisticsParser();
                 var stats = await parser.Parse(cancellationsPage, domain);
 
                 stats.Should().BeEquivalentTo(expectedStats);

@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace ParkrunMap.Scraping.Stats
+﻿namespace ParkrunMap.Scraping.Statistics
 {
-    public class ParkrunStats
+    public class ParkrunStatistics
     {
-        public ParkrunStats(int totalEvents,
+        public ParkrunStatistics(int totalEvents,
             int totalRunners,
             int totalRuns,
             double averageRunnersPerWeek,

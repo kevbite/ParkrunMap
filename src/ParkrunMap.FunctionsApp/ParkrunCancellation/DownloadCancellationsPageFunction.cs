@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Blob;
+using ParkrunMap.Scraping.Cancellations;
 using ParkrunMap.Scraping.Parkruns;
 
 namespace ParkrunMap.FunctionsApp.ParkrunCancellation

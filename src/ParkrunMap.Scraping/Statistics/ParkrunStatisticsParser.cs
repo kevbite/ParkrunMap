@@ -1,15 +1,15 @@
-﻿using HtmlAgilityPack;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 
-namespace ParkrunMap.Scraping.Stats
+namespace ParkrunMap.Scraping.Statistics
 {
     
-    public class StatsParser
+    public class StatisticsParser
     {
         private enum Text
         {
@@ -223,7 +223,7 @@ namespace ParkrunMap.Scraping.Stats
                 {"www.parkrun.jp", CultureInfo.GetCultureInfo("jp")},
             };
 
-        public Task<ParkrunStats> Parse(Stream stream, string domain)
+        public Task<ParkrunStatistics> Parse(Stream stream, string domain)
         {
             var htmlDoc = new HtmlDocument();
             htmlDoc.Load(stream);
@@ -237,7 +237,7 @@ namespace ParkrunMap.Scraping.Stats
             var biggestAttendance = ParseBiggestAttendance(htmlDoc, domain);
             var totalKmDistanceRan = ParseTotalKmDistanceRan(htmlDoc, domain);
 
-            return Task.FromResult(new ParkrunStats(totalEvents,
+            return Task.FromResult(new ParkrunStatistics(totalEvents,
              totalRunners,
              totalRuns,
              averageRunnersPerWeek,

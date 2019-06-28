@@ -3,6 +3,7 @@ using Autofac;
 using ParkrunMap.Scraping.Cancellations;
 using ParkrunMap.Scraping.Course;
 using ParkrunMap.Scraping.Parkruns;
+using ParkrunMap.Scraping.Statistics;
 
 namespace ParkrunMap.Scraping
 {
@@ -22,6 +23,8 @@ namespace ParkrunMap.Scraping
             builder.RegisterType<ParkrunXElementValidator>().AsSelf();
 
             builder.RegisterType<CourseParser>().AsSelf();
+
+            builder.RegisterType<StatisticsParser>().AsSelf();
 
             builder.RegisterType<CancellationsParser>().AsSelf();
 

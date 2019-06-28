@@ -7,6 +7,7 @@ using ParkrunMap.FunctionsApp.Course;
 using ParkrunMap.FunctionsApp.ParkrunCancellation;
 using ParkrunMap.FunctionsApp.ParkrunFeatures;
 using ParkrunMap.FunctionsApp.Parkruns;
+using ParkrunMap.FunctionsApp.ParkrunStatistics;
 using ParkrunMap.FunctionsApp.QueryParkrunsByBox;
 using ParkrunMap.FunctionsApp.QueryParkrunsByRegion;
 using ParkrunMap.Scraping;
@@ -84,6 +85,8 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<DownloadQuestionnaireResponsesTimerFunction>().AsSelf();
             builder.RegisterType<QuestionnaireResponseAggregatorQueueFunction>().AsSelf();
             builder.RegisterType<UpdateParkrunFeaturesQueueFunction>().AsSelf();
+            builder.RegisterType<UpdateParkrunStatisticsFunction>().AsSelf();
+            builder.RegisterType<ParseStatisticsFunction>().AsSelf();
         }
     }
 }

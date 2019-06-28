@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace ParkrunMap.Scraping.Parkruns
+namespace ParkrunMap.Scraping.Cancellations
 {
     public class CancellationsPageDownloader
     {

@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
+using ParkrunMap.Scraping.Cancellations;
 using ParkrunMap.Scraping.Parkruns;
 using Xunit;
 
