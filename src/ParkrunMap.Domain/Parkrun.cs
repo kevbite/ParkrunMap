@@ -10,6 +10,7 @@ namespace ParkrunMap.Domain
         {
             Cancellations = new Cancellation[0];
             Features = new Features();
+            Statistics = new Statistics();
         }
 
         public ObjectId Id { get; set; }
@@ -31,5 +32,7 @@ namespace ParkrunMap.Domain
         public Course Course { get; set; }
 
         public Features Features { get; set; }
+
+        public Statistics Statistics { get; set; }
     }
 }
