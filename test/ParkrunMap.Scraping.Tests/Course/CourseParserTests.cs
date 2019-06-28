@@ -62,7 +62,7 @@ namespace ParkrunMap.Scraping.Tests.Course
                 {
                     "www.parkrun.dk",
                     @".\data\amager.course.html",
-                    @"Sommerruten er to sløjfer á 2,45 km plus 100 meter enten på græs eller på stien alt efter vejret den dag. Den er meget løbevenlig. Stierne er hovedsageligbelagt med grus eller sandjord. I regnvejr kan der dannes vandpytter men overfladen er pæn og jævn. Ruten er hurtig og deltagerne kommer ikke ud på Ørestadsboulevarden.",
+                    @"Ruten er to omgange á 2,45 km plus 100 meter på stien i begyndelsen af ruten. Den er meget løbevenlig. Stierne er hovedsagelig belagt med grus eller sandjord. I regnvejr kan der dannes vandpytter men overfladen er pæn og jævn.",
                     new []{"1eQtWTqScHsieaKg8JkhaCoCQcJY"}
                 },
                 new object[]
@@ -125,7 +125,7 @@ namespace ParkrunMap.Scraping.Tests.Course
                 {
                     "www.parkrun.sg",
                     @".\data\bishan.course.html",
-                    @"Bishan parkrun is two laps run anti-clockwise around the perimeter of Bishan-Ang Mo Kio Park on tarmac footpaths. The meeting/briefing point for the run is 250m east of Car Park A and Aramsa - The Garden Spa. Starting on the main footpath close to Bishan-Ang Mo Kio Site Office, head west towards Marymont Rd, before heading back east parallel to Kallang River towards Bishan Rd. The course then loops back west towards the start line to complete the first loop. Then completing the second loop and finishing at the briefing point.",
+                    @"Bishan parkrun is two laps run anti-clockwise around the perimeter of Bishan-Ang Mo Kio Park on tarmac footpaths. The meeting/briefing point is close to the Bishan Park - Dog Run Area, 250m east of Car Park A and Aramsa - The Garden Spa. Starting on the main footpath close to Bishan-Ang Mo Kio Site Office, head west towards Marymont Rd, before heading back east parallel to Kallang River towards Bishan Rd. The course then loops back west towards the start line to complete the first loop. Then completing the second loop and finishing at the briefing point.",
                     new []{"1QXlymhYNyeQPJKF1hvrfueaVFlIddXxu"}
                 },
                 new object[]

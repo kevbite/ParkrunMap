@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <!--[if IE 6]>
 <html id="ie6" lang="en-US">
 <![endif]-->
@@ -13,7 +14,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:image" content="https://images.parkrun.com/event/futakotamagawa/eventhomepagepicture.jpg" />
     <title>course | 二子玉川parkrun</title>
     <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -21,11 +22,14 @@
     <!--[if lt IE 9]>
     <script src="https://www.parkrun.jp/futakotamagawa/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
     <![endif]-->
+
+    <link href='//fonts.googleapis.com/css?family=Montserrat:700,400,300' rel='stylesheet' type='text/css'>
+
     <link rel="alternate" type="application/rss+xml" title="二子玉川parkrun &raquo; Feed" href="https://www.parkrun.jp/futakotamagawa/feed/" />
     <link rel="alternate" type="application/rss+xml" title="二子玉川parkrun &raquo; Comments Feed" href="https://www.parkrun.jp/futakotamagawa/comments/feed/" />
     <link rel="alternate" type="application/rss+xml" title="二子玉川parkrun &raquo; course Comments Feed" href="https://www.parkrun.jp/futakotamagawa/course/feed/" />
-    <link rel='stylesheet' id='sponsor-$sponsorPage-css' href='https://www.parkrun.jp/futakotamagawa/wp-content/themes/parkrun/style.css?ver=3.9.2' type='text/css' media='all' />
-    <link rel='stylesheet' id='layout-css' href='https://www.parkrun.jp/futakotamagawa/wp-content/themes/parkrun/layout-event.css?ver=3.9.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='style-css' href='https://www.parkrun.jp/futakotamagawa/wp-content/themes/parkrun/style.css?ver=1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='layout-css' href='https://www.parkrun.jp/futakotamagawa/wp-content/themes/parkrun/layout-event.css?ver=1.1' type='text/css' media='all' />
     <script type='text/javascript' src='https://www.parkrun.jp/futakotamagawa/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>
     <script type='text/javascript' src='https://www.parkrun.jp/futakotamagawa/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
     <script type='text/javascript' src='https://www.parkrun.jp/futakotamagawa/wp-content/themes/parkrun/scripts/jquery.cookiesdirective.js?ver=3.9.2'></script>
@@ -45,21 +49,23 @@
 
     <!-- Google Analytics -->
     <script type="text/javascript">
-			      var _gaq = _gaq || [];
-			      _gaq.push(['_setAccount', 'UA-9494699-1']);
-			      _gaq.push(['_setAllowLinker',true]);
-                              _gaq.push(['_setDomainName','parkrun.jp']);
-			      _gaq.push(['_trackPageview']);
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-9494699-1']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_setDomainName', 'parkrun.jp']);
+        _gaq.push(['_trackPageview']);
 
-			      (function() {
-				    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			      })();
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
     </script>
 
     <!-- Start of parkrun Zendesk Widget script -->
-    <script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(c){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","parkrun.zendesk.com");/*]]>*/</script>
+    <script>
+        window.zESettings = { webWidget: { color: { theme: "#ffa300" } } };
+/*<![CDATA[*/window.zEmbed || function (e, t) { var n, o, d, i, s, a = [], r = document.createElement("iframe"); window.zEmbed = function () { a.push(arguments) }, window.zE = window.zE || window.zEmbed, r.src = "javascript:false", r.title = "", r.role = "presentation", (r.frameElement || r).style.cssText = "display: none", d = document.getElementsByTagName("script"), d = d[d.length - 1], d.parentNode.insertBefore(r, d), i = r.contentWindow, s = i.document; try { o = s } catch (c) { n = document.domain, r.src = 'javascript:var d=document.open();d.domain="' + n + '";void(0);', o = s } o.open()._l = function () { var o = this.createElement("script"); n && (this.domain = n), o.id = "js-iframe-async", o.src = e, this.t = +new Date, this.zendeskHost = t, this.zEQueue = a, this.body.appendChild(o) }, o.write('<body onload="document._l();">'), o.close() }("https://assets.zendesk.com/embeddable_framework/main.js", "parkrun.zendesk.com");/*]]>*/</script>
     <!-- End of parkrun Zendesk Widget script -->
 </head>
 <body class="page page-id-5 page-template-default single-author singular two-column right-sidebar">
@@ -70,50 +76,55 @@
                 <div class="headerbarflag" style="background-image:url('https://images.parkrun.com/website/jp/curlflag.jpg');background-repeat:no-repeat;">
                     <a href="http://www.parkrun.jp" title="parkrun.jp"><div class="headerbarflagclickable">&#160;</div></a>
                 </div>
-                <div class="headerbarprlogo" style=" background-image:url('https://images.parkrun.com/website/jp/prlogo.png'); "> &#160; </div>
-                <div class="headerbareventname" style="background-image:url('https://images.parkrun.com/event/futakotamagawa/subbrand.png');"> &#160; </div>
+                <div class="headerbarprlogo" style=" background-image:url('https://images.parkrun.com/website/jp/prlogoC.png'); "> &#160; </div>
             </div>
             <div class="headerbarright">
                 <div class="menubar">
+                    <div class="menuScrim"></div>
+                    <div class="menuButton">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
                     <!-- change this next div back to a nav in future when HTML5 support is accross the board -->
                     <div id="access" role="navigation">
-                        <div class="menu-parkrun_event_menu_2018-12-04-container">
-                            <ul id="menu-parkrun_event_menu_2018-12-04" class="menu">
-                                <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.parkrun.jp/futakotamagawa/">ホーム</a></li>
-                                <li id="menu-item-46" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-46"><a href="http://www.parkrun.jp/futakotamagawa/course/">コース</a></li>
-                                <li id="menu-item-47" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-47"><a href="http://www.parkrun.jp/futakotamagawa/news/">ニュース</a></li>
-                                <li id="menu-item-48" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-48">
+                        <div class="menu-parkrun_event_menu_2019-04-23-container">
+                            <ul id="menu-parkrun_event_menu_2019-04-23" class="menu">
+                                <li id="menu-item-77" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-77"><a href="http://www.parkrun.jp/futakotamagawa/">ホーム</a></li>
+                                <li id="menu-item-78" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-78"><a href="http://www.parkrun.jp/futakotamagawa/course/">コース</a></li>
+                                <li id="menu-item-79" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79"><a href="http://www.parkrun.jp/futakotamagawa/news/">ニュース</a></li>
+                                <li id="menu-item-80" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-80">
                                     <a href="http://www.parkrun.jp/futakotamagawa/volunteer/">ボランティア</a>
                                     <ul class="sub-menu">
-                                        <li id="menu-item-49" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-49"><a href="http://www.parkrun.jp/futakotamagawa/volunteer/">関わる</a></li>
-                                        <li id="menu-item-50" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-50"><a href="http://www.parkrun.jp/futakotamagawa/volunteer/futureroster/">次の当番表</a></li>
+                                        <li id="menu-item-81" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-81"><a href="http://www.parkrun.jp/futakotamagawa/volunteer/">関わる</a></li>
+                                        <li id="menu-item-82" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82"><a href="http://www.parkrun.jp/futakotamagawa/volunteer/futureroster/">次の当番表</a></li>
                                     </ul>
                                 </li>
-                                <li id="menu-item-51" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-51">
+                                <li id="menu-item-83" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-83">
                                     <a href="http://www.parkrun.jp/futakotamagawa/results/latestresults/">結果</a>
                                     <ul class="sub-menu">
-                                        <li id="menu-item-52" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-52"><a href="http://www.parkrun.jp/futakotamagawa/results/latestresults/">最新結果</a></li>
-                                        <li id="menu-item-53" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-53"><a href="http://www.parkrun.jp/futakotamagawa/results/eventhistory/">イベント履歴</a></li>
-                                        <li id="menu-item-54" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-54"><a href="http://www.parkrun.jp/futakotamagawa/results/firstfinishescount/">最初に完走した人の数</a></li>
-                                        <li id="menu-item-55" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-55"><a href="http://www.parkrun.jp/futakotamagawa/results/agecategoryrecords/">年齢カテゴリー記録</a></li>
-                                        <li id="menu-item-56" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-56"><a href="http://www.parkrun.jp/futakotamagawa/results/clublist/">クラブ・リスト</a></li>
-                                        <li id="menu-item-57" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-57"><a href="http://www.parkrun.jp/futakotamagawa/results/sub20women/">サブ20女子</a></li>
-                                        <li id="menu-item-58" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-58"><a href="http://www.parkrun.jp/futakotamagawa/results/sub17men/">サブ17男子</a></li>
-                                        <li id="menu-item-59" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59"><a href="http://www.parkrun.jp/futakotamagawa/results/agegradedleague/">年齢別評価リーグ</a></li>
-                                        <li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-60"><a href="http://www.parkrun.jp/futakotamagawa/results/fastest500/">最初の500</a></li>
-                                        <li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-61"><a href="http://www.parkrun.jp/futakotamagawa/results/search/">検索</a></li>
+                                        <li id="menu-item-84" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-84"><a href="http://www.parkrun.jp/futakotamagawa/results/latestresults/">最新結果</a></li>
+                                        <li id="menu-item-85" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-85"><a href="http://www.parkrun.jp/futakotamagawa/results/eventhistory/">イベント履歴</a></li>
+                                        <li id="menu-item-86" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-86"><a href="http://www.parkrun.jp/futakotamagawa/results/firstfinishescount/">最初に完走した人の数</a></li>
+                                        <li id="menu-item-87" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-87"><a href="http://www.parkrun.jp/futakotamagawa/results/agecategoryrecords/">年齢カテゴリー記録</a></li>
+                                        <li id="menu-item-88" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-88"><a href="http://www.parkrun.jp/futakotamagawa/results/clublist/">クラブ・リスト</a></li>
+                                        <li id="menu-item-89" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-89"><a href="http://www.parkrun.jp/futakotamagawa/results/sub20women/">サブ20女子</a></li>
+                                        <li id="menu-item-90" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-90"><a href="http://www.parkrun.jp/futakotamagawa/results/sub17men/">サブ17男子</a></li>
+                                        <li id="menu-item-91" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-91"><a href="http://www.parkrun.jp/futakotamagawa/results/agegradedleague/">年齢別評価リーグ</a></li>
+                                        <li id="menu-item-92" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-92"><a href="http://www.parkrun.jp/futakotamagawa/results/fastest500/">最初の500</a></li>
+                                        <li id="menu-item-93" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-93"><a href="http://www.parkrun.jp/futakotamagawa/results/search/">検索</a></li>
                                     </ul>
                                 </li>
-                                <li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-62"><a href="http://www.parkrun.jp/futakotamagawa/photos/">写真</a></li>
-                                <li id="menu-item-63" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-63"><a href="https://parkrun-barcode.com/">ショップ</a></li>
-                                <li id="menu-item-64" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-64">
+                                <li id="menu-item-94" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-94"><a href="http://www.parkrun.jp/futakotamagawa/photos/">写真</a></li>
+                                <li id="menu-item-95" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-95"><a href="https://parkrun-barcode.com/">ショップ</a></li>
+                                <li id="menu-item-96" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-96">
                                     <a href="http://www.parkrun.jp/futakotamagawa/more/aboutus/">もっと…</a>
                                     <ul class="sub-menu">
-                                        <li id="menu-item-65" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-65"><a href="http://www.parkrun.jp/futakotamagawa/links/">リンク</a></li>
-                                        <li id="menu-item-66" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-66"><a href="http://www.parkrun.jp/futakotamagawa/more/aboutus/">私たちについて</a></li>
-                                        <li id="menu-item-67" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-67"><a href="http://support.parkrun.com/">parkrunサポートへ</a></li>
-                                        <li id="menu-item-68" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-68"><a href="http://www.parkrun.jp">国内サイトへ</a></li>
-                                        <li id="menu-item-69" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-69"><a href="http://www.parkrun.com/">parkrunグローバルへ</a></li>
+                                        <li id="menu-item-97" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-97"><a href="http://www.parkrun.jp/futakotamagawa/links/">リンク</a></li>
+                                        <li id="menu-item-98" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-98"><a href="http://www.parkrun.jp/futakotamagawa/more/aboutus/">私たちについて</a></li>
+                                        <li id="menu-item-99" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-99"><a href="http://support.parkrun.com/">parkrunサポートへ</a></li>
+                                        <li id="menu-item-100" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-100"><a href="http://www.parkrun.jp">国内サイトへ</a></li>
+                                        <li id="menu-item-101" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-101"><a href="http://www.parkrun.com/">parkrunグローバルへ</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -122,18 +133,54 @@
                 </div>
             </div>
         </div>
+        <div class="headerspacer"></div>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#mainheader .menuButton').click(function () {
+                    jQuery('#mainheader .menubar').toggleClass('menuOpen');
+                });
+
+                jQuery('#mainheader .menuScrim').click(function () {
+                    jQuery('#mainheader .menubar').removeClass('menuOpen');
+                });
+
+                jQuery('#mainheader #access .menu-item-has-children, #mainheader #access .page_item_has_children').click(function (event) {
+                    event.stopPropagation();
+                    if (jQuery(event.target).hasClass('menu-item-has-children') || jQuery(event.target).hasClass('page_item_has_children')) {
+                        if (jQuery(event.target).hasClass('subOpen')) {
+                            jQuery(event.target).removeClass('subOpen')
+                            jQuery(event.target).siblings('.menu-item-has-children').removeClass('subOpen')
+                            jQuery(event.target).siblings('.page_item_has_children').removeClass('subOpen')
+                        } else {
+                            jQuery(event.target).siblings('.menu-item-has-children').removeClass('subOpen')
+                            jQuery(event.target).siblings('.page_item_has_children').removeClass('subOpen')
+                            jQuery(event.target).addClass('subOpen')
+                        }
+                    }
+                });
+
+            });
+
+            jQuery(window).resize(function () {
+                jQuery('.headerspacer').css('height', jQuery('#mainheader').outerHeight() + 'px');
+                if (jQuery(window).width() >= 1024) {
+                    jQuery('#mainheader .menuOpen').removeClass('menuOpen');
+                    jQuery('#mainheader .subOpen').removeClass('subOpen');
+                }
+            });
+        </script>
         <!--  end of main graded-brown visual parkrun header element on all pages -->
         <!-- cookies directive -->
         <script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery.cookiesDirective({
-            privacyPolicyUri: 'http://www.parkrun.com/privacy/',
-	    position: 'bottom',
-	    explicitConsent: false,
-	    limit: 2,
-	    fullmessage:'このウェブサイトはクッキーを使用しています。すでに設定されている場合もあります。ボタンをクリックしてクッキーを受け入れてください。あなたがこのページを閲覧し続けているとクッキーを受け入れたとみなされます。'
-        });
-    });
+            jQuery(document).ready(function () {
+                jQuery.cookiesDirective({
+                    privacyPolicyUri: 'http://www.parkrun.com/privacy/',
+                    position: 'bottom',
+                    explicitConsent: false,
+                    limit: 2,
+                    fullmessage: 'このウェブサイトはクッキーを使用しています。すでに設定されている場合もあります。ボタンをクリックしてクッキーを受け入れてください。あなたがこのページを閲覧し続けているとクッキーを受け入れたとみなされます。'
+                });
+            });
         </script>
 
         <!-- end cookies directive -->
@@ -175,7 +222,7 @@
                         <p class="paddetandb">これらの情報が皆が楽しく安全にイベントを遂行するために役立つはずです。</p>
 
                         <h2>年齢別評価</h2>
-                        <p class="paddetandb">全てのparkrunは参加者が結果を比べられるように年齢別評価を採用しています。</p>
+                        <p class="paddetandb">全てのparkrunは参加者がリザルトを比べられるように年齢別評価を採用しています。</p>
                         <p class="paddedb">年齢別評価とは、あなたのタイムを世界記録に対して性別と年齢別で割り出し、パーセンテージで示したものです。このスコアはあなたのパフォーマンスを年齢と性別に関係なく他のランナーのパフォーマンスと比べることができます。高スコアであるほど良いパフォーマンスとなります。このスコアはちがう距離のレースと比べることができます。（例：5キロとフルマラソンなど）</p>
                         詳しい情報はこちら<a href="http://www.runningforfitness.org/faq/agegrading"><strong>Running For Fitness</strong></a>のウェブサイトをご覧ください。
 
@@ -233,63 +280,87 @@
             </div>
             <div id="stats_panel" class="statscontainer">
                 <div id="FooterStats">
-                    <table>
-                        <tr>
-                            <td>
-                                <h1 id="stats_panel">二子玉川parkrunイベント統計</h1>
-                                結果タイムに問題がありますか？ご連絡ください。 <a href="mailto:futakotamagawaoffice@parkrun.com">futakotamagawaoffice@parkrun.com</a><br />質問がございましたらこちら<a href="https://support.parkrun.com/hc/en-us/categories/360000139457-E697%A5E69C%ACE8AA%9E">サポートサイト</a>へ。
-                            </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td class="interactivetd">
-                                &nbsp;
-                            </td>
-                        <tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <td style="width:37%">イベント数: 0 </td>
-                            <td style="width:2%"> </td>
-                            <td style="width:37%">参加者数: 0</td>
-                            <td style="width:2%"> </td>
-                            <td style="width:22%">参加回数累計: 0</td>
-                        </tr>
-                        <tr>
-                            <td>最初に完走したランナー数: 0</td>
-                            <td> </td>
-                            <td>クラブ数: 0</td>
-                            <td> </td>
-                            <td>自己記録数: </td>
-                        </tr>
-                        <tr>
-                            <td>週平均の参加者数: 0.0</td>
-                            <td> </td>
-                            <td>参加者の平均参加回数: 0.0</td>
-                            <td> </td>
-                            <td>最大参加者数: </td>
-                        </tr>
-                        <tr>
-                            <td>平均タイム: </td>
-                            <td> </td>
-                            <td>参加者の累計時間数: No data</td>
-                            <td> </td>
-                            <td>参加者の累計距離数: km</td>
-                        </tr>
-                        <tr>
-                            <td colspan="5" valign="bottom"></td>
-                        </tr>
-
-                    </table>
-                    <div class="hrcontainer"><hr /></div>
+                    <h1>二子玉川parkrunイベント統計</h1>
+                    <p>結果タイムに問題がありますか？ご連絡ください。 <a href="mailto:futakotamagawaoffice@parkrun.com">futakotamagawaoffice@parkrun.com</a><br />質問がございましたらこちら<a href="https://support.parkrun.com/hc/en-us/categories/360000139457-E697%A5E69C%ACE8AA%9E">サポートサイト</a>へ。</p>
+                    <div class="flex">
+                        <div class="column">
+                            イベント数: 12
+                        </div>
+                        <div class="column">
+                            参加者数: 954
+                        </div>
+                        <div class="column">
+                            参加回数累計: 2,032
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="column">
+                            最初に完走したランナー数: 16
+                        </div>
+                        <div class="column">
+                            クラブ数: 86
+                        </div>
+                        <div class="column">
+                            自己記録数: 414
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="column">
+                            週平均の参加者数: 169.3
+                        </div>
+                        <div class="column">
+                            参加者の平均参加回数: 2.1
+                        </div>
+                        <div class="column">
+                            最大参加者数: 343
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="column">
+                            平均タイム: 00:31:30
+                        </div>
+                        <div class="column">
+                            参加者の累計時間数: 0年 44日 11時 7分 23秒
+                        </div>
+                        <div class="column">
+                            参加者の累計距離数: 10,160km
+                        </div>
+                    </div>
+                    <div class="records">
+                        <div class="flex">
+                            <div class="column">
+                                <span>女子記録保持者: </span>
+                                <span>
+                                    Anne MOSS - 19:52 - イベント8 (2019年05月25日)
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="column">
+                                <span>男子記録保持者: </span>
+                                <span>
+                                    Gary WILBERFORCE - 16:20 - イベント5 (2019年05月04日)
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="column">
+                                <span>年齢別評価の記録保持者: </span>
+                                <span>
+                                    Mike TREES - 85.01 % - 18:14 - イベント8 (2019年05月25日)
+                                </span>
+                            </div>
+                            <div class="column socialicons">
+                            </div>
+                        </div>
+                    </div>
                     <div class="footercopyrightetc">
                         <p>
                             <em>&copy; parkrun Global Limited, Unit 3, Lower Deck, Phoenix Wharf, Twickenham, Middlesex, England, TW1 3DY. Company number: 09411750. <a href="http://support.parkrun.com/">お問い合わせ</a> - <a href="https://www.parkrun.jp/privacy/" target="_top">プライバシー</a> </em><br />
-                            <em>過去にアップデートされた統計 : Mon 01 Apr 2019 00:56:29 UTC</em>
+                            <em>過去にアップデートされた統計 : 2019年06月28日 01時04分39秒</em>
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </footer>
@@ -302,10 +373,7 @@
     <script type='text/javascript' src='https://www.parkrun.jp/futakotamagawa/wp-includes/js/jquery/ui/jquery.ui.position.min.js?ver=1.10.4'></script>
     <script type='text/javascript' src='https://www.parkrun.jp/futakotamagawa/wp-includes/js/jquery/ui/jquery.ui.dialog.min.js?ver=1.10.4'></script>
     <script type='text/javascript' src='https://www.parkrun.jp/futakotamagawa/wp-includes/js/comment-reply.min.js?ver=3.9.2'></script>
+    <script type='text/javascript' src='https://www.parkrun.jp/futakotamagawa/wp-content/themes/parkrun/scripts/parkrunLibFunctionsMinified.js?ver=3.9.2'></script>
+    <script type='text/javascript' src='https://www.parkrun.jp/futakotamagawa/wp-content/themes/parkrun/scripts/android-menu-hack-min.js?ver=3.9.2'></script>
 </body>
 </html>
-
-<!-- Dynamic page generated in 0.946 seconds. -->
-<!-- Cached page generated by WP-Super-Cache on 2019-04-01 02:04:31 -->
-<!-- Compression = gzip -->
-<!-- super cache -->

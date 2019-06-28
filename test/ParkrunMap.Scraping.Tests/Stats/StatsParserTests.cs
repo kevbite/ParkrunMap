@@ -22,7 +22,6 @@ namespace ParkrunMap.Scraping.Tests.Stats
 
                 stats.Should().BeEquivalentTo(expectedStats);
             }
-
         }
 
         public static IEnumerable<object[]> Data =>
@@ -34,14 +33,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\heslington.course.html",
                     new ParkrunStats
                     {
-                        TotalEvents = 47,
-                        TotalRunners = 3966,
-                        TotalRuns = 14363,
-                        AverageRunnersPerWeek = 305.6,
-                        AverageRunTime = new TimeSpan(0, 0, 27, 54, 0),
-                        TotalRunTime = new TimeSpan(278, 7,28,41,0),
-                        BiggestAttendance = 581,
-                        TotalKmDistanceRan = 71815
+                        TotalEvents = 69,
+                        TotalRunners = 5323,
+                        TotalRuns = 22955,
+                        AverageRunnersPerWeek = 332.7,
+                        AverageSecondsRan = (int)new TimeSpan(0, 0, 28, 05, 0).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(82, 20, 4, 52,0).TotalSeconds + (long)TimeSpan.FromDays(365).TotalSeconds,
+                        BiggestAttendance = 593,
+                        TotalKmDistanceRan = 114775
                     }
                 },
                 new object[]
@@ -50,7 +49,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\cieszyn.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 275,
+                        TotalRunners = 1327,
+                        TotalRuns = 14016,
+                        AverageRunnersPerWeek = 51.0,
+                        AverageSecondsRan = (int)new TimeSpan(0, 0, 25, 18, 0).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(246, 7, 37, 46,0).TotalSeconds,
+                        BiggestAttendance = 167,
+                        TotalKmDistanceRan = 70080
                     }
                 },
                 new object[]
@@ -59,7 +65,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\amager.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 540,
+                        TotalRunners = 5235,
+                        TotalRuns = 35169,
+                        AverageRunnersPerWeek = 65.1,
+                        AverageSecondsRan = (int)new TimeSpan(0, 0, 26, 8, 0).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(273,8,42,23,0).TotalSeconds + (long)TimeSpan.FromDays(365).TotalSeconds,
+                        BiggestAttendance = 181,
+                        TotalKmDistanceRan = 175845
                     }
                 },
                 new object[]
@@ -68,7 +81,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\balashikhazarechnaya.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 64,
+                        TotalRunners = 411,
+                        TotalRuns = 1395,
+                        AverageRunnersPerWeek = 21.8,
+                        AverageSecondsRan = (int)new TimeSpan(0, 0, 26, 30, 0).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(25,16,13,5, 0).TotalSeconds,
+                        BiggestAttendance = 91,
+                        TotalKmDistanceRan = 6975
                     }
                 },
                 new object[]
@@ -77,7 +97,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\alstervorland.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 24,
+                        TotalRunners = 534,
+                        TotalRuns = 1090,
+                        AverageRunnersPerWeek = 45.4,
+                        AverageSecondsRan = (int)new TimeSpan(0, 0, 28, 15, 0).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(21, 9, 28, 49, 0).TotalSeconds,
+                        BiggestAttendance = 102,
+                        TotalKmDistanceRan = 5450
                     }
                 },
                 new object[]
@@ -86,7 +113,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\boisdeboulogne.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 172,
+                        TotalRunners = 3515,
+                        TotalRuns = 5908,
+                        AverageRunnersPerWeek = 34.3,
+                        AverageSecondsRan = (int)new TimeSpan(0, 0, 27, 40, 0).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(113,13,48,28, 0).TotalSeconds,
+                        BiggestAttendance = 206,
+                        TotalKmDistanceRan = 29540
                     }
                 },
                 new object[]
@@ -95,7 +129,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\etna.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 81,
+                        TotalRunners = 727,
+                        TotalRuns = 1891,
+                        AverageRunnersPerWeek = 23.3,
+                        AverageSecondsRan = (int)new TimeSpan(0, 0, 35, 7, 0).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(46,3,9,48, 0).TotalSeconds,
+                        BiggestAttendance = 61,
+                        TotalKmDistanceRan = 9455
                     }
                 },
                 new object[]
@@ -104,14 +145,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\aggeneys.course.html",
                     new ParkrunStats
                     {
-                        TotalEvents = 18,
-                        TotalRunners = 119,
-                        TotalRuns = 266,
-                        AverageRunnersPerWeek = 14.8,
-                        AverageRunTime = new TimeSpan(0,44, 22),
-                        TotalRunTime = new TimeSpan(8,4,45,10),
+                        TotalEvents = 40,
+                        TotalRunners = 163,
+                        TotalRuns = 498,
+                        AverageRunnersPerWeek = 12.5,
+                        AverageSecondsRan = (int)new TimeSpan(0,45, 3).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(15,13,58,16).TotalSeconds,
                         BiggestAttendance = 55,
-                        TotalKmDistanceRan = 1330
+                        TotalKmDistanceRan = 2490
                     }
                 },
                 new object[]
@@ -120,14 +161,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\albert-melbourne.course.html",
                     new ParkrunStats
                     {
-                        TotalEvents = 374,
-                        TotalRunners = 19162,
-                        TotalRuns = 91019,
-                        AverageRunnersPerWeek = 243.4,
-                        AverageRunTime = new TimeSpan(0,28, 25),
-                        TotalRunTime = new TimeSpan(336,7,53,15),
+                        TotalEvents = 396,
+                        TotalRunners = 21411,
+                        TotalRuns = 101050,
+                        AverageRunnersPerWeek = 255.2,
+                        AverageSecondsRan = (int)new TimeSpan(0,28,29).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(173, 22, 2, 23).TotalSeconds + (long)TimeSpan.FromDays(5 * 365).TotalSeconds,
                         BiggestAttendance = 997,
-                        TotalKmDistanceRan = 455095
+                        TotalKmDistanceRan = 505250
                     }
                 },
                 new object[]
@@ -136,14 +177,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\bereisland.course.html",
                     new ParkrunStats
                     {
-                        TotalEvents = 238,
-                        TotalRunners = 1544,
-                        TotalRuns = 10891,
-                        AverageRunnersPerWeek = 45.8,
-                        AverageRunTime = new TimeSpan(0,36, 25),
-                        TotalRunTime = new TimeSpan(275,12,34,1),
+                        TotalEvents = 261,
+                        TotalRunners = 1712,
+                        TotalRuns = 11998,
+                        AverageRunnersPerWeek = 46.0,
+                        AverageSecondsRan = (int)new TimeSpan(0,36, 25).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(303, 10, 47, 45).TotalSeconds,
                         BiggestAttendance = 181,
-                        TotalKmDistanceRan = 54455
+                        TotalKmDistanceRan = 59990
                     }
                 },
                 new object[]
@@ -152,7 +193,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\bishan.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 64,
+                        TotalRunners = 1117,
+                        TotalRuns = 3201,
+                        AverageRunnersPerWeek = 50.0,
+                        AverageSecondsRan = (int)new TimeSpan(0,30, 13).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(67,4,49,50).TotalSeconds,
+                        BiggestAttendance = 150,
+                        TotalKmDistanceRan = 16005
                     }
                 },
                 new object[]
@@ -161,7 +209,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\anacostia.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 75,
+                        TotalRunners = 661,
+                        TotalRuns = 1943,
+                        AverageRunnersPerWeek = 25.9,
+                        AverageSecondsRan = (int)new TimeSpan(0, 34, 23).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(46, 9, 33, 11).TotalSeconds,
+                        BiggestAttendance = 59,
+                        TotalKmDistanceRan = 9715
                     }
                 },
                 new object[]
@@ -170,14 +225,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\taupo.course.html",
                     new ParkrunStats
                     {
-                         TotalEvents = 102,
-                        TotalRunners = 1396,
-                        TotalRuns = 4047,
-                        AverageRunnersPerWeek = 39.7,
-                        AverageRunTime = new TimeSpan(0,30, 57),
-                        TotalRunTime = new TimeSpan(87,0,23,46),
-                        BiggestAttendance = 128,
-                        TotalKmDistanceRan = 20235
+                         TotalEvents = 124,
+                        TotalRunners = 1808,
+                        TotalRuns = 5470,
+                        AverageRunnersPerWeek = 44.1,
+                        AverageSecondsRan = (int)new TimeSpan(0,31, 1).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(117, 20, 28, 25).TotalSeconds,
+                        BiggestAttendance = 136,
+                        TotalKmDistanceRan = 27350
                     }
                 },
                 new object[]
@@ -186,7 +241,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\orebro.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 109,
+                        TotalRunners = 1278,
+                        TotalRuns = 6970,
+                        AverageRunnersPerWeek = 63.9,
+                        AverageSecondsRan = (int)new TimeSpan(0,29,31).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(142,21,3,33).TotalSeconds,
+                        BiggestAttendance = 199,
+                        TotalKmDistanceRan = 34850
                     }
                 },
                 new object[]
@@ -195,14 +257,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\beachstrip.course.html",
                     new ParkrunStats
                     {
-                        TotalEvents = 77,
-                        TotalRunners = 553,
-                        TotalRuns = 1660,
-                        AverageRunnersPerWeek = 21.6,
-                        AverageRunTime = new TimeSpan(0,29,54),
-                        TotalRunTime = new TimeSpan(34,11,22,3),
-                        BiggestAttendance = 44,
-                        TotalKmDistanceRan = 8300
+                        TotalEvents = 97,
+                        TotalRunners = 652,
+                        TotalRuns = 2126,
+                        AverageRunnersPerWeek = 21.9,
+                        AverageSecondsRan = (int)new TimeSpan(0,29,49).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(44,0,52,56).TotalSeconds,
+                        BiggestAttendance = 53,
+                        TotalKmDistanceRan = 10630
                     }
                 },
                 new object[]
@@ -211,14 +273,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\festningen.course.html",
                     new ParkrunStats
                     {
-                        TotalEvents = 9,
-                        TotalRunners = 164,
-                        TotalRuns = 372,
-                        AverageRunnersPerWeek = 41.3,
-                        AverageRunTime = new TimeSpan(0,28, 16),
-                        TotalRunTime = new TimeSpan(7,7,19,57),
+                        TotalEvents = 30,
+                        TotalRunners = 317,
+                        TotalRuns = 952,
+                        AverageRunnersPerWeek = 31.7,
+                        AverageSecondsRan = (int)new TimeSpan(0,28,51).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(19,2,0,24).TotalSeconds,
                         BiggestAttendance = 77,
-                        TotalKmDistanceRan = 1860
+                        TotalKmDistanceRan = 4760
                     }
                 },
                 new object[]
@@ -227,14 +289,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\tokoinranta.course.html",
                     new ParkrunStats
                     {
-                        TotalEvents = 15,
-                        TotalRunners = 329,
-                        TotalRuns = 637,
-                        AverageRunnersPerWeek = 42.5,
-                        AverageRunTime = new TimeSpan(0,30, 41),
-                        TotalRunTime = new TimeSpan(13,13,51,45),
+                        TotalEvents = 33,
+                        TotalRunners = 561,
+                        TotalRuns = 1262,
+                        AverageRunnersPerWeek = 38.2,
+                        AverageSecondsRan = (int)new TimeSpan(0,30, 25).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(26,16,4,53).TotalSeconds,
                         BiggestAttendance = 78,
-                        TotalKmDistanceRan = 3185
+                        TotalKmDistanceRan = 6310
                     }
                 },
                 new object[]
@@ -243,14 +305,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\tamanpuduulu.course.html",
                     new ParkrunStats
                     {
-                        TotalEvents = 37,
-                        TotalRunners = 763,
-                        TotalRuns = 2538,
-                        AverageRunnersPerWeek = 68.6,
-                        AverageRunTime = new TimeSpan(0,34, 17),
-                        TotalRunTime = new TimeSpan(60,10,18,42),
+                        TotalEvents = 58,
+                        TotalRunners = 1078,
+                        TotalRuns = 4076,
+                        AverageRunnersPerWeek = 70.3,
+                        AverageSecondsRan = (int)new TimeSpan(0,34,16).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(97,0,57,37).TotalSeconds,
                         BiggestAttendance = 129,
-                        TotalKmDistanceRan = 12690
+                        TotalKmDistanceRan = 20380
                     }
                 },
                 new object[]
@@ -259,7 +321,14 @@ namespace ParkrunMap.Scraping.Tests.Stats
                     @".\data\futakotamagawa.course.html",
                     new ParkrunStats
                     {
-
+                        TotalEvents = 12,
+                        TotalRunners = 954,
+                        TotalRuns = 2032,
+                        AverageRunnersPerWeek = 169.3,
+                        AverageSecondsRan = (int)new TimeSpan(0,31,30).TotalSeconds,
+                        TotalSecondsRan = (long)new TimeSpan(44,11,7,23).TotalSeconds,
+                        BiggestAttendance = 343,
+                        TotalKmDistanceRan = 10160
                     }
                 }
             };
@@ -274,9 +343,9 @@ namespace ParkrunMap.Scraping.Tests.Stats
 
             public double AverageRunnersPerWeek { get; internal set; }
 
-            public TimeSpan AverageRunTime { get; internal set; }
+            public int AverageSecondsRan { get; internal set; }
 
-            public TimeSpan TotalRunTime { get; internal set; }
+            public long TotalSecondsRan { get; internal set; }
 
             public int BiggestAttendance { get; internal set; }
 

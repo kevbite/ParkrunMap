@@ -8,8 +8,8 @@ namespace ParkrunMap.Scraping.Stats
             int totalRunners,
             int totalRuns,
             double averageRunnersPerWeek,
-            TimeSpan averageRunTime,
-            TimeSpan totalRunTime,
+            int averageSecondsRan,
+            long totalSecondsRan,
             int biggestAttendance,
             int totalKmDistanceRan)
         {
@@ -17,8 +17,8 @@ namespace ParkrunMap.Scraping.Stats
             TotalRunners = totalRunners;
             TotalRuns = totalRuns;
             AverageRunnersPerWeek = averageRunnersPerWeek;
-            AverageRunTime = averageRunTime;
-            TotalRunTime = totalRunTime;
+            AverageSecondsRan = averageSecondsRan;
+            TotalSecondsRan = totalSecondsRan;
             BiggestAttendance = biggestAttendance;
             TotalKmDistanceRan = totalKmDistanceRan;
         }
@@ -31,9 +31,9 @@ namespace ParkrunMap.Scraping.Stats
 
         public double AverageRunnersPerWeek { get; }
 
-        public TimeSpan AverageRunTime { get; }
+        public int AverageSecondsRan { get; }
 
-        public TimeSpan TotalRunTime { get; }
+        public long TotalSecondsRan { get; }
 
         public int BiggestAttendance { get; }
 

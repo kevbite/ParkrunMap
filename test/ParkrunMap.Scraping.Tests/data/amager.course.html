@@ -14,27 +14,30 @@
 <!--<![endif]-->
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:image" content="https://images.parkrun.com/event/amager/eventhomepagepicture.jpg" />
     <title>course | Amager parkrun</title>
     <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <link rel="pingback" href="http://www.parkrun.dk/amager/xmlrpc.php" />
+    <link rel="pingback" href="https://www.parkrun.dk/amager/xmlrpc.php" />
     <!--[if lt IE 9]>
-    <script src="http://www.parkrun.dk/amager/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
+    <script src="https://www.parkrun.dk/amager/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
     <![endif]-->
-    <link rel="alternate" type="application/rss+xml" title="Amager parkrun &raquo; Feed" href="http://www.parkrun.dk/amager/feed/" />
-    <link rel="alternate" type="application/rss+xml" title="Amager parkrun &raquo; Comments Feed" href="http://www.parkrun.dk/amager/comments/feed/" />
-    <link rel='stylesheet' id='sponsor-$sponsorPage-css' href='http://www.parkrun.dk/amager/wp-content/themes/parkrun/style.css?ver=3.9.2' type='text/css' media='all' />
-    <link rel='stylesheet' id='layout-css' href='http://www.parkrun.dk/amager/wp-content/themes/parkrun/layout-event.css?ver=3.9.2' type='text/css' media='all' />
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-content/themes/parkrun/scripts/jquery.cookiesdirective.js?ver=3.9.2'></script>
-    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.parkrun.dk/amager/xmlrpc.php?rsd" />
-    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.parkrun.dk/amager/wp-includes/wlwmanifest.xml" />
-    <link rel='prev' title='home' href='http://www.parkrun.dk/amager/' />
-    <link rel='next' title='volunteer' href='http://www.parkrun.dk/amager/volunteer/' />
-    <link rel='canonical' href='http://www.parkrun.dk/amager/course/' />
-    <link rel='shortlink' href='http://www.parkrun.dk/amager/?p=7' />
+
+    <link href='//fonts.googleapis.com/css?family=Montserrat:700,400,300' rel='stylesheet' type='text/css'>
+
+    <link rel="alternate" type="application/rss+xml" title="Amager parkrun &raquo; Feed" href="https://www.parkrun.dk/amager/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="Amager parkrun &raquo; Comments Feed" href="https://www.parkrun.dk/amager/comments/feed/" />
+    <link rel='stylesheet' id='style-css' href='https://www.parkrun.dk/amager/wp-content/themes/parkrun/style.css?ver=1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='layout-css' href='https://www.parkrun.dk/amager/wp-content/themes/parkrun/layout-event.css?ver=1.1' type='text/css' media='all' />
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-content/themes/parkrun/scripts/jquery.cookiesdirective.js?ver=3.9.2'></script>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.parkrun.dk/amager/xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.parkrun.dk/amager/wp-includes/wlwmanifest.xml" />
+    <link rel='prev' title='home' href='https://www.parkrun.dk/amager/' />
+    <link rel='next' title='volunteer' href='https://www.parkrun.dk/amager/volunteer/' />
+    <link rel='canonical' href='https://www.parkrun.dk/amager/course/' />
+    <link rel='shortlink' href='https://www.parkrun.dk/amager/?p=7' />
 
     <!-- Google Analytics -->
     <script type="text/javascript">
@@ -52,7 +55,9 @@
     </script>
 
     <!-- Start of parkrun Zendesk Widget script -->
-    <script>/*<![CDATA[*/window.zEmbed || function (e, t) { var n, o, d, i, s, a = [], r = document.createElement("iframe"); window.zEmbed = function () { a.push(arguments) }, window.zE = window.zE || window.zEmbed, r.src = "javascript:false", r.title = "", r.role = "presentation", (r.frameElement || r).style.cssText = "display: none", d = document.getElementsByTagName("script"), d = d[d.length - 1], d.parentNode.insertBefore(r, d), i = r.contentWindow, s = i.document; try { o = s } catch (c) { n = document.domain, r.src = 'javascript:var d=document.open();d.domain="' + n + '";void(0);', o = s } o.open()._l = function () { var o = this.createElement("script"); n && (this.domain = n), o.id = "js-iframe-async", o.src = e, this.t = +new Date, this.zendeskHost = t, this.zEQueue = a, this.body.appendChild(o) }, o.write('<body onload="document._l();">'), o.close() }("https://assets.zendesk.com/embeddable_framework/main.js", "parkrun.zendesk.com");/*]]>*/</script>
+    <script>
+        window.zESettings = { webWidget: { color: { theme: "#ffa300" } } };
+/*<![CDATA[*/window.zEmbed || function (e, t) { var n, o, d, i, s, a = [], r = document.createElement("iframe"); window.zEmbed = function () { a.push(arguments) }, window.zE = window.zE || window.zEmbed, r.src = "javascript:false", r.title = "", r.role = "presentation", (r.frameElement || r).style.cssText = "display: none", d = document.getElementsByTagName("script"), d = d[d.length - 1], d.parentNode.insertBefore(r, d), i = r.contentWindow, s = i.document; try { o = s } catch (c) { n = document.domain, r.src = 'javascript:var d=document.open();d.domain="' + n + '";void(0);', o = s } o.open()._l = function () { var o = this.createElement("script"); n && (this.domain = n), o.id = "js-iframe-async", o.src = e, this.t = +new Date, this.zendeskHost = t, this.zEQueue = a, this.body.appendChild(o) }, o.write('<body onload="document._l();">'), o.close() }("https://assets.zendesk.com/embeddable_framework/main.js", "parkrun.zendesk.com");/*]]>*/</script>
     <!-- End of parkrun Zendesk Widget script -->
 </head>
 <body class="page page-id-7 page-template-default singular two-column right-sidebar">
@@ -63,61 +68,99 @@
                 <div class="headerbarflag" style="background-image:url('https://images.parkrun.com/website/dk/curlflag.jpg');background-repeat:no-repeat;">
                     <a href="http://www.parkrun.dk" title="parkrun.dk"><div class="headerbarflagclickable">&#160;</div></a>
                 </div>
-                <div class="headerbarprlogo" style=" background-image:url('https://images.parkrun.com/website/dk/prlogo.png'); "> &#160; </div>
-                <div class="headerbareventname" style="background-image:url('https://images.parkrun.com/event/amager/subbrand.png');"> &#160; </div>
+                <div class="headerbarprlogo" style=" background-image:url('https://images.parkrun.com/website/dk/prlogoC.png'); "> &#160; </div>
             </div>
             <div class="headerbarright">
                 <div class="menubar">
+                    <div class="menuScrim"></div>
+                    <div class="menuButton">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
                     <!-- change this next div back to a nav in future when HTML5 support is accross the board -->
                     <div id="access" role="navigation">
-                        <div class="menu-parkrun_event_menu_2018-12-04-container">
-                            <ul id="menu-parkrun_event_menu_2018-12-04" class="menu">
-                                <li id="menu-item-686" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-686"><a href="http://www.parkrun.dk/amager/">hjem</a></li>
-                                <li id="menu-item-687" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-687"><a href="http://www.parkrun.dk/amager/course/">ruten</a></li>
-                                <li id="menu-item-688" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-688"><a href="http://www.parkrun.dk/amager/news/">nyheder</a></li>
-                                <li id="menu-item-689" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-689">
+                        <div class="menu-parkrun_event_menu_2019-04-23-container">
+                            <ul id="menu-parkrun_event_menu_2019-04-23" class="menu">
+                                <li id="menu-item-722" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-722"><a href="http://www.parkrun.dk/amager/">hjem</a></li>
+                                <li id="menu-item-723" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-723"><a href="http://www.parkrun.dk/amager/course/">ruten</a></li>
+                                <li id="menu-item-724" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-724"><a href="http://www.parkrun.dk/amager/news/">nyheder</a></li>
+                                <li id="menu-item-725" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-725">
                                     <a href="http://www.parkrun.dk/amager/volunteer/">frivillig</a>
                                     <ul class="sub-menu">
-                                        <li id="menu-item-690" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-690"><a href="http://www.parkrun.dk/amager/volunteer/">du kan hjælpe</a></li>
-                                        <li id="menu-item-691" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-691"><a href="http://www.parkrun.dk/amager/volunteer/futureroster/">fremtidig vagtplan</a></li>
+                                        <li id="menu-item-726" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-726"><a href="http://www.parkrun.dk/amager/volunteer/">du kan hjælpe</a></li>
+                                        <li id="menu-item-727" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-727"><a href="http://www.parkrun.dk/amager/volunteer/futureroster/">fremtidig vagtplan</a></li>
                                     </ul>
                                 </li>
-                                <li id="menu-item-692" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-692">
+                                <li id="menu-item-728" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-728">
                                     <a href="http://www.parkrun.dk/amager/results/latestresults/">resultater</a>
                                     <ul class="sub-menu">
-                                        <li id="menu-item-693" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-693"><a href="http://www.parkrun.dk/amager/results/latestresults/">seneste resultater</a></li>
-                                        <li id="menu-item-694" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-694"><a href="http://www.parkrun.dk/amager/results/eventhistory/">event historik</a></li>
-                                        <li id="menu-item-695" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-695"><a href="http://www.parkrun.dk/amager/results/firstfinishescount/">antal førstepladser</a></li>
-                                        <li id="menu-item-696" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-696"><a href="http://www.parkrun.dk/amager/results/agecategoryrecords/">alderskategori rekorder</a></li>
-                                        <li id="menu-item-697" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-697"><a href="http://www.parkrun.dk/amager/results/clublist/">klublisten</a></li>
-                                        <li id="menu-item-698" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-698"><a href="http://www.parkrun.dk/amager/results/sub20women/">sub 20 kvinder</a></li>
-                                        <li id="menu-item-699" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-699"><a href="http://www.parkrun.dk/amager/results/sub17men/">sub 17 mænd</a></li>
-                                        <li id="menu-item-700" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-700"><a href="http://www.parkrun.dk/amager/results/agegradedleague/">aldersgradueret liga</a></li>
-                                        <li id="menu-item-701" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-701"><a href="http://www.parkrun.dk/amager/results/fastest500/">top 500</a></li>
-                                        <li id="menu-item-702" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-702"><a href="http://www.parkrun.dk/amager/results/search/">søg</a></li>
+                                        <li id="menu-item-729" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-729"><a href="http://www.parkrun.dk/amager/results/latestresults/">seneste resultater</a></li>
+                                        <li id="menu-item-730" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-730"><a href="http://www.parkrun.dk/amager/results/eventhistory/">event historik</a></li>
+                                        <li id="menu-item-731" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-731"><a href="http://www.parkrun.dk/amager/results/firstfinishescount/">antal førstepladser</a></li>
+                                        <li id="menu-item-732" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-732"><a href="http://www.parkrun.dk/amager/results/agecategoryrecords/">alderskategori rekorder</a></li>
+                                        <li id="menu-item-733" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-733"><a href="http://www.parkrun.dk/amager/results/clublist/">klublisten</a></li>
+                                        <li id="menu-item-734" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-734"><a href="http://www.parkrun.dk/amager/results/sub20women/">sub 20 kvinder</a></li>
+                                        <li id="menu-item-735" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-735"><a href="http://www.parkrun.dk/amager/results/sub17men/">sub 17 mænd</a></li>
+                                        <li id="menu-item-736" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-736"><a href="http://www.parkrun.dk/amager/results/agegradedleague/">aldersgradueret liga</a></li>
+                                        <li id="menu-item-737" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-737"><a href="http://www.parkrun.dk/amager/results/fastest500/">top 500</a></li>
+                                        <li id="menu-item-738" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-738"><a href="http://www.parkrun.dk/amager/results/search/">søg</a></li>
                                     </ul>
                                 </li>
-                                <li id="menu-item-703" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-703"><a href="http://www.parkrun.dk/amager/photos/">fotos</a></li>
-                                <li id="menu-item-704" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-704"><a href="https://parkrun-barcode.com/">shop</a></li>
-                                <li id="menu-item-705" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-705">
+                                <li id="menu-item-739" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-739"><a href="http://www.parkrun.dk/amager/photos/">fotos</a></li>
+                                <li id="menu-item-740" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-740"><a href="https://parkrun-barcode.com/">shop</a></li>
+                                <li id="menu-item-741" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-741">
                                     <a href="http://www.parkrun.dk/amager/more/aboutus/">mere&#8230;</a>
                                     <ul class="sub-menu">
-                                        <li id="menu-item-706" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-706"><a href="http://www.parkrun.dk/amager/links/">links</a></li>
-                                        <li id="menu-item-707" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-707"><a href="http://www.parkrun.dk/amager/more/aboutus/">om os</a></li>
-                                        <li id="menu-item-708" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-708"><a href="http://support.parkrun.com/">besøg parkrun support</a></li>
-                                        <li id="menu-item-709" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-709"><a href="http://www.parkrun.dk">besøg parkrun danmark</a></li>
-                                        <li id="menu-item-710" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-710"><a href="http://www.parkrun.com/">besøg parkrun global</a></li>
+                                        <li id="menu-item-742" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-742"><a href="http://www.parkrun.dk/amager/links/">links</a></li>
+                                        <li id="menu-item-743" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-743"><a href="http://www.parkrun.dk/amager/more/aboutus/">om os</a></li>
+                                        <li id="menu-item-744" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-744"><a href="http://support.parkrun.com/">besøg parkrun support</a></li>
+                                        <li id="menu-item-745" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-745"><a href="http://www.parkrun.dk">besøg parkrun danmark</a></li>
+                                        <li id="menu-item-746" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-746"><a href="http://www.parkrun.com/">besøg parkrun global</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="ribandbar">
-                    <a href="http://www.parkrun.com" title="parkrun.com"><div class="ribandbarclickable">&#160;</div></a>
-                </div>
             </div>
         </div>
+        <div class="headerspacer"></div>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#mainheader .menuButton').click(function () {
+                    jQuery('#mainheader .menubar').toggleClass('menuOpen');
+                });
+
+                jQuery('#mainheader .menuScrim').click(function () {
+                    jQuery('#mainheader .menubar').removeClass('menuOpen');
+                });
+
+                jQuery('#mainheader #access .menu-item-has-children, #mainheader #access .page_item_has_children').click(function (event) {
+                    event.stopPropagation();
+                    if (jQuery(event.target).hasClass('menu-item-has-children') || jQuery(event.target).hasClass('page_item_has_children')) {
+                        if (jQuery(event.target).hasClass('subOpen')) {
+                            jQuery(event.target).removeClass('subOpen')
+                            jQuery(event.target).siblings('.menu-item-has-children').removeClass('subOpen')
+                            jQuery(event.target).siblings('.page_item_has_children').removeClass('subOpen')
+                        } else {
+                            jQuery(event.target).siblings('.menu-item-has-children').removeClass('subOpen')
+                            jQuery(event.target).siblings('.page_item_has_children').removeClass('subOpen')
+                            jQuery(event.target).addClass('subOpen')
+                        }
+                    }
+                });
+
+            });
+
+            jQuery(window).resize(function () {
+                jQuery('.headerspacer').css('height', jQuery('#mainheader').outerHeight() + 'px');
+                if (jQuery(window).width() >= 1024) {
+                    jQuery('#mainheader .menuOpen').removeClass('menuOpen');
+                    jQuery('#mainheader .subOpen').removeClass('subOpen');
+                }
+            });
+        </script>
         <!--  end of main graded-brown visual parkrun header element on all pages -->
         <!-- cookies directive -->
         <script type="text/javascript">
@@ -142,7 +185,7 @@
 
                     <div class="courseleft">
                         <h2 class="paddetandb">Ruten</h2>
-                        <p class="paddedb">Ruten er 5000m (5K) lang. Den er opmålt nøjagtigt af os med et professionelt målehjul.    . Hvis det har regnet, kan der forekomme mudder, blade og vandpytter på ruten. Hvis det er muligt, vil der være markeret med skilte eller mel, eller der vil stå frivillige langs ruten.</p>
+                        <p class="paddedb">Ruten er 5000m (5K) lang. Den er opmålt nøjagtigt af os med et professionelt målehjul.    Stierne er hovedsagelig belagt med grus eller sandjord. Hvis det har regnet, kan der forekomme mudder, blade og vandpytter på ruten. Hvis det er muligt, vil der være markeret med skilte eller mel, eller der vil stå frivillige langs ruten.</p>
                         <p class="paddetandb"><img class="coursegivewayimg" src="https://images.parkrun.com/website/course/dk/giveway.jpg" alt="" />Som deltager skal du huske, at der også kan være andre brugere på stierne. For at sikre, at vi kan blive ved med at afholde parkrun i Fælledparken, opfordrer vi deltagerne til at <strong>tage hensyn</strong> til parkens andre brugere. Erfaringen viser, at det har meget lidt (om nogen) indflydelse på din personlige rekord, og det er med til at alle kan blive ved med at have glæde af Fælledparken parkrun.</p>
                         <img class="coursebusimg" src="https://images.parkrun.com/website/course/dk/bus.jpg" alt="" />
                         <p class="paddetandb">Hvis det er muligt, så gå, løb, cykl eller brug offentlig transport, når du skal til parkrun. Hvis du er nødt til at køre, så prøv om I kan køre flere sammen, så vi både kan spare miljøet og vise hensyn til de øvrige parkbrugere. Hold også øje med andre gæster i parken, når du ankommer og forlader løbet. Måske er der begrænset med parkering, så prøv at ankomme i god tid.</p>
@@ -175,15 +218,12 @@
                         <h2 class="paddetandb">Kort over ruten</h2>
                         <iframe src="https://www.google.com/maps/d/embed?mid=1eQtWTqScHsieaKg8JkhaCoCQcJY" width="450" height="400"></iframe>
                         <h2 class="paddedt">Beskrivelse af ruten</h2>
-                        <p>Sommerruten er to sløjfer á 2,45 km plus 100 meter enten på græs eller på stien alt efter vejret den dag. Den er meget løbevenlig. Stierne er hovedsageligbelagt med grus eller sandjord. I regnvejr kan der dannes vandpytter men overfladen er pæn og jævn. Ruten er hurtig og deltagerne kommer ikke ud på Ørestadsboulevarden.</p>
-
-                        <p>Der er masser af plads ved star/målområdet til cykler, barnevogne, mv. Og hvor børnene kan løbe og lege.</p>
-
-                        <p>Tak til Københavns Kommune for tilladelsen til, at vi kan afholde Amager Fælled parkrun hver lørdag. Som deltager skal du huske, at der også kan være andre brugere på stierne For at sikre, at vi kan blive ved med at afholde parkrun på Amager Fælled, opfordrer vi deltagerne til at tage hensyn til andre brugere og lade dem komme i første række. Erfaringen viser, at det har meget lidt ? om nogen ? indflydelse på din personlige rekord og er med til at alle kan blive ved med at have glæde af Amager parkrun.</p>
+                        <p>Ruten er to omgange á 2,45 km plus 100 meter på stien i begyndelsen af ruten. Den er meget løbevenlig. Stierne er hovedsagelig belagt med grus eller sandjord. I regnvejr kan der dannes vandpytter men overfladen er pæn og jævn.</p>
+                        <p>Tak til Københavns Kommune for tilladelsen til, at vi kan afholde Amager Fælled parkrun hver lørdag. Som deltager skal du huske, at der også kan være andre brugere på stierne For at sikre, at vi kan blive ved med at afholde parkrun på Amager Fælled, opfordrer vi deltagerne til at tage hensyn til andre brugere og lade dem komme i første række. Erfaringen viser, at det har meget lidt om nogen indflydelse på din personlige rekord og er med til at alle kan blive ved med at have glæde af Amager parkrun.</p>
 
 
                         <h2 class="paddedt">Faciliteter</h2>
-
+                        Der er masser af plads ved start/målområdet til cykler, barnevogne, mm. hvor børnene kan løbe og lege. Da det er en naturpark uden bygninger, er der desværre ingen toiletter i parken. Det nærmeste offentlige toilet findes i indkøbscentret Fisketorvet.Toilettet hos Café Nöah er kun for gæster og er først åbent efter kl 10.
                         <h2 class="paddedt">Sådan kommer du derhen</h2>
                         <h3 class="paddedtandb">Startsted</h3>
                         <p>Starten og målområdet er ved den store åbne mark til højre for stien mellem DR Byen Metrostation og Artillerivej. Ca. 120 meter vest for vores vinterstartlinie.</p>
@@ -191,14 +231,18 @@
                         <p>Det er 1,3 km fra DR Byen Metrostation og 600 meter fra Artillerivej (350 meter fra den store parkeringsplads). Buslinien 250S holder lige ved Artillerivej. Start/målområdet er 1,5 km fra Bryggebroen</p>
 
                         <h3 class="paddedtandb">Ankomst med offentlig transport</h3>
-
+                        Der er 1,3 km fra DR Byen Metrostation og 400 meter fra Artillerivej (350 meter fra den store parkeringsplads). Buslinien 250S holder lige ved Artillerivej. Start/målområdet er 1,5 km fra Bryggebroen.
                         <h3 class="paddedtandb">Ankomst til fods</h3>
+                        Starten og målområdet er ved den store åbne mark til højre for stien mellem DR Byen Metrostation og Artillerivej.<br><br>
 
+                        Kommer man fra vest, kan man følge den brede sti fra hjørnet af Artillerivej og Rundholtsvej.<br><br>
+
+                        Løbets start er tydeligt mærket på google-kortet.
+                        Der står også et lille skilt med teksten ”Modelflyvepladsen”.
                         <h3 class="paddedtandb">Ankomst i bil</h3>
-
+                        Det er nemt i bil at komme til Amager Fælled fra alle retninger ? men gratis parkering er kun ved Artillerivej-indgangen. Hvis man kommer langvejs fra, er E20 og Artillerivej nemmest.<br><br>Gratis parkering ca 40 meter inde I parken ved Artillerivej 161 indgangen.
                         <h2 class="paddetandb">Kaffe efter løbet</h2>
-                        Efter løbet tager vi på Cafe Noah og drikker en kop kaffe eller?
-                        Kom og vær med!
+                        Café Nöah - åbner kl 10. Ved specielle lejligheder holder vi picnic efter løbet med medbragt mad.
 
                     </div>
                     &nbsp;
@@ -232,95 +276,104 @@
             </div>
             <div id="stats_panel" class="statscontainer">
                 <div id="FooterStats">
-                    <table>
-                        <tr>
-                            <td>
-                                <h1 id="stats_panel">Amager Fælled parkrun event statistik</h1>
-                                Problemer med resultaterne? Kontakt <a href="mailto:amagerkontor@parkrun.com">amagerkontor@parkrun.com</a><br />Spørgsmål? Kontakt vores engelske <a href="http://support.parkrun.com/hc/en-us/">support side</a>
-                            </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td class="interactivetd">
-                                <!-- PARKRUN-2310: obsolete -->
-                            </td>
-                        <tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <td style="width:37%">Antal events: 517 </td>
-                            <td style="width:2%"> </td>
-                            <td style="width:37%">Antal løbere: 4,943</td>
-                            <td style="width:2%"> </td>
-                            <td style="width:22%">Antal løb: 33,370</td>
-                        </tr>
-                        <tr>
-                            <td>Antal førstepladser: 282</td>
-                            <td> </td>
-                            <td>Antal klubber: 572</td>
-                            <td> </td>
-                            <td>Antal PB: 4,120</td>
-                        </tr>
-                        <tr>
-                            <td>Gns. antal løbere pr. uge: 64.5</td>
-                            <td> </td>
-                            <td>Gns. antal løb pr. løber: 6.8</td>
-                            <td> </td>
-                            <td>Største deltagertal: 181</td>
-                        </tr>
-                        <tr>
-                            <td>Gns. løbetid: 00:26:04</td>
-                            <td> </td>
-                            <td>Antal timer løbet: 1År 239Dage 6Timer 27Minutter 24Sekunder </td>
-                            <td> </td>
-                            <td>Total tilbagelagt distance: 166,850km</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                                <div class="recorddiv">Kvindelig rekordindehaver: </div>
-                                <div class="recordholderdiv">
+                    <h1>Amager Fælled parkrun event statistik</h1>
+                    <p>Problemer med resultaterne? Kontakt <a href="mailto:amager@parkrun.com">amager@parkrun.com</a><br />Spørgsmål? Kontakt vores engelske <a href="http://support.parkrun.com/hc/en-us/">support side</a></p>
+                    <div class="flex">
+                        <div class="column">
+                            Antal events: 540
+                        </div>
+                        <div class="column">
+                            Antal løbere: 5.235
+                        </div>
+                        <div class="column">
+                            Antal løb: 35.169
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="column">
+                            Antal førstepladser: 291
+                        </div>
+                        <div class="column">
+                            Antal klubber: 628
+                        </div>
+                        <div class="column">
+                            Antal PB: 4.260
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="column">
+                            Gns. antal løbere pr. uge: 65,1
+                        </div>
+                        <div class="column">
+                            Gns. antal løb pr. løber: 6,7
+                        </div>
+                        <div class="column">
+                            Største deltagertal: 181
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="column">
+                            Gns. løbetid: 00:26:08
+                        </div>
+                        <div class="column">
+                            Antal timer løbet: 1År 273Dage 8Timer 42Minutter 23Sekunder
+                        </div>
+                        <div class="column">
+                            Total tilbagelagt distance: 175.845km
+                        </div>
+                    </div>
+                    <div class="records">
+                        <div class="flex">
+                            <div class="column">
+                                <span>Kvindelig rekordindehaver: </span>
+                                <span>
                                     Hannah OLDROYD - 17:53 - Event 515 (01-01-2019)
-                                </div>
-                            </td>
-                            <td colspan="1" rowspan="3" valign="bottom" style="color: #5D5A49"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                                <div class="recorddiv">Mandlig rekordindehaver: </div>
-                                <div class="recordholderdiv">
-                                    Ian KIMPTON - 15:28 - Event 398 (12-11-2016)
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">Aldersgradueret rekordindehaver: Klaus GOLDAMMER - 86.17 % - 19:17 - Event 385 (13-08-2016) </td>
-                        </tr>
-
-                    </table>
-                    <div class="hrcontainer"><hr /></div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="column">
+                                <span>Mandlig rekordindehaver: </span>
+                                <span>
+                                    Emil HOLM - 14:50 - Event 529 (06-04-2019)
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="column">
+                                <span>Aldersgradueret rekordindehaver: </span>
+                                <span>
+                                    Emil HOLM - 86,97 % - 14:50 - Event 529 (06-04-2019)
+                                </span>
+                            </div>
+                            <div class="column socialicons">
+                            </div>
+                        </div>
+                    </div>
                     <div class="footercopyrightetc">
                         <p>
-                            <em>&copy; UKTT Limited (Company Number: 06053983), 13 Holmes Road, Strawberry Hill, Twickenham, TW1 4RF, United Kingdom. <a href="http://support.parkrun.com/">Kontakt os</a> - <a href="http://www.parkrun.com/privacy/" target="_top">Privatliv</a> </em><br />
-                            <em>Statistik opdateret : man 14 jan 2019 01:43:06 UTC</em>
+                            <em>&copy; parkrun Global Limited, Unit 3, Lower Deck, Phoenix Wharf, Twickenham, Middlesex, England, TW1 3DY. Company number: 09411750. <a href="http://support.parkrun.com/">Kontakt os</a> - <a href="http://www.parkrun.com/privacy/" target="_top">Privatliv</a> </em><br />
+                            <em>Statistik opdateret : fre 28 jun 2019 00:45:03 UTC</em>
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </footer>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.core.min.js?ver=1.10.4'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.widget.min.js?ver=1.10.4'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.mouse.min.js?ver=1.10.4'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.resizable.min.js?ver=1.10.4'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.draggable.min.js?ver=1.10.4'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.button.min.js?ver=1.10.4'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.position.min.js?ver=1.10.4'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.dialog.min.js?ver=1.10.4'></script>
-    <script type='text/javascript' src='http://www.parkrun.dk/amager/wp-includes/js/comment-reply.min.js?ver=3.9.2'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.core.min.js?ver=1.10.4'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.widget.min.js?ver=1.10.4'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.mouse.min.js?ver=1.10.4'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.resizable.min.js?ver=1.10.4'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.draggable.min.js?ver=1.10.4'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.button.min.js?ver=1.10.4'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.position.min.js?ver=1.10.4'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/jquery/ui/jquery.ui.dialog.min.js?ver=1.10.4'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-includes/js/comment-reply.min.js?ver=3.9.2'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-content/themes/parkrun/scripts/parkrunLibFunctionsMinified.js?ver=3.9.2'></script>
+    <script type='text/javascript' src='https://www.parkrun.dk/amager/wp-content/themes/parkrun/scripts/android-menu-hack-min.js?ver=3.9.2'></script>
 </body>
 </html>
 
-<!-- Dynamic page generated in 1.098 seconds. -->
-<!-- Cached page generated by WP-Super-Cache on 2019-01-14 20:53:27 -->
+<!-- Dynamic page generated in 1.115 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2019-06-28 16:20:02 -->
 <!-- Compression = gzip -->
