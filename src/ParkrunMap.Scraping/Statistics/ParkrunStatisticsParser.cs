@@ -351,7 +351,7 @@ namespace ParkrunMap.Scraping.Statistics
             var node = htmlDoc.DocumentNode.SelectSingleNode($"//*[contains(text(),\"{text}:\")]");
 
             var nodeValue = node.InnerText.Replace(text, string.Empty)
-                .Trim(new[] {'\r', '\n', ':', ' ' });
+                .Trim(new[] {'\r', '\n', '\t', ':', ' ' });
 
             return nodeValue;
         }
