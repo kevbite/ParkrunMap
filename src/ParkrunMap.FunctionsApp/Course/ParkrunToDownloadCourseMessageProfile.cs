@@ -7,7 +7,7 @@ namespace ParkrunMap.FunctionsApp.Course
     {
         public ParkrunToDownloadCourseMessageProfile()
         {
-            CreateMap<QueryAllParkrunForWebsite.Response.Parkrun, DownloadCourseMessage>();
+            CreateMap<QueryFirstParkrunForWebsite.Response.ParkrunResponse, DownloadCourseMessage>();
         }
     }
 }

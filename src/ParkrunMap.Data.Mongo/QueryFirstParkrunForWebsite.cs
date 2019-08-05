@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -7,7 +8,7 @@ using MongoDB.Driver;
 
 namespace ParkrunMap.Data.Mongo
 {
-    public class QueryAllParkrunForWebsite
+    public class QueryFirstParkrunForWebsite
     {
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -20,23 +21,27 @@ namespace ParkrunMap.Data.Mongo
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
+                var query = Builders<Domain.Parkrun>.Filter.Not(Builders<Domain.Parkrun>.Filter.In(x => x.Id, request.ExceptIds));
+
                 var projection = Builders<Domain.Parkrun>.Projection.Expression(x =>
-                    new Response.Parkrun() {Id = x.Id, WebsiteDomain = x.Website.Domain, WebsitePath = x.Website.Path});
+                    new Response.ParkrunResponse() {Id = x.Id, WebsiteDomain = x.Website.Domain, WebsitePath = x.Website.Path});
 
                 var parkruns = await _collection.Aggregate()
+                    .Match(query)
                     .Project(projection)
+                    .Limit(1)
                     .ToListAsync(cancellationToken)
                     .ConfigureAwait(false);
 
-                return new Response() { Parkruns = parkruns };
+                return new Response() { Parkrun = parkruns.SingleOrDefault() };
             }
         }
 
         public class Response
         {
-            public IReadOnlyCollection<Parkrun> Parkruns { get; set; }
+            public ParkrunResponse Parkrun { get; set; }
 
-            public class Parkrun
+            public class ParkrunResponse
             {
                 public ObjectId Id { get; set; }
 
@@ -48,6 +53,7 @@ namespace ParkrunMap.Data.Mongo
 
         public class Request : IRequest<Response>
         {
+            public IReadOnlyCollection<ObjectId> ExceptIds { get; set; } = new ObjectId[0];
         }
     }
 }

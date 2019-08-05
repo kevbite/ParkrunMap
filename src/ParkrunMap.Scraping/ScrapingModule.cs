@@ -29,16 +29,24 @@ namespace ParkrunMap.Scraping
             builder.RegisterType<CancellationsParser>().AsSelf();
 
             builder.RegisterType<GeoXmlParser>().AsSelf();
+            
+            builder.RegisterType<ProxyStore>()
+                .AsSelf()
+                .SingleInstance();
 
-            builder.RegisterType<HttpClient>()
+            builder.RegisterType<ScrapingHttpClientFactory>()
+                .AsSelf()
+                .SingleInstance();
+
+            builder.Register(ctx => ctx.Resolve<ScrapingHttpClientFactory>().Create())
                 .AsSelf()
                 .Named<HttpClient>("geo-xml-client");
 
-            builder.RegisterType<HttpClient>()
+            builder.Register(ctx => ctx.Resolve<ScrapingHttpClientFactory>().Create())
                 .AsSelf()
                 .Named<HttpClient>("cancellations-page-client");
 
-            builder.Register(ctx => new HttpClient(new RedirectHandler(new HttpClientHandler())))
+            builder.Register(ctx => ctx.Resolve<ScrapingHttpClientFactory>().Create())
                 .AsSelf()
                 .Named<HttpClient>("course-page-client");
 

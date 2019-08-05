@@ -17,7 +17,7 @@ namespace ParkrunMap.Data.Mongo
                 .InstancePerDependency();
 
             builder.RegisterType<AddParkrunCancellation.Handler>().AsImplementedInterfaces().InstancePerDependency();
-            builder.RegisterType<QueryAllParkrunForWebsite.Handler>().AsImplementedInterfaces().InstancePerDependency();
+            builder.RegisterType<QueryFirstParkrunForWebsite.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<UpdateParkrunCourseDetails.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<UpdateParkrunFeatures.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<UpdateParkrunStatistics.Handler>().AsImplementedInterfaces().InstancePerDependency();
