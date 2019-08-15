@@ -42,9 +42,9 @@ namespace ParkrunMap.FunctionsApp.Course
         private async Task Run(IAsyncCollector<DownloadCourseMessage> collector, CloudTable courseDownloadsStartedTable, CancellationToken cancellationToken)
         {
             var alreadyStarted = await GetAlreadyStarted(courseDownloadsStartedTable).ConfigureAwait(false);
-            var response = await  _mediator.Send(new QueryFirstParkrunForWebsite.Request(){ ExceptIds = alreadyStarted }, cancellationToken);
+            var response = await _mediator.Send(new QueryFirstParkrunForWebsite.Request() { ExceptIds = alreadyStarted.GetAllStartedIds().Select(ObjectId.Parse).ToArray() }, cancellationToken);
 
-            if(response.Parkrun != null)
+            if (response.Parkrun != null)
             {
                 _logger.LogInformation("Queueing up parkrun '{PakrunId}' to download course page", response.Parkrun.Id);
                 var message = _mapper.Map<DownloadCourseMessage>(response.Parkrun);
@@ -52,35 +52,70 @@ namespace ParkrunMap.FunctionsApp.Course
                 await collector.AddAsync(message, cancellationToken)
                     .ConfigureAwait(false);
 
-                await courseDownloadsStartedTable.ExecuteAsync(TableOperation.Insert(
-                        new TableEntity(CreateParitionKey(DateTime.UtcNow), response.Parkrun.Id.ToString())))
-                    .ConfigureAwait(false);
+                alreadyStarted.AddStartedId(response.Parkrun.Id.ToString());
+
+                await courseDownloadsStartedTable.ExecuteAsync(TableOperation.InsertOrReplace(
+                    alreadyStarted)).ConfigureAwait(false);
             }
             else
             {
                 _logger.LogInformation("No parkruns left to queue up to download course page");
-                
+
             }
         }
 
-        private async Task<IReadOnlyCollection<ObjectId>> GetAlreadyStarted(CloudTable courseDownloadsStartedTable)
+        private async Task<AlreadyStartedTableEntity> GetAlreadyStarted(CloudTable courseDownloadsStartedTable)
         {
-            var query = new TableQuery<TableEntity>().Where(
-                TableQuery.GenerateFilterCondition(
-                    "PartitionKey",
-                    QueryComparisons.Equal,
-                    CreateParitionKey(DateTime.UtcNow)
-                )
-            );
+            var dateTime = DateTime.UtcNow;
+            var partitionKey = CreateParitionKey(dateTime);
+            var rowKey = CreateRowKey(dateTime);
+            var retrieveOperation = TableOperation.Retrieve<AlreadyStartedTableEntity>(partitionKey, rowKey);
 
-            var result = await courseDownloadsStartedTable.ExecuteQuerySegmentedAsync(query, null).ConfigureAwait(false);
+            var retrievedResult = await courseDownloadsStartedTable.ExecuteAsync(retrieveOperation);
 
-            return result.Results.Select(x => ObjectId.Parse(x.RowKey)).ToArray();
+            return (retrievedResult.Result as AlreadyStartedTableEntity)
+                   ?? new AlreadyStartedTableEntity()
+                   {
+                       PartitionKey = partitionKey,
+                       RowKey = rowKey
+                   };
         }
 
         private static string CreateParitionKey(DateTime utcNow)
         {
-            return $"{utcNow:yyyy-MMMM}";
+            return $"{utcNow:yyyy}";
+        }
+
+        private static string CreateRowKey(DateTime utcNow)
+        {
+            return $"{utcNow:MMMM}";
+        }
+    }
+
+    public class AlreadyStartedTableEntity : TableEntity
+    {
+        public AlreadyStartedTableEntity()
+        {
+            StartedIds = string.Empty;
+        }
+
+        public string StartedIds { get; set; }
+
+        public void AddStartedId(string id)
+        {
+            if (StartedIds == string.Empty)
+            {
+                StartedIds = id;
+            }
+            else
+            {
+                StartedIds += $",{id}";
+            }
+        }
+
+        public IReadOnlyCollection<string> GetAllStartedIds()
+        {
+            return StartedIds.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }
