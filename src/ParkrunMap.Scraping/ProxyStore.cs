@@ -26,7 +26,7 @@ namespace ParkrunMap.Scraping
             var scheme = "http";
             if (DateTime.UtcNow > _nextUpdate || _addresses.Count == 0)
             {
-                _nextUpdate = DateTime.UtcNow.AddHours(1);
+                _nextUpdate = DateTime.UtcNow.AddHours(8);
 
                 using (var httpClient = new HttpClient())
                 {
