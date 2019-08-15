@@ -7,7 +7,7 @@ namespace ParkrunMap.FunctionsApp.Parkruns
     {
         public ParkrunToUpsertParkrunMessageProfile()
         {
-            CreateMap<Parkrun, UpsertParkrunMessage>();
+            CreateMap<GeoXmlParkrun, UpsertParkrunMessage>();
         }
     }
 }

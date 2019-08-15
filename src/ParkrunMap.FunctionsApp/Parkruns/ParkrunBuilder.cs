@@ -4,10 +4,10 @@ namespace ParkrunMap.FunctionsApp.Parkruns
 {
     public class ParkrunBuilder
     {
-        private readonly Parkrun _parkrun;
+        private readonly GeoXmlParkrun _parkrun;
         private (double latitude, double longitude)? _location;
 
-        public ParkrunBuilder(Parkrun parkrun)
+        public ParkrunBuilder(GeoXmlParkrun parkrun)
         {
             _parkrun = parkrun;
         }
@@ -17,9 +17,9 @@ namespace ParkrunMap.FunctionsApp.Parkruns
             _location = location;
         }
 
-        public Parkrun Build()
+        public GeoXmlParkrun Build()
         {
-            return new Parkrun(
+            return new GeoXmlParkrun(
                 _parkrun.GeoXmlId,
                 _parkrun.Name,
                 _parkrun.WebsiteDomain,

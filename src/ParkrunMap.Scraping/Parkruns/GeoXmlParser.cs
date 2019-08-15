@@ -15,7 +15,7 @@ namespace ParkrunMap.Scraping.Parkruns
             _validator = validator;
         }
 
-        public IReadOnlyCollection<Parkrun> Parse(Stream stream)
+        public IReadOnlyCollection<GeoXmlParkrun> Parse(Stream stream)
         {
             var document = XDocument.Load(stream);
 
@@ -28,7 +28,7 @@ namespace ParkrunMap.Scraping.Parkruns
                         ParentRegionId = string.IsNullOrEmpty((string)x.Attribute("pid")) ? null : (int?)x.Attribute("pid"),
                     });
 
-            var parkruns = new List<Parkrun>();
+            var parkruns = new List<GeoXmlParkrun>();
 
             foreach (var element in document.Descendants("e").Where(_validator.IsValid))
             {
@@ -51,7 +51,7 @@ namespace ParkrunMap.Scraping.Parkruns
                 var websiteDomain = uri.Host;
                 var websitePath = $"/{n}";
 
-                var parkrun = new Parkrun(id, name, websiteDomain, websitePath, region?.Name, country.Name, latitude, longitude);
+                var parkrun = new GeoXmlParkrun(id, name, websiteDomain, websitePath, region?.Name, country.Name, latitude, longitude);
 
                 parkruns.Add(parkrun);
             }

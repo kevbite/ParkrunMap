@@ -24,6 +24,9 @@
     <None Update="data\aberdare.course.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="data\events.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="data\futakotamagawa.course.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

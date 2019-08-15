@@ -1,0 +1,103 @@
+{
+  "countries": {
+    "3": {
+      "url": "www.parkrun.com.au",
+      "bounds": [
+        114.613067,
+        -43.163256,
+        153.576356,
+        -12.376205
+      ]
+    },
+    "97": {
+      "url": "www.parkrun.org.uk",
+      "bounds": [
+        -7.643103,
+        49.186471,
+        1.747338,
+        60.158081
+      ]
+    }
+  },
+  "events": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "id": 1,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -0.335791,
+            51.410992
+          ]
+        },
+        "properties": {
+          "eventname": "bushy",
+          "EventLongName": "Bushy parkrun",
+          "EventShortName": "Bushy Park",
+          "countrycode": 97,
+          "seriesid": 1,
+          "EventLocation": "Bushy Park, Teddington"
+        }
+      },
+      {
+        "id": 96,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.101379,
+            53.935375
+          ]
+        },
+        "properties": {
+          "eventname": "york",
+          "EventLongName": "York parkrun",
+          "EventShortName": "York",
+          "countrycode": 97,
+          "seriesid": 1,
+          "EventLocation": "York Racecourse"
+        }
+      },
+      {
+        "id": 1259,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.01799,
+            53.949319
+          ]
+        },
+        "properties": {
+          "eventname": "heslington",
+          "EventLongName": "Heslington parkrun",
+          "EventShortName": "Heslington",
+          "countrycode": 97,
+          "seriesid": 1,
+          "EventLocation": "York Sport Village"
+        }
+      },
+      {
+        "id": 2322,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            138.547611,
+            -35.217671
+          ]
+        },
+        "properties": {
+          "eventname": "shiraztrail",
+          "EventLongName": "Shiraz Trail parkrun",
+          "EventShortName": "Shiraz Trail",
+          "countrycode": 3,
+          "seriesid": 1,
+          "EventLocation": "The Shiraz Trail"
+        }
+      }
+    ]
+  }
+}

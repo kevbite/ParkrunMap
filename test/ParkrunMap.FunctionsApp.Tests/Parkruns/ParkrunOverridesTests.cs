@@ -15,7 +15,7 @@ namespace ParkrunMap.FunctionsApp.Tests.Parkruns
         {
             var fixture = new Fixture();
 
-            var parkrun = fixture.Create<Parkrun>();
+            var parkrun = fixture.Create<GeoXmlParkrun>();
 
             var actual = new ParkrunOverrides().Apply(parkrun);
 
@@ -28,7 +28,7 @@ namespace ParkrunMap.FunctionsApp.Tests.Parkruns
             var fixture = new Fixture();
             fixture.Customizations.Add(new ParkrunWebsiteDomainArg("www.parkrun.ie"));
             fixture.Customizations.Add(new ParkrunWebsitePathArg("/tymon"));
-            var parkrun = fixture.Build<Parkrun>()
+            var parkrun = fixture.Build<GeoXmlParkrun>()
                 .Create();
 
             var actual = new ParkrunOverrides().Apply(parkrun);
@@ -54,7 +54,7 @@ namespace ParkrunMap.FunctionsApp.Tests.Parkruns
             if (pi == null)
                 return new NoSpecimen();
 
-            if (pi.Member.DeclaringType != typeof(Parkrun) ||
+            if (pi.Member.DeclaringType != typeof(GeoXmlParkrun) ||
                 pi.ParameterType != typeof(string) ||
                 pi.Name != "websiteDomain")
                 return new NoSpecimen();
@@ -78,7 +78,7 @@ namespace ParkrunMap.FunctionsApp.Tests.Parkruns
             if (pi == null)
                 return new NoSpecimen();
 
-            if (pi.Member.DeclaringType != typeof(Parkrun) ||
+            if (pi.Member.DeclaringType != typeof(GeoXmlParkrun) ||
                 pi.ParameterType != typeof(string) ||
                 pi.Name != "websitePath")
                 return new NoSpecimen();

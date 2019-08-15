@@ -32,7 +32,9 @@ namespace ParkrunMap.Scraping
             builder.RegisterType<CancellationsParser>().AsSelf();
 
             builder.RegisterType<GeoXmlParser>().AsSelf();
-            
+
+            builder.RegisterType<EventsJsonParser>().AsSelf();
+
             builder.RegisterType<ProxyStore>()
                 .AsSelf()
                 .SingleInstance();
