@@ -20,14 +20,11 @@ namespace ParkrunMap.Data.Mongo
 
             protected override async Task Handle(Request request, CancellationToken cancellationToken)
             {
-                var filter = Builders<Parkrun>.Filter.Eq(x => x.GeoXmlId, request.GeoXmlId);
+                var filter = Builders<Parkrun>.Filter.Eq(x => x.Website.Domain, request.WebsiteDomain)
+                             & Builders<Parkrun>.Filter.Eq(x => x.Website.Path, request.WebsitePath);
+
                 var update = Builders<Parkrun>.Update.Set(x => x.Name, request.Name)
-                    .Set(x => x.Website.Domain, request.WebsiteDomain)
-                    .Set(x => x.Website.Path, request.WebsitePath)
-                    .Set(x => x.Region, request.Region)
-                    .Set(x => x.Country, request.Country)
-                    .Set(x => x.Location,
-                        new GeoJsonPoint<GeoJson2DGeographicCoordinates>(
+                   .Set(x => x.Location, new GeoJsonPoint<GeoJson2DGeographicCoordinates>(
                             new GeoJson2DGeographicCoordinates(request.Longitude, request.Latitude)));
 
                 await _collection.UpdateOneAsync(filter, update, new UpdateOptions() { IsUpsert = true }, cancellationToken);
@@ -36,18 +33,12 @@ namespace ParkrunMap.Data.Mongo
 
         public class Request : IRequest
         {
-            public int GeoXmlId { get; set; }
-
             public string Name { get; set; }
 
             public string WebsiteDomain { get; set; }
 
             public string WebsitePath { get; set; }
-
-            public string Region { get; set; }
-
-            public string Country { get; set; }
-
+            
             public double Latitude { get; set; }
 
             public double Longitude { get; set; }

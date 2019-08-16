@@ -3,11 +3,11 @@ using ParkrunMap.Scraping.Parkruns;
 
 namespace ParkrunMap.FunctionsApp.Parkruns
 {
-    public class ParkrunToUpsertParkrunMessageProfile : Profile
+    public class EventsJsonParkrunToUpsertParkrunMessageProfile : Profile
     {
-        public ParkrunToUpsertParkrunMessageProfile()
+        public EventsJsonParkrunToUpsertParkrunMessageProfile()
         {
-            CreateMap<GeoXmlParkrun, UpsertParkrunMessage>();
+            CreateMap<EventsJsonParkrun, UpsertParkrunMessage>();
         }
     }
 }

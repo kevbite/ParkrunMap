@@ -11,7 +11,7 @@ namespace ParkrunMap.FunctionsApp.Parkruns
                 {("www.parkrun.ie", "/tymon"), (53.304650, -6.341203)}
             };
 
-        public GeoXmlParkrun Apply(GeoXmlParkrun parkrun)
+        public EventsJsonParkrun Apply(EventsJsonParkrun parkrun)
         {
             var builder = new ParkrunBuilder(parkrun);
             if (LocationOverrides.TryGetValue((parkrun.WebsiteDomain, parkrun.WebsitePath), out var location))

@@ -10,14 +10,14 @@ using ParkrunMap.Scraping.Parkruns;
 
 namespace ParkrunMap.FunctionsApp.Parkruns
 {
-    public class ParseGeoXmlFunction
+    public class ParseEventsJsonFunction
     {
         private readonly ILogger _logger;
-        private readonly GeoXmlParser _parser;
+        private readonly EventsJsonParser _parser;
         private readonly IMapper _mapper;
         private readonly ParkrunOverrides _parkrunOverrides;
 
-        public ParseGeoXmlFunction(ILogger logger, GeoXmlParser parser, IMapper mapper, ParkrunOverrides parkrunOverrides)
+        public ParseEventsJsonFunction(ILogger logger, EventsJsonParser parser, IMapper mapper, ParkrunOverrides parkrunOverrides)
         {
             _logger = logger;
             _parser = parser;
@@ -25,20 +25,20 @@ namespace ParkrunMap.FunctionsApp.Parkruns
             _parkrunOverrides = parkrunOverrides;
         }
 
-        [FunctionName("ParseGeoXmlFunction")]
-        public static async Task Run([BlobTrigger(DownloadFilePaths.GeoXml, Connection = "AzureWebJobsStorage")]Stream geoXml,
+        [FunctionName("ParseEventsJsonFunction")]
+        public static async Task Run([BlobTrigger(DownloadFilePaths.EventsJson, Connection = "AzureWebJobsStorage")]Stream eventsJson,
             [Queue(QueueNames.UpsertParkrun, Connection = "AzureWebJobsStorage")]
             IAsyncCollector<UpsertParkrunMessage> messageCollector, ILogger logger)
         {
-            var func = Container.Instance.Resolve<ParseGeoXmlFunction>(logger);
+            var func = Container.Instance.Resolve<ParseEventsJsonFunction>(logger);
 
-            await func.Run(geoXml, messageCollector)
+            await func.Run(eventsJson, messageCollector)
                 .ConfigureAwait(false);
         }
 
-        private async Task Run(Stream geoXml, IAsyncCollector<UpsertParkrunMessage> messageCollector)
+        private async Task Run(Stream eventsJson, IAsyncCollector<UpsertParkrunMessage> messageCollector)
         {
-            var parkruns = _parser.Parse(geoXml);
+            var parkruns = _parser.Parse(eventsJson);
             _logger.LogInformation("Scrapped {Count} parkruns", parkruns.Count);
 
             foreach (var parsedParkrun in parkruns)

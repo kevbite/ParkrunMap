@@ -18,7 +18,7 @@ namespace ParkrunMap.Scraping.Parkruns
 
                 var root = serializer.Deserialize<Root>(reader);
 
-                return root.Events.Features.Join(root.Countries, feature => feature.Properties.Countrycode, country => country.Key,
+                return root.Events.Features.Where(x => !x.Properties.Eventname.EndsWith("-juniors")).Join(root.Countries, feature => feature.Properties.Countrycode, country => country.Key,
                     (feature, country) =>
                     {
                         var latitude = feature.Geometry.Coordinates[1];

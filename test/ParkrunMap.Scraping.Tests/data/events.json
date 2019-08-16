@@ -97,6 +97,25 @@
           "seriesid": 1,
           "EventLocation": "The Shiraz Trail"
         }
+      },
+      {
+        "id": 73,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -2.77921,
+            51.273808
+          ]
+        },
+        "properties": {
+          "eventname": "cheddar-juniors",
+          "EventLongName": "Cheddar junior parkrun",
+          "EventShortName": "Cheddar juniors",
+          "countrycode": 97,
+          "seriesid": 2,
+          "EventLocation": "Kings Fitness and Leisure"
+        }
       }
     ]
   }
