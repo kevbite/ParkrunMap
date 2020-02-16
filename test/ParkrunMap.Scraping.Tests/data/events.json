@@ -1,0 +1,136 @@
+{
+  "countries": {
+    "3": {
+      "url": "www.parkrun.com.au",
+      "bounds": [
+        114.613067,
+        -43.163256,
+        153.576356,
+        -12.376205
+      ]
+    },
+    "44": {
+      "url": "www.parkrun.it",
+      "bounds": [
+        9.211192,
+        37.621125,
+        18.166117,
+        45.694128
+      ]
+    },
+    "97": {
+      "url": "www.parkrun.org.uk",
+      "bounds": [
+        -6.643103,
+        49.186471,
+        1.747338,
+        60.158081
+      ]
+    }
+  },
+  "events": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "id": 1032,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            153.113665,
+            -26.708909
+          ]
+        },
+        "properties": {
+          "eventname": "brightwater",
+          "EventLongName": "Brightwater parkrun",
+          "EventShortName": "Brightwater",
+          "LocalisedEventLongName": null,
+          "countrycode": 3,
+          "seriesid": 1,
+          "EventLocation": "Brightwater Sports Ground"
+        }
+      },
+      {
+        "id": 1744,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            11.209331,
+            43.785132
+          ]
+        },
+        "properties": {
+          "eventname": "firenze",
+          "EventLongName": "Firenze parkrun",
+          "EventShortName": "Firenze",
+          "LocalisedEventLongName": null,
+          "countrycode": 44,
+          "seriesid": 1,
+          "EventLocation": "Firenze"
+        }
+      },
+      {
+        "id": 174,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.183844,
+            53.174034
+          ]
+        },
+        "properties": {
+          "eventname": "mansfield",
+          "EventLongName": "Mansfield parkrun",
+          "EventShortName": "Mansfield",
+          "LocalisedEventLongName": null,
+          "countrycode": 97,
+          "seriesid": 1,
+          "EventLocation": "Mansfield"
+        }
+      },
+      {
+        "id": 572,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.065717,
+            53.268022
+          ]
+        },
+        "properties": {
+          "eventname": "clumberpark",
+          "EventLongName": "Clumber Park parkrun",
+          "EventShortName": "Clumber Park",
+          "LocalisedEventLongName": null,
+          "countrycode": 97,
+          "seriesid": 1,
+          "EventLocation": "Clumber Park"
+        }
+      },
+      {
+        "id": 96,
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.101379,
+            53.935375
+          ]
+        },
+        "properties": {
+          "eventname": "york",
+          "EventLongName": "York parkrun",
+          "EventShortName": "York",
+          "LocalisedEventLongName": null,
+          "countrycode": 97,
+          "seriesid": 1,
+          "EventLocation": "York Racecourse"
+        }
+      }
+    ]
+  }
+}
