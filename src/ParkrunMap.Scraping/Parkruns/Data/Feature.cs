@@ -7,9 +7,6 @@ namespace ParkrunMap.Scraping.Parkruns.Data
         [JsonProperty("id")]
         public int Id { get; set; }
 
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
         [JsonProperty("geometry")]
         public Geometry Geometry { get; set; }
 
