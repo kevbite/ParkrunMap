@@ -69,9 +69,8 @@ namespace ParkrunMap.FunctionsApp
 
         private static void RegisterFunctions(ContainerBuilder builder)
         {
-            builder.RegisterType<DownloadGeoXmlTimerFunction>().AsSelf();
             builder.RegisterType<DownloadEventsJsonTimerFunction>().AsSelf();
-            builder.RegisterType<ParseGeoXmlFunction>().AsSelf();       
+            builder.RegisterType<ParseEventsJsonFunction>().AsSelf();       
             builder.RegisterType<UpsertParkrunQueueFunction>().AsSelf();
             builder.RegisterType<QueryParkrunsByRegionFunction>().AsSelf();
 

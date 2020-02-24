@@ -6,9 +6,9 @@ using ParkrunMap.Scraping.Parkruns.Data;
 
 namespace ParkrunMap.Scraping.Parkruns
 {
-    public static class ParkRunEventsJsonParser
+    public class ParkRunEventsJsonParser
     {
-        public static IReadOnlyCollection<Parkrun> Parse(Stream stream)
+        public IReadOnlyCollection<Parkrun> Parse(Stream stream)
         {
             using var reader = new StreamReader(stream);
 

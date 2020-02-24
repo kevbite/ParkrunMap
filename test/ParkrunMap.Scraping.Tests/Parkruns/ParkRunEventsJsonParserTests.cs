@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 using FluentAssertions;
 using ParkrunMap.Scraping.Parkruns;
 using Xunit;
@@ -13,7 +12,7 @@ namespace ParkrunMap.Scraping.Tests.Parkruns
         {
             using (var jsonEvents = File.OpenRead(@".\data\events.json"))
             {
-                ParkRunEventsJsonParser.Parse(jsonEvents).Should().BeEquivalentTo(
+                new ParkRunEventsJsonParser().Parse(jsonEvents).Should().BeEquivalentTo(
                     new Parkrun(1032, "Brightwater", "www.parkrun.com.au", "/brightwater", null, null, -26.708909, 153.113665),
                     new Parkrun(1744, "Firenze", "www.parkrun.it", "/firenze", null, null, 43.785132, 11.209331),
                     new Parkrun(174, "Mansfield", "www.parkrun.org.uk", "/mansfield", null, null, 53.174034, -1.183844),
