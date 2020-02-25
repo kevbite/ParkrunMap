@@ -30,9 +30,9 @@ namespace ParkrunMap.Data.Mongo
                             new GeoJson2DGeographicCoordinates(request.Longitude, request.Latitude)));
 
                 if (!string.IsNullOrEmpty(request.Country))
-                    update.Set(x => x.Country, request.Country);
+                    update = update.Set(x => x.Country, request.Country);
                 if (!string.IsNullOrEmpty(request.Region))
-                    update.Set(x => x.Region, request.Region);
+                    update = update.Set(x => x.Region, request.Region);
 
                 await _collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true }, cancellationToken);
             }
