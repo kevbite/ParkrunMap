@@ -12,42 +12,79 @@ using Xunit;
 
 namespace ParkrunMap.Data.Mongo.Tests
 {
-    public class UpsertParkrunHandlerTests
+    public class UpsertParkrunHandlerTests : IAsyncLifetime
     {
-        private Fixture _fixture;
+        private readonly Fixture _fixture;
+        private readonly MongoDbFixture _mongoDbFixture;
+        private readonly IRequestHandler<UpsertParkrun.Request, Unit> _handler;
 
         public UpsertParkrunHandlerTests()
         {
+            _mongoDbFixture = new MongoDbFixture();
             _fixture = new Fixture();
+            _fixture.Customizations.Add(new UtcRandomDateTimeSequenceGenerator());
+            _handler = new UpsertParkrun.Handler(_mongoDbFixture.Collection);
         }
 
         [Fact]
         public async Task ShouldInsertDocument()
         {
-            var client = new MongoClient();
-            var database = client.GetDatabase(Guid.NewGuid().ToString());
-            var collection = database.GetCollection<Parkrun>(Guid.NewGuid().ToString());
-
-            IRequestHandler<UpsertParkrun.Request, Unit> handler = new UpsertParkrun.Handler(collection);
-
             var command = _fixture.Create<UpsertParkrun.Request>();
 
-            await handler.Handle(command, CancellationToken.None);
+            await _handler.Handle(command, CancellationToken.None);
 
-            var actual = await (await collection.FindAsync(x => x.GeoXmlId == command.GeoXmlId)).FirstOrDefaultAsync();
+            var actual = await (await _mongoDbFixture.Collection.FindAsync(x => x.GeoXmlId == command.GeoXmlId)).FirstOrDefaultAsync();
 
-            using (new AssertionScope())
-            {
-                actual.Should().BeEquivalentTo(command,
-                    opt => opt.Excluding(x => x.Latitude).Excluding(x => x.Longitude).Excluding(x => x.WebsiteDomain).Excluding(x => x.WebsitePath));
+            using var scope = new AssertionScope();
+            
+            actual.Should().BeEquivalentTo(command, opt => opt
+                .Excluding(x => x.Latitude)
+                .Excluding(x => x.Longitude)
+                .Excluding(x => x.WebsiteDomain)
+                .Excluding(x => x.WebsitePath));
 
-                actual.Website.Domain.Should().Be(command.WebsiteDomain);
-                actual.Website.Path.Should().Be(command.WebsitePath);
+            actual.Website.Domain.Should().Be(command.WebsiteDomain);
+            actual.Website.Path.Should().Be(command.WebsitePath);
 
-                actual.Location.Type.Should().Be(GeoJsonObjectType.Point);
-                actual.Location.Coordinates.Latitude.Should().Be(command.Latitude);
-                actual.Location.Coordinates.Longitude.Should().Be(command.Longitude);
-            }
+            actual.Location.Type.Should().Be(GeoJsonObjectType.Point);
+            actual.Location.Coordinates.Latitude.Should().Be(command.Latitude);
+            actual.Location.Coordinates.Longitude.Should().Be(command.Longitude);
+        }
+
+        public Task InitializeAsync() => _mongoDbFixture.InitializeAsync();
+
+        public Task DisposeAsync() => _mongoDbFixture.DisposeAsync();
+
+        [Fact]
+        public async Task ShouldNotUpdateCountryAndRegionWhenNull()
+        {
+            var parkRun = _fixture.Build<Parkrun>()
+                .Without(x => x.Id)
+                .Create();
+
+            await _mongoDbFixture.Collection.InsertOneAsync(parkRun);
+
+            var command = _fixture.Build<UpsertParkrun.Request>()
+                .With(x => x.GeoXmlId, parkRun.GeoXmlId)
+                .Without(x => x.Country)
+                .Without(x => x.Region)
+                .Create();
+
+            await _handler.Handle(command, CancellationToken.None);
+
+            var actual = await (await _mongoDbFixture.Collection.FindAsync(x => x.GeoXmlId == parkRun.GeoXmlId)).SingleAsync();
+
+            using var scope = new AssertionScope();
+
+            actual.Should().BeEquivalentTo(command, opt => opt
+                .Excluding(x => x.Latitude)
+                .Excluding(x => x.Longitude)
+                .Excluding(x => x.WebsiteDomain)
+                .Excluding(x => x.WebsitePath)
+                .Excluding(x => x.Country)
+                .Excluding(x => x.Region));
+            actual.Country.Should().Be(parkRun.Country);
+            actual.Region.Should().Be(parkRun.Region);
         }
     }
 }
