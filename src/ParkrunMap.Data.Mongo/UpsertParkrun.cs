@@ -21,16 +21,20 @@ namespace ParkrunMap.Data.Mongo
             protected override async Task Handle(Request request, CancellationToken cancellationToken)
             {
                 var filter = Builders<Parkrun>.Filter.Eq(x => x.GeoXmlId, request.GeoXmlId);
-                var update = Builders<Parkrun>.Update.Set(x => x.Name, request.Name)
+                var update = Builders<Parkrun>.Update
+                    .Set(x => x.Name, request.Name)
                     .Set(x => x.Website.Domain, request.WebsiteDomain)
                     .Set(x => x.Website.Path, request.WebsitePath)
-                    .Set(x => x.Region, request.Region)
-                    .Set(x => x.Country, request.Country)
                     .Set(x => x.Location,
                         new GeoJsonPoint<GeoJson2DGeographicCoordinates>(
                             new GeoJson2DGeographicCoordinates(request.Longitude, request.Latitude)));
 
-                await _collection.UpdateOneAsync(filter, update, new UpdateOptions() { IsUpsert = true }, cancellationToken);
+                if (!string.IsNullOrEmpty(request.Country))
+                    update = update.Set(x => x.Country, request.Country);
+                if (!string.IsNullOrEmpty(request.Region))
+                    update = update.Set(x => x.Region, request.Region);
+
+                await _collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true }, cancellationToken);
             }
         }
 

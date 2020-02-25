@@ -19,6 +19,9 @@ namespace ParkrunMap.Scraping
 
             builder.Register(x => new GeoXmlDownloader(x.ResolveNamed<HttpClient>("geo-xml-client")))
                 .AsSelf();
+            
+            builder.Register(x => new EventsJsonDownloader(x.ResolveNamed<HttpClient>("events-json-client")))
+                .AsSelf();
 
             builder.RegisterType<ParkrunXElementValidator>().AsSelf();
 
@@ -28,11 +31,15 @@ namespace ParkrunMap.Scraping
 
             builder.RegisterType<CancellationsParser>().AsSelf();
 
-            builder.RegisterType<GeoXmlParser>().AsSelf();
+            builder.RegisterType<ParkRunEventsJsonParser>().AsSelf();
 
             builder.RegisterType<HttpClient>()
                 .AsSelf()
                 .Named<HttpClient>("geo-xml-client");
+
+            builder.RegisterType<HttpClient>()
+                .AsSelf()
+                .Named<HttpClient>("events-json-client");
 
             builder.RegisterType<HttpClient>()
                 .AsSelf()
