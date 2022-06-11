@@ -27,7 +27,7 @@ namespace ParkrunMap.Data.Mongo
                    .Set(x => x.Location, new GeoJsonPoint<GeoJson2DGeographicCoordinates>(
                             new GeoJson2DGeographicCoordinates(request.Longitude, request.Latitude)));
 
-                await _collection.UpdateOneAsync(filter, update, new UpdateOptions() { IsUpsert = true }, cancellationToken);
+                await _collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true }, cancellationToken);
             }
         }
 

@@ -19,6 +19,9 @@ namespace ParkrunMap.Scraping
             
             builder.Register(x => new EventsJsonDownloader(x.ResolveNamed<HttpClient>("events-json-client")))
                 .AsSelf();
+            
+            builder.Register(x => new EventsJsonDownloader(x.ResolveNamed<HttpClient>("events-json-client")))
+                .AsSelf();
 
             builder.RegisterType<ParkrunXElementValidator>().AsSelf();
 
@@ -28,7 +31,7 @@ namespace ParkrunMap.Scraping
 
             builder.RegisterType<CancellationsParser>().AsSelf();
 
-            builder.RegisterType<GeoXmlParser>().AsSelf();
+            builder.RegisterType<ParkRunEventsJsonParser>().AsSelf();
 
             builder.RegisterType<EventsJsonParser>().AsSelf();
 
@@ -46,6 +49,10 @@ namespace ParkrunMap.Scraping
 
 
             builder.Register(ctx => ctx.Resolve<ScrapingHttpClientFactory>().Create())
+                .AsSelf()
+                .Named<HttpClient>("events-json-client");
+
+            builder.RegisterType<HttpClient>()
                 .AsSelf()
                 .Named<HttpClient>("cancellations-page-client");
 

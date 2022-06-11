@@ -14,12 +14,15 @@ using Xunit;
 
 namespace ParkrunMap.Data.Mongo.Tests
 {
-    public class UpsertParkrunHandlerTests
+    public class UpsertParkrunHandlerTests : IAsyncLifetime
     {
-        private Fixture _fixture;
+        private readonly Fixture _fixture;
+        private readonly MongoDbFixture _mongoDbFixture;
+        private readonly IRequestHandler<UpsertParkrun.Request, Unit> _handler;
 
         public UpsertParkrunHandlerTests()
         {
+            _mongoDbFixture = new MongoDbFixture();
             _fixture = new Fixture();
             _fixture.Customizations.Add(new UtcRandomDateTimeSequenceGenerator());
         }
@@ -27,28 +30,25 @@ namespace ParkrunMap.Data.Mongo.Tests
         [Fact]
         public async Task ShouldInsertDocument()
         {
-            var client = new MongoClient();
-            var database = client.GetDatabase(Guid.NewGuid().ToString());
-            var collection = database.GetCollection<Parkrun>(Guid.NewGuid().ToString());
-
-            IRequestHandler<UpsertParkrun.Request, Unit> handler = new UpsertParkrun.Handler(collection);
-
             var command = _fixture.Create<UpsertParkrun.Request>();
 
-            await handler.Handle(command, CancellationToken.None);
+            await _handler.Handle(command, CancellationToken.None);
 
             var actual = await (await collection.FindAsync(x => x.Website.Domain == command.WebsiteDomain && x.Website.Path== command.WebsitePath)).FirstOrDefaultAsync();
 
-            using (new AssertionScope())
-            {
-                actual.Should().BeEquivalentTo(command,
-                    opt => opt.Excluding(x => x.Latitude).Excluding(x => x.Longitude).Excluding(x => x.WebsiteDomain).Excluding(x => x.WebsitePath));
+            using var scope = new AssertionScope();
+            
+            actual.Should().BeEquivalentTo(command, opt => opt
+                .Excluding(x => x.Latitude)
+                .Excluding(x => x.Longitude)
+                .Excluding(x => x.WebsiteDomain)
+                .Excluding(x => x.WebsitePath));
 
                 actual.Location.Type.Should().Be(GeoJsonObjectType.Point);
                 actual.Location.Coordinates.Latitude.Should().Be(command.Latitude);
                 actual.Location.Coordinates.Longitude.Should().Be(command.Longitude);
-            }
         }
+        
 
         [Fact]
         public async Task ShouldUpdateDocument()

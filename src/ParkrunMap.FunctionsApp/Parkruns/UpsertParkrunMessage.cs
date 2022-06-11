@@ -1,5 +1,3 @@
-using System;
-
 namespace ParkrunMap.FunctionsApp.Parkruns
 {
     public class UpsertParkrunMessage

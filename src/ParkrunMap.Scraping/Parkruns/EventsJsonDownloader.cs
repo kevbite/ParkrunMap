@@ -7,10 +7,7 @@ namespace ParkrunMap.Scraping.Parkruns
     {
         private readonly HttpClient _httpClient;
 
-        public EventsJsonDownloader(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
+        public EventsJsonDownloader(HttpClient httpClient) => _httpClient = httpClient;
 
         public async Task<byte[]> Download()
         {
