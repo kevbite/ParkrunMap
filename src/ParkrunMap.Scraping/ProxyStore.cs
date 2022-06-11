@@ -30,7 +30,7 @@ namespace ParkrunMap.Scraping
 
                 using (var httpClient = new HttpClient())
                 {
-                    var url = $"http://pubproxy.com/api/proxy?type=http&format=txt%https=false";
+                    var url = $"https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list.txt";
                     var response = await httpClient
                         .GetAsync(url)
                         .ConfigureAwait(false);
@@ -41,11 +41,13 @@ namespace ParkrunMap.Scraping
                         .ConfigureAwait(false);
 
                     var addresses = result
-                        .Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
+                        .Split(new[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries)
+                        .Skip(6)
+                        .Where(x => !x.Contains("S") /* Not HTTPS */)
                         .Select(x =>
                         {
-                            var hostPort = x.Split(':');
-                            return new UriBuilder(scheme, hostPort[0], int.Parse(hostPort[1])).Uri;
+                            var hostPort = x.Split(' ')[0].Split(':');
+                            return new UriBuilder(scheme, hostPort[0].Trim(), int.Parse(hostPort[1].Trim())).Uri;
                         }).ToArray();
 
                     _addresses = addresses;
