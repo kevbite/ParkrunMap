@@ -30,7 +30,7 @@ namespace ParkrunMap.Scraping
 
                 using (var httpClient = new HttpClient())
                 {
-                    var url = $"https://www.proxy-list.download/api/v1/get?type={scheme}&anon=elite";
+                    var url = $"http://pubproxy.com/api/proxy?type=http&format=txt%https=false";
                     var response = await httpClient
                         .GetAsync(url)
                         .ConfigureAwait(false);
