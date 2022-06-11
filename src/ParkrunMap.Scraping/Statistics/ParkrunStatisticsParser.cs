@@ -217,11 +217,18 @@ namespace ParkrunMap.Scraping.Statistics
                 {"www.parkrun.dk", CultureInfo.GetCultureInfo("da-DK")},
                 {"www.parkrun.ru", CultureInfo.GetCultureInfo("de")},
                 {"www.parkrun.com.de", CultureInfo.GetCultureInfo("de")},
-                {"www.parkrun.fr", CultureInfo.GetCultureInfo("fr")},
+                {"www.parkrun.fr", CreateFrenchCultureInfo()},
                 {"www.parkrun.it", CultureInfo.GetCultureInfo("it")},
                 {"www.parkrun.se", CultureInfo.GetCultureInfo("se")},
                 {"www.parkrun.jp", CultureInfo.GetCultureInfo("jp")},
             };
+
+        private static CultureInfo CreateFrenchCultureInfo()
+        {
+            var cultureInfo = (CultureInfo)CultureInfo.GetCultureInfo("fr").Clone();
+            cultureInfo.NumberFormat.NumberGroupSeparator = " ";
+            return cultureInfo;
+        }
 
         public Task<ParkrunStatistics> Parse(Stream stream, string domain)
         {

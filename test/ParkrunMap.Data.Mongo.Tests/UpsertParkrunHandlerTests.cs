@@ -14,7 +14,7 @@ using Xunit;
 
 namespace ParkrunMap.Data.Mongo.Tests
 {
-    public class UpsertParkrunHandlerTests : IAsyncLifetime
+    public class UpsertParkrunHandlerTests
     {
         private readonly Fixture _fixture;
         private readonly MongoDbFixture _mongoDbFixture;
@@ -25,6 +25,7 @@ namespace ParkrunMap.Data.Mongo.Tests
             _mongoDbFixture = new MongoDbFixture();
             _fixture = new Fixture();
             _fixture.Customizations.Add(new UtcRandomDateTimeSequenceGenerator());
+            _handler = new UpsertParkrun.Handler(_mongoDbFixture.Collection);
         }
 
         [Fact]
@@ -34,21 +35,23 @@ namespace ParkrunMap.Data.Mongo.Tests
 
             await _handler.Handle(command, CancellationToken.None);
 
-            var actual = await (await collection.FindAsync(x => x.Website.Domain == command.WebsiteDomain && x.Website.Path== command.WebsitePath)).FirstOrDefaultAsync();
+            var actual = await (await _mongoDbFixture.Collection.FindAsync(x =>
+                    x.Website.Domain == command.WebsiteDomain && x.Website.Path == command.WebsitePath))
+                .FirstOrDefaultAsync();
 
             using var scope = new AssertionScope();
-            
+
             actual.Should().BeEquivalentTo(command, opt => opt
                 .Excluding(x => x.Latitude)
                 .Excluding(x => x.Longitude)
                 .Excluding(x => x.WebsiteDomain)
                 .Excluding(x => x.WebsitePath));
 
-                actual.Location.Type.Should().Be(GeoJsonObjectType.Point);
-                actual.Location.Coordinates.Latitude.Should().Be(command.Latitude);
-                actual.Location.Coordinates.Longitude.Should().Be(command.Longitude);
+            actual.Location.Type.Should().Be(GeoJsonObjectType.Point);
+            actual.Location.Coordinates.Latitude.Should().Be(command.Latitude);
+            actual.Location.Coordinates.Longitude.Should().Be(command.Longitude);
         }
-        
+
 
         [Fact]
         public async Task ShouldUpdateDocument()
@@ -66,14 +69,16 @@ namespace ParkrunMap.Data.Mongo.Tests
             IRequestHandler<UpsertParkrun.Request, Unit> handler = new UpsertParkrun.Handler(collection);
 
             var command = _fixture.Build<UpsertParkrun.Request>()
-                .With(x => x.WebsitePath, initial.Website.Path)
-                .With(x => x.WebsiteDomain, initial.Website.Domain)
-                .Create()
+                    .With(x => x.WebsitePath, initial.Website.Path)
+                    .With(x => x.WebsiteDomain, initial.Website.Domain)
+                    .Create()
                 ;
 
             await handler.Handle(command, CancellationToken.None);
 
-            var actual = await (await collection.FindAsync(x => x.Website.Domain == command.WebsiteDomain && x.Website.Path == command.WebsitePath)).FirstOrDefaultAsync();
+            var actual = await (await collection.FindAsync(x =>
+                    x.Website.Domain == command.WebsiteDomain && x.Website.Path == command.WebsitePath))
+                .FirstOrDefaultAsync();
 
             using (new AssertionScope())
             {
@@ -85,7 +90,5 @@ namespace ParkrunMap.Data.Mongo.Tests
                 actual.Location.Coordinates.Longitude.Should().Be(command.Longitude);
             }
         }
-
-
     }
 }
