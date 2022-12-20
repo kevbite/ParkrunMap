@@ -15,8 +15,9 @@ namespace ParkrunMap.Data.Mongo
                 .WithParameter(TypedParameter.From<Func<DateTime>>(() => DateTime.Today))
                 .AsImplementedInterfaces()
                 .InstancePerDependency();
-
+            
             builder.RegisterType<AddParkrunCancellation.Handler>().AsImplementedInterfaces().InstancePerDependency();
+            builder.RegisterType<UpdateParkrunSpecialEvents.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<QueryFirstParkrunForWebsite.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<UpdateParkrunCourseDetails.Handler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<UpdateParkrunFeatures.Handler>().AsImplementedInterfaces().InstancePerDependency();

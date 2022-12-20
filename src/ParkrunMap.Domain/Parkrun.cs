@@ -32,7 +32,9 @@ namespace ParkrunMap.Domain
         public Course Course { get; set; }
 
         public Features Features { get; set; }
-
+        
+        public SpecialEvents SpecialEvents { get; set; }
+        
         public Statistics Statistics { get; set; }
     }
 }

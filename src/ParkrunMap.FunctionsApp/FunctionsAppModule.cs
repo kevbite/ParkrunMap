@@ -10,7 +10,9 @@ using ParkrunMap.FunctionsApp.Parkruns;
 using ParkrunMap.FunctionsApp.ParkrunStatistics;
 using ParkrunMap.FunctionsApp.QueryParkrunsByBox;
 using ParkrunMap.FunctionsApp.QueryParkrunsByRegion;
+using ParkrunMap.FunctionsApp.SpecialEvents;
 using ParkrunMap.Scraping;
+using ParkrunMap.Scraping.SpecialEvents;
 
 namespace ParkrunMap.FunctionsApp
 {
@@ -22,7 +24,7 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterModule<ScrapingModule>();
             builder.RegisterModule<AutoMapperModule>();
             builder.RegisterModule<MongoModule>();
-            
+
             RegisterFunctions(builder);
 
             builder.RegisterType<EventsJsonParkrunToUpsertParkrunMessageProfile>()
@@ -34,12 +36,18 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<AddParkrunCancellationMessageToAddParkrunCancellationRequestProfile>()
                 .As<Profile>();
 
+            builder.RegisterType<SpecialEventToUpdateParkrunSpecialEventsMessageProfile>()
+                .As<Profile>();
+
+            builder.RegisterType<UpdateParkrunSpecialEventsMessageToUpdateParkrunSpecialEventsRequestProfile>()
+                .As<Profile>();
+            
             builder.RegisterType<ParkrunToDownloadCourseMessageProfile>()
                 .As<Profile>();
 
             builder.RegisterType<ParkrunQuestionnaireResponseAggregationToUpdateParkrunFeaturesRequestProfile>()
                 .As<Profile>();
-            
+
             builder.RegisterType<UpdateCourseDetailsMessageToUpdateParkrunCourseDetailsRequest>()
                 .As<Profile>();
 
@@ -58,7 +66,9 @@ namespace ParkrunMap.FunctionsApp
 
             var googleApiKey = Environment.GetEnvironmentVariable("GoogleApiKey");
 
-            builder.Register(x => new QuestionnaireResponseDownloader(x.ResolveNamed<HttpClient>("questionnaire-response-downloader-client"), googleApiKey))
+            builder.Register(x =>
+                    new QuestionnaireResponseDownloader(
+                        x.ResolveNamed<HttpClient>("questionnaire-response-downloader-client"), googleApiKey))
                 .AsSelf();
 
             builder.RegisterType<ParkrunQuestionnaireResponseAggregator>()
@@ -70,7 +80,7 @@ namespace ParkrunMap.FunctionsApp
         private static void RegisterFunctions(ContainerBuilder builder)
         {
             builder.RegisterType<DownloadEventsJsonTimerFunction>().AsSelf();
-            builder.RegisterType<ParseEventsJsonFunction>().AsSelf();       
+            builder.RegisterType<ParseEventsJsonFunction>().AsSelf();
             builder.RegisterType<UpsertParkrunQueueFunction>().AsSelf();
             builder.RegisterType<QueryParkrunsByRegionFunction>().AsSelf();
 
@@ -87,6 +97,11 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<UpdateParkrunFeaturesQueueFunction>().AsSelf();
             builder.RegisterType<UpdateParkrunStatisticsFunction>().AsSelf();
             builder.RegisterType<ParseStatisticsFunction>().AsSelf();
+            builder.RegisterType<DownloadSpecialEventsPageFunction>().AsSelf();
+            builder.RegisterType<UpdateParkrunSpecialEventsQueueFunction>().AsSelf();
+            builder.RegisterType<SpecialEventsPageDownloader>().AsSelf();
+            builder.RegisterType<SpecialEventsParser>().AsSelf();
+            builder.RegisterType<ParseSpecialEventsPageFunction>().AsSelf();
         }
     }
 }
