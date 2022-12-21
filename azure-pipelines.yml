@@ -15,7 +15,7 @@ steps:
   - bash: dotnet restore
   - bash: dotnet build --configuration Release --no-restore
   - bash: dotnet test --configuration Release --no-build --logger trx
-  - bash: dotnet pack --configuration Release --no-build
+  - bash: dotnet publish --configuration Release --no-build
   - bash: zip -r "$BUILD_ARTIFACTSTAGINGDIRECTORY/ParkrunMap.FunctionsApp.zip" ./src/ParkrunMap.FunctionsApp/bin/Release/net6.0/publish/
 
   - task: PublishTestResults@2
