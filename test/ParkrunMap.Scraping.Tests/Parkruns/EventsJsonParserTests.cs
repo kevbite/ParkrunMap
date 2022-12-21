@@ -11,7 +11,7 @@ namespace ParkrunMap.Scraping.Tests.Parkruns
         [Fact]
         public void ShouldParseEventsFile()
         {
-            using (var fileStream = File.OpenRead(@".\data\events.json"))
+            using (var fileStream = File.OpenRead(@"data/events.json"))
             {
                 var parkruns = new EventsJsonParser().Parse(fileStream);
 

@@ -29,7 +29,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.org.uk",
-                    @".\data\aberdare.course.html",
+                    @"data/aberdare.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 51,
@@ -45,7 +45,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.org.uk",
-                    @".\data\heslington.course.html",
+                    @"data/heslington.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 69,
@@ -62,7 +62,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.pl",
-                    @".\data\cieszyn.course.html",
+                    @"data/cieszyn.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 275,
@@ -78,7 +78,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.dk",
-                    @".\data\amager.course.html",
+                    @"data/amager.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 540,
@@ -95,7 +95,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.ru",
-                    @".\data\balashikhazarechnaya.course.html",
+                    @"data/balashikhazarechnaya.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 64,
@@ -111,7 +111,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.com.de",
-                    @".\data\alstervorland.course.html",
+                    @"data/alstervorland.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 24,
@@ -127,7 +127,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.fr",
-                    @".\data\boisdeboulogne.course.html",
+                    @"data/boisdeboulogne.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 172,
@@ -143,7 +143,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.it",
-                    @".\data\etna.course.html",
+                    @"data/etna.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 81,
@@ -159,7 +159,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.co.za",
-                    @".\data\aggeneys.course.html",
+                    @"data/aggeneys.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 40,
@@ -175,7 +175,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.com.au",
-                    @".\data\albert-melbourne.course.html",
+                    @"data/albert-melbourne.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 396,
@@ -192,7 +192,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.ie",
-                    @".\data\bereisland.course.html",
+                    @"data/bereisland.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 261,
@@ -208,7 +208,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.sg",
-                    @".\data\bishan.course.html",
+                    @"data/bishan.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 64,
@@ -224,7 +224,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.us",
-                    @".\data\anacostia.course.html",
+                    @"data/anacostia.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 75,
@@ -240,7 +240,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.co.nz",
-                    @".\data\taupo.course.html",
+                    @"data/taupo.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 124,
@@ -256,7 +256,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.se",
-                    @".\data\orebro.course.html",
+                    @"data/orebro.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 109,
@@ -272,7 +272,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.ca",
-                    @".\data\beachstrip.course.html",
+                    @"data/beachstrip.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 97,
@@ -288,7 +288,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.no",
-                    @".\data\festningen.course.html",
+                    @"data/festningen.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 30,
@@ -304,7 +304,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.fi",
-                    @".\data\tokoinranta.course.html",
+                    @"data/tokoinranta.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 33,
@@ -320,7 +320,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.my",
-                    @".\data\tamanpuduulu.course.html",
+                    @"data/tamanpuduulu.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 58,
@@ -336,7 +336,7 @@ namespace ParkrunMap.Scraping.Tests.Statistics
                 new object[]
                 {
                     "www.parkrun.jp",
-                    @".\data\futakotamagawa.course.html",
+                    @"data/futakotamagawa.course.html",
                     new ParkrunStats
                     {
                         TotalEvents = 12,

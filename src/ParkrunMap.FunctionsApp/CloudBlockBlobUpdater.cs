@@ -1,9 +1,8 @@
-using System;
+using System.Linq;
 using System.Security.Cryptography;
-using System.Threading;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
 using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace ParkrunMap.FunctionsApp
 {
@@ -16,14 +15,14 @@ namespace ParkrunMap.FunctionsApp
             _logger = logger;
         }
 
-        public async Task UpdateAsync(ICloudBlob blob, byte[] bytes)
+        public async Task UpdateAsync(BlobClient blob, byte[] bytes)
         {
             if (await blob.ExistsAsync().ConfigureAwait(false))
             {
-                await blob.FetchAttributesAsync().ConfigureAwait(false);
+                var properties = await blob.GetPropertiesAsync().ConfigureAwait(false);
 
                 var md5 = CalculateMd5(bytes);
-                if (blob.Properties.ContentMD5 == md5)
+                if (properties.Value.ContentHash.SequenceEqual(md5))
                 {
                    _logger.LogInformation("Current MD5 '{MD5}' matches previously downloaded file of {BlobUri}", md5, blob.Uri);
                     return;
@@ -32,18 +31,16 @@ namespace ParkrunMap.FunctionsApp
 
             _logger.LogInformation("Uploading changed for {BlobUri}", blob.Uri);
 
-            await blob.UploadFromByteArrayAsync(bytes, 0, bytes.Length)
+            await using var writeStream = await blob.OpenWriteAsync(true)
                 .ConfigureAwait(false);
+            await writeStream.WriteAsync(bytes);
+            await writeStream.FlushAsync();
         }
 
-        private static string CalculateMd5(byte[] bytes)
+        private static byte[] CalculateMd5(byte[] bytes)
         {
-            using (var md5 = MD5.Create())
-            {
-                var md5Bytes = md5.ComputeHash(bytes);
-
-                return Convert.ToBase64String(md5Bytes);
-            }
+            using var md5 = MD5.Create();
+            return md5.ComputeHash(bytes);
         }
     }
 }

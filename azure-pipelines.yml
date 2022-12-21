@@ -4,14 +4,19 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 steps:
-  - powershell: ./Setup-MongoDB.ps1
-    displayName: 'Setup MongoDB'
-
-  - powershell: ./build.ps1
-    displayName: 'Cake build'
+  - task: DotNetCoreInstaller@2
+    inputs:
+      useGlobalJson: true
+      
+  - bash: docker run -d -p 27017:27017 mongo:latest
+  - bash: dotnet restore
+  - bash: dotnet build --configuration Release --no-restore
+  - bash: dotnet test --configuration Release --no-build --logger trx
+  - bash: dotnet publish --configuration Release --no-build
+  - bash: cd ./src/ParkrunMap.FunctionsApp/bin/Release/net6.0/publish/; zip -r "$BUILD_ARTIFACTSTAGINGDIRECTORY/ParkrunMap.FunctionsApp.zip" * 
 
   - task: PublishTestResults@2
     condition: succeededOrFailed()

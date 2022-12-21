@@ -11,7 +11,7 @@ namespace ParkrunMap.Scraping.Tests.Cancellations
         [Fact]
         public void ShouldParseCancellations()
         {
-            using (var cancellationsPage = File.OpenRead(@".\data\cancellations.html"))
+            using (var cancellationsPage = File.OpenRead(@"data/cancellations.html"))
             {
                 var parser = new CancellationsParser();
                 var cancellations = parser.Parse(cancellationsPage);
@@ -59,7 +59,7 @@ namespace ParkrunMap.Scraping.Tests.Cancellations
         [Fact]
         public void ShouldParseCancellationsAndExcludeJuniorPakruns()
         {
-            using (var cancellationsPage = File.OpenRead(@".\data\cancellations.1.html"))
+            using (var cancellationsPage = File.OpenRead(@"data/cancellations.1.html"))
             {
                 var parser = new CancellationsParser();
                 var cancellations = parser.Parse(cancellationsPage);
