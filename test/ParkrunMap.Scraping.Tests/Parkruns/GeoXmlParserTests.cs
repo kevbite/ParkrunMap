@@ -11,7 +11,7 @@ namespace ParkrunMap.Scraping.Tests.Parkruns
         [Fact]
         public void ShouldParseGeoFile()
         {
-            using (var geoXml = File.OpenRead(@".\data\geo.xml"))
+            using (var geoXml = File.OpenRead(@"data/geo.xml"))
             {
                 var parkruns = new GeoXmlParser(new ParkrunXElementValidator()).Parse(geoXml);
 
