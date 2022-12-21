@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Azure;
+using Azure.Data.Tables;
 using MediatR;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Timers;
 using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Table;
 using MongoDB.Bson;
 using ParkrunMap.Data.Mongo;
 
@@ -32,14 +32,14 @@ namespace ParkrunMap.FunctionsApp.Course
             [Queue(QueueNames.DownloadCoursePage, Connection = "AzureWebJobsStorage")]
             IAsyncCollector<DownloadCourseMessage> collector,
             [Table("TrackedCourseDownloadsStarted")]
-            CloudTable courseDownloadsStartedTable,
+            TableClient courseDownloadsStartedTable,
             ILogger logger,
             CancellationToken cancellationToken)
         {
             await Container.Instance.Resolve<QueueUpCourseDownloadsFunction>(logger).Run(collector, courseDownloadsStartedTable, cancellationToken);
         }
 
-        private async Task Run(IAsyncCollector<DownloadCourseMessage> collector, CloudTable courseDownloadsStartedTable, CancellationToken cancellationToken)
+        private async Task Run(IAsyncCollector<DownloadCourseMessage> collector, TableClient courseDownloadsStartedTable, CancellationToken cancellationToken)
         {
             var alreadyStarted = await GetAlreadyStarted(courseDownloadsStartedTable).ConfigureAwait(false);
             var response = await _mediator.Send(new QueryFirstParkrunForWebsite.Request() { ExceptIds = alreadyStarted.GetAllStartedIds().Select(ObjectId.Parse).ToArray() }, cancellationToken);
@@ -54,8 +54,7 @@ namespace ParkrunMap.FunctionsApp.Course
 
                 alreadyStarted.AddStartedId(response.Parkrun.Id.ToString());
 
-                await courseDownloadsStartedTable.ExecuteAsync(TableOperation.InsertOrReplace(
-                    alreadyStarted)).ConfigureAwait(false);
+                await courseDownloadsStartedTable.UpsertEntityAsync(alreadyStarted, cancellationToken: cancellationToken).ConfigureAwait(false);
             }
             else
             {
@@ -64,16 +63,16 @@ namespace ParkrunMap.FunctionsApp.Course
             }
         }
 
-        private async Task<AlreadyStartedTableEntity> GetAlreadyStarted(CloudTable courseDownloadsStartedTable)
+        private async Task<AlreadyStartedTableEntity> GetAlreadyStarted(TableClient courseDownloadsStartedTable)
         {
             var dateTime = DateTime.UtcNow;
             var partitionKey = CreateParitionKey(dateTime);
             var rowKey = CreateRowKey(dateTime);
-            var retrieveOperation = TableOperation.Retrieve<AlreadyStartedTableEntity>(partitionKey, rowKey);
 
-            var retrievedResult = await courseDownloadsStartedTable.ExecuteAsync(retrieveOperation);
+            var retrievedResult =
+                await courseDownloadsStartedTable.GetEntityAsync<AlreadyStartedTableEntity>(partitionKey, rowKey);
 
-            return (retrievedResult.Result as AlreadyStartedTableEntity)
+            return retrievedResult.Value
                    ?? new AlreadyStartedTableEntity()
                    {
                        PartitionKey = partitionKey,
@@ -92,7 +91,7 @@ namespace ParkrunMap.FunctionsApp.Course
         }
     }
 
-    public class AlreadyStartedTableEntity : TableEntity
+    public class AlreadyStartedTableEntity : ITableEntity
     {
         public AlreadyStartedTableEntity()
         {
@@ -117,5 +116,10 @@ namespace ParkrunMap.FunctionsApp.Course
         {
             return StartedIds.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
         }
+
+        public string PartitionKey { get; set; }
+        public string RowKey { get; set; }
+        public DateTimeOffset? Timestamp { get; set; }
+        public ETag ETag { get; set; }
     }
 }

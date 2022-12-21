@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -22,7 +23,7 @@ namespace ParkrunMap.FunctionsApp.ParkrunCancellation
         [FunctionName("DownloadCancellationsPageFunction")]
         public static async Task Run([TimerTrigger("0 0 */2 * * *")]TimerInfo myTimer,
             [Blob(DownloadFilePaths.CancellationsHtml, Connection = "AzureWebJobsStorage")]
-            CloudBlockBlob geoXml,
+            BlobClient geoXml,
             ILogger logger)
         {
             var func = Container.Instance.Resolve<DownloadCancellationsPageFunction>(logger);
@@ -31,7 +32,7 @@ namespace ParkrunMap.FunctionsApp.ParkrunCancellation
                 .ConfigureAwait(false);
         }
 
-        private async Task Run(CloudBlockBlob blob)
+        private async Task Run(BlobClient blob)
         {
             var bytes = await _cancellationsPageDownloader.DownloadAsync()
                 .ConfigureAwait(false);
