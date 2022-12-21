@@ -21,7 +21,7 @@ namespace ParkrunMap.Scraping.Tests.Cancellations
 
                 var result = System.Text.Encoding.UTF8.GetString(bytes);
 
-                result.Should().Contain("Forthcoming cancellations in the UK");
+                result.Should().Contain("Forthcoming cancellations: United Kingdom");
             }
         }
     }
