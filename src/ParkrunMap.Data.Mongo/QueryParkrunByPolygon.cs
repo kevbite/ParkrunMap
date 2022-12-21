@@ -50,6 +50,7 @@ namespace ParkrunMap.Data.Mongo
                 project.Add("Terrain", 1);
                 project.Add("Features", 1);
                 project.Add("Statistics", 1);
+                project.Add("SpecialEvents", 1);
 
                 var parkruns = await _collection.Aggregate()
                     .Match(filter)

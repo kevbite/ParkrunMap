@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using ParkrunMap.Scraping.Cancellations;
 using ParkrunMap.Scraping.SpecialEvents;
 
 namespace ParkrunMap.FunctionsApp.SpecialEvents
@@ -21,8 +20,8 @@ namespace ParkrunMap.FunctionsApp.SpecialEvents
             _mapper = mapper;
         }
 
-        [FunctionName("ParseCancellationsPageFunction")]
-        public static async Task Run([BlobTrigger(ParkrunCancellation.DownloadFilePaths.CancellationsHtml, Connection = "AzureWebJobsStorage")]Stream cancellationsStream,
+        [FunctionName(nameof(ParseSpecialEventsPageFunction))]
+        public static async Task Run([BlobTrigger(DownloadFilePaths.UKSpecialEventsHtml, Connection = "AzureWebJobsStorage")]Stream cancellationsStream,
             [Queue(QueueNames.UpdateParkrunSpecialEvents, Connection = "AzureWebJobsStorage")]
             IAsyncCollector<UpdateParkrunSpecialEventsMessage> messageCollector,
             ILogger logger)

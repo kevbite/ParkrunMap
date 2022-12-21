@@ -23,26 +23,19 @@ namespace ParkrunMap.Data.Mongo
                 var filter = Builders<Parkrun>.Filter.Eq(x => x.Website.Path, request.WebsitePath)
                              & Builders<Parkrun>.Filter.Eq(x => x.Website.Domain, request.WebsiteDomain);
 
-
-                UpdateDefinition<Parkrun> update = null;
-                if (request.Type == SpecialEventType.ChristmasDay)
-                {
-                    update =
-                        request.IsRunning
-                            ? Builders<Parkrun>.Update.AddToSet(x => x.SpecialEvents.ChristmasDay, request.Year)
-                            : Builders<Parkrun>.Update.Pull(x => x.SpecialEvents.ChristmasDay, request.Year);
-                }
-                else if (request.Type == SpecialEventType.NewYearsDay)
-                {
-                    update =
-                        request.IsRunning
-                            ? Builders<Parkrun>.Update.AddToSet(x => x.SpecialEvents.NewYearsDay, request.Year)
-                            : Builders<Parkrun>.Update.Pull(x => x.SpecialEvents.NewYearsDay, request.Year);
-                }
-                else
-                {
-                    throw new InvalidOperationException($"Unknown special event type {request.Type}");
-                }
+                var update =
+                    (request.Type, request.IsRunning) switch
+                    {
+                        (SpecialEventType.ChristmasDay, true) => Builders<Parkrun>.Update.AddToSet(
+                            x => x.SpecialEvents.ChristmasDay, request.Year),
+                        (SpecialEventType.ChristmasDay, false) => Builders<Parkrun>.Update.Pull(
+                            x => x.SpecialEvents.ChristmasDay, request.Year),
+                        (SpecialEventType.NewYearsDay, true) => Builders<Parkrun>.Update.AddToSet(
+                            x => x.SpecialEvents.NewYearsDay, request.Year),
+                        (SpecialEventType.NewYearsDay, false) => Builders<Parkrun>.Update.Pull(
+                            x => x.SpecialEvents.NewYearsDay, request.Year),
+                        _ => throw new InvalidOperationException($"Unknown special event type {request.Type}")
+                    };
 
                 var updateResult =
                     await _collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);

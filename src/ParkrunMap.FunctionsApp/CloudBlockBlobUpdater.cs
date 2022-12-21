@@ -2,6 +2,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Specialized;
 using Microsoft.Extensions.Logging;
 
 namespace ParkrunMap.FunctionsApp
@@ -15,7 +16,7 @@ namespace ParkrunMap.FunctionsApp
             _logger = logger;
         }
 
-        public async Task UpdateAsync(BlobClient blob, byte[] bytes)
+        public async Task UpdateAsync(BlockBlobClient blob, byte[] bytes)
         {
             if (await blob.ExistsAsync().ConfigureAwait(false))
             {

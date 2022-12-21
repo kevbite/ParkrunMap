@@ -30,5 +30,8 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByBox
 
         [JsonProperty(PropertyName = "features")]
         public ParkrunFeaturesResponseObject Features { get; set; }
+        
+        [JsonProperty(PropertyName = "specialEvents")]
+        public ParkrunSpecialEventsResponseObject SpecialEvents { get; set; }
     }
 }

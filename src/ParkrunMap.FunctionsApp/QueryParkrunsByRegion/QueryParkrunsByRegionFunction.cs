@@ -25,7 +25,8 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByRegion
 
         [FunctionName("QueryParkrunsByUKRegionFunction")]
         public static async Task<IActionResult> Run1(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "parkruns/uk")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "parkruns/uk")]
+            HttpRequest req,
             ILogger logger, CancellationToken cancellationToken)
         {
             return await Container.Instance.Resolve<QueryParkrunsByRegionFunction>(logger).Run("UK", cancellationToken);
@@ -33,10 +34,12 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByRegion
 
         [FunctionName("QueryParkrunsByRegionFunction")]
         public static async Task<IActionResult> Run2(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "parkruns/region/{region}")] HttpRequest req, string region,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "parkruns/region/{region}")]
+            HttpRequest req, string region,
             ILogger logger, CancellationToken cancellationToken)
         {
-            return await Container.Instance.Resolve<QueryParkrunsByRegionFunction>(logger).Run(region, cancellationToken);
+            return await Container.Instance.Resolve<QueryParkrunsByRegionFunction>(logger)
+                .Run(region, cancellationToken);
         }
 
         private async Task<IActionResult> Run(string region, CancellationToken cancellationToken)
@@ -62,11 +65,16 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByRegion
                     course = new
                     {
                         description = x.Course?.Description,
-                        GoogleMapIds = x.Course?.GoogleMapIds ?? new string[0]
+                        GoogleMapIds = x.Course?.GoogleMapIds ?? Array.Empty<string>()
+                    },
+                    specialEvents = new
+                    {
+                        christmasDay = x.SpecialEvents?.ChristmasDay ?? Array.Empty<int>(),
+                        newYearsDay = x.SpecialEvents?.NewYearsDay ?? Array.Empty<int>(),
                     }
                 }));
             }
-          
+
             return new BadRequestObjectResult($"Unknown region '{region}'");
         }
     }

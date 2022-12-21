@@ -1,5 +1,8 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Specialized;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -18,10 +21,10 @@ namespace ParkrunMap.FunctionsApp.SpecialEvents
             _cloudBlockBlobUpdater = cloudBlockBlobUpdater(logger);
         }
  
-        [FunctionName("DownloadSpecialEventsPageFunction")]
-        public static async Task Run([TimerTrigger("0 0 */3 * * *")]TimerInfo myTimer,
-            [Blob(DownloadFilePaths.UKSpecialEventsHtml, Connection = "AzureWebJobsStorage")]
-            CloudBlockBlob specialEventsHtml,
+        [FunctionName(nameof(DownloadSpecialEventsPageFunction))]
+        public static async Task Run([TimerTrigger("15 7 * 12 1-7 *")]TimerInfo myTimer,
+            [Blob(DownloadFilePaths.UKSpecialEventsHtml, FileAccess.ReadWrite, Connection = "AzureWebJobsStorage")]
+            BlockBlobClient specialEventsHtml,
             ILogger logger)
         {
             var func = Container.Instance.Resolve<DownloadSpecialEventsPageFunction>(logger);
@@ -30,7 +33,7 @@ namespace ParkrunMap.FunctionsApp.SpecialEvents
                 .ConfigureAwait(false);
         }
 
-        private async Task Run(CloudBlockBlob blob)
+        private async Task Run(BlockBlobClient blob)
         {
             var bytes = await _specialEventsPageDownloader.DownloadAsync()
                 .ConfigureAwait(false);

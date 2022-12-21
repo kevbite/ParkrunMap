@@ -95,6 +95,11 @@ namespace ParkrunMap.FunctionsApp.QueryParkrunsByBox
                     CarParkingOptions = x.Features.CarParkingOptions,
                     CycleParkingOptions = x.Features.CycleParkingOptions,
                     RecommendedBuggy = x.Features.RecommendedBuggy,
+                },
+                SpecialEvents = new ParkrunSpecialEventsResponseObject
+                {
+                    ChristmasDay = x.SpecialEvents?.ChristmasDay ?? Array.Empty<int>(),
+                    NewYearsDay = x.SpecialEvents?.NewYearsDay ?? Array.Empty<int>(),
                 }
             }));
         }

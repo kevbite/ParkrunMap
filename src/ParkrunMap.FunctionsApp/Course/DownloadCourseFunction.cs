@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Specialized;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -28,21 +29,21 @@ namespace ParkrunMap.FunctionsApp.Course
         [FunctionName("DownloadCourseFunction")]
         public static async Task Run(
             [QueueTrigger(QueueNames.DownloadCoursePage, Connection = "AzureWebJobsStorage")]DownloadCourseMessage message,
-            [Blob("downloads/course/{WebsiteDomain}{WebsitePath}.html", Connection = "AzureWebJobsStorage")] BlobClient htmlBlockBlob,
+            [Blob("downloads/course/{WebsiteDomain}{WebsitePath}.html", Connection = "AzureWebJobsStorage")] BlockBlobClient htmlBlockBlob,
             ILogger logger,
             CancellationToken cancellationToken)
         {
             await Container.Instance.Resolve<DownloadCourseFunction>(logger).Run(message, htmlBlockBlob, cancellationToken);
         }
 
-        private async Task Run(DownloadCourseMessage message, BlobClient htmlBlockBlob, CancellationToken cancellationToken)
+        private async Task Run(DownloadCourseMessage message, BlockBlobClient htmlBlockBlob, CancellationToken cancellationToken)
         {
             using (var stream = await _downloader.DownloadAsync(message.WebsiteDomain, message.WebsitePath, cancellationToken)
                 .ConfigureAwait(false))
             {
                 using (var ms = new MemoryStream())
                 {
-                    await stream.CopyToAsync(ms)
+                    await stream.CopyToAsync(ms, cancellationToken)
                         .ConfigureAwait(false);
 
                     await _cloudBlockBlobUpdater.UpdateAsync(htmlBlockBlob, ms.ToArray())
