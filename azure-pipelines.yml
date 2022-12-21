@@ -4,11 +4,18 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: 'vs2017-win2016'
+  vmImage: 'ubuntu-latest'
 
 steps:
-  - powershell: ./Setup-MongoDB.ps1
-    displayName: 'Setup MongoDB'
+  - task: DotNetCoreInstaller@2
+    inputs:
+      useGlobalJson: true
+      
+  - task: Bash@3
+    displayName: 'Run MongoDB'
+    inputs:
+      targetType: 'inline'
+      script: docker run -d -p 27017:27017 mongo:latest
 
   - powershell: ./build.ps1
     displayName: 'Cake build'

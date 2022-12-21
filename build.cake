@@ -66,7 +66,7 @@ Task("Zip-FunctionsApp")
     .IsDependentOn("Pack")
     .Does(() =>
 {
-    var publishPath = "./src/ParkrunMap.FunctionsApp/bin/Release/netstandard2.0/publish/";
+    var publishPath = "./src/ParkrunMap.FunctionsApp/bin/Release/net6.0/publish/";
     var zipArtifact = artifactsDirectory.GetFilePath("./ParkrunMap.FunctionsApp.zip");
     Information($"Zipping {publishPath} to {zipArtifact}");
 
