@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using ParkrunMap.Scraping.Cancellations;
 
@@ -15,7 +16,13 @@ public class SpecialEventsParser
         var htmlDoc = new HtmlDocument();
         htmlDoc.Load(stream);
 
-        var rows = htmlDoc.DocumentNode.SelectNodes("//div[@id='content']//table[@id='results']/tr");
+        var contentHtml = htmlDoc.DocumentNode.SelectSingleNode("//div[@id='content']");
+        var h1 = contentHtml.SelectSingleNode(".//h1");
+        var yearsMatch = Regex.Match(h1.InnerText, @"(\d\d\d\d)/(\d\d)");
+        var christmasDayYear = yearsMatch.Groups[1].Value;
+        var newYearsDayYear = christmasDayYear.Substring(0, 2) + yearsMatch.Groups[2].Value;
+        
+        var rows = contentHtml.SelectNodes(".//table[@id='results']/tr");
 
         foreach (var row in rows.Skip(1))
         {
@@ -32,8 +39,8 @@ public class SpecialEventsParser
             var christmasDay = tableData[2].InnerText.Contains("✅");
             var newYearsDay = tableData[3].InnerText.Contains("✅");
             
-            specialEvent.Add(new SpecialEvent(websiteDomain, websitePath, 2022, SpecialEventType.ChristmasDay, christmasDay));
-            specialEvent.Add(new SpecialEvent(websiteDomain, websitePath, 2023, SpecialEventType.NewYearsDay, newYearsDay));
+            specialEvent.Add(new SpecialEvent(websiteDomain, websitePath, int.Parse(christmasDayYear), SpecialEventType.ChristmasDay, christmasDay));
+            specialEvent.Add(new SpecialEvent(websiteDomain, websitePath, int.Parse(newYearsDayYear), SpecialEventType.NewYearsDay, newYearsDay));
         }
 
         return specialEvent;

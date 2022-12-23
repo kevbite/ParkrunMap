@@ -10,7 +10,7 @@ namespace ParkrunMap.Scraping.Tests.SpecialEvents
         [Fact]
         public void ShouldParseSpecialEvents()
         {
-            using (var cancellationsPage = File.OpenRead(@".\data\uk.special-events.html"))
+            using (var cancellationsPage = File.OpenRead(@"data/uk.special-events.html"))
             {
                 var parser = new SpecialEventsParser();
                 var specialEvents = parser.Parse(cancellationsPage);
