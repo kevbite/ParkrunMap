@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
 using Microsoft.Extensions.Logging;
 

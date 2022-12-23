@@ -1,7 +1,6 @@
 using System.IO;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs.Specialized;
-using MediatR;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using ParkrunMap.Scraping.SpecialEvents;

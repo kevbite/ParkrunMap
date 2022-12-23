@@ -38,18 +38,11 @@ namespace ParkrunMap.FunctionsApp.Course
 
         private async Task Run(DownloadCourseMessage message, BlockBlobClient htmlBlockBlob, CancellationToken cancellationToken)
         {
-            using (var stream = await _downloader.DownloadAsync(message.WebsiteDomain, message.WebsitePath, cancellationToken)
-                .ConfigureAwait(false))
-            {
-                using (var ms = new MemoryStream())
-                {
-                    await stream.CopyToAsync(ms, cancellationToken)
-                        .ConfigureAwait(false);
+            var body = await _downloader.DownloadAsync(message.WebsiteDomain, message.WebsitePath, cancellationToken)
+                .ConfigureAwait(false);
 
-                    await _cloudBlockBlobUpdater.UpdateAsync(htmlBlockBlob, ms.ToArray())
-                        .ConfigureAwait(false);
-                }
-            }
+            await _cloudBlockBlobUpdater.UpdateAsync(htmlBlockBlob, body)
+                .ConfigureAwait(false);
         }
     }
 }

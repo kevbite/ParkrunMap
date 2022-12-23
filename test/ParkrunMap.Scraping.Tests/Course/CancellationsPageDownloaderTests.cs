@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -16,19 +17,15 @@ namespace ParkrunMap.Scraping.Tests.Course
         [InlineData("/heslington")]
         public async Task ShouldDownloadPage(string path)
         {
-            using (var client = new HttpClient(new RedirectHandler(new HttpClientHandler())))
-            {
-                var downloader = new CoursePageDownloader(client);
+            using var client = new HttpClient(new RedirectHandler(new HttpClientHandler()));
+            var downloader = new CoursePageDownloader(client);
 
-                var stream = await downloader.DownloadAsync("www.parkrun.org.uk", path, CancellationToken.None)
-                    .ConfigureAwait(false);
+            var bytes = await downloader.DownloadAsync("www.parkrun.org.uk", path, CancellationToken.None)
+                .ConfigureAwait(false);
 
-                var streamReader = new StreamReader(stream);
+            var result = Encoding.UTF8.GetString(bytes);  
 
-                var result = streamReader.ReadToEnd();
-
-                result.Should().Contain("The Course");
-            }
+            result.Should().Contain("The Course");
         }
     }
 }

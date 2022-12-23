@@ -14,15 +14,15 @@ namespace ParkrunMap.Scraping.Course
             _httpClient = httpClient;
         }
 
-        public async Task<Stream> DownloadAsync(string domain, string path, CancellationToken cancellationToken)
+        public async Task<byte[]> DownloadAsync(string domain, string path, CancellationToken cancellationToken)
         {
-            var response = await _httpClient
+            using var response = await _httpClient
                 .GetAsync($"https://{domain}{path}/course/", cancellationToken)
                 .ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsStreamAsync()
+            return await response.Content.ReadAsByteArrayAsync()
                 .ConfigureAwait(false);
         }
     }
