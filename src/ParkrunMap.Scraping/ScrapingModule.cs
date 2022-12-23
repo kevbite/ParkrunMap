@@ -3,6 +3,7 @@ using Autofac;
 using ParkrunMap.Scraping.Cancellations;
 using ParkrunMap.Scraping.Course;
 using ParkrunMap.Scraping.Parkruns;
+using ParkrunMap.Scraping.SpecialEvents;
 using ParkrunMap.Scraping.Statistics;
 
 namespace ParkrunMap.Scraping
@@ -15,6 +16,9 @@ namespace ParkrunMap.Scraping
                 .AsSelf();
 
             builder.Register(x => new CancellationsPageDownloader(x.ResolveNamed<HttpClient>("cancellations-page-client")))
+                .AsSelf();
+            
+            builder.Register(x => new SpecialEventsPageDownloader(x.ResolveNamed<HttpClient>("special-events-page-client")))
                 .AsSelf();
             
             builder.Register(x => new EventsJsonDownloader(x.ResolveNamed<HttpClient>("events-json-client")))
@@ -57,7 +61,11 @@ namespace ParkrunMap.Scraping
             builder.Register(ctx => ctx.Resolve<ScrapingHttpClientFactory>().Create())
                 .AsSelf()
                 .Named<HttpClient>("course-page-client");
-
+            
+            builder.Register(ctx => ctx.Resolve<ScrapingHttpClientFactory>().Create())
+                .AsSelf()
+                .Named<HttpClient>("special-events-page-client");
+            
             base.Load(builder);
         }
     }
