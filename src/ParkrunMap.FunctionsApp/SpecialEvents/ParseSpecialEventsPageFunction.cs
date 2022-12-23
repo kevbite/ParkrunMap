@@ -21,7 +21,7 @@ namespace ParkrunMap.FunctionsApp.SpecialEvents
         }
 
         [FunctionName(nameof(ParseSpecialEventsPageFunction))]
-        public static async Task Run([BlobTrigger(DownloadFilePaths.UKSpecialEventsHtml, Connection = "AzureWebJobsStorage")]Stream cancellationsStream,
+        public static async Task Run([BlobTrigger(DownloadFilePaths.SpecialEventsHtml, Connection = "AzureWebJobsStorage")]Stream cancellationsStream,
             [Queue(QueueNames.UpdateParkrunSpecialEvents, Connection = "AzureWebJobsStorage")]
             IAsyncCollector<UpdateParkrunSpecialEventsMessage> messageCollector,
             ILogger logger)
@@ -39,7 +39,7 @@ namespace ParkrunMap.FunctionsApp.SpecialEvents
 
             foreach (var specialEvent in specialEvents)
             {
-                _logger.LogInformation("Sending update parkrun special event message for {ParkrunName}", specialEvent.WebsitePath);
+                _logger.LogInformation("Sending update parkrun special event message for {WebsiteDomain} {ParkrunName}", specialEvent.WebsiteDomain, specialEvent.WebsitePath);
 
                 var message = _mapper.Map<UpdateParkrunSpecialEventsMessage>(specialEvent);
 

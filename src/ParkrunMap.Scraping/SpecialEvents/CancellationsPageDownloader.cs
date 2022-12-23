@@ -12,10 +12,10 @@ namespace ParkrunMap.Scraping.SpecialEvents
             _httpClient = httpClient;
         }
 
-        public async Task<byte[]> DownloadAsync()
+        public async Task<byte[]> DownloadAsync(string domain)
         {
             var response = await _httpClient
-                .GetAsync("https://www.parkrun.org.uk/special-events/")
+                .GetAsync($"https://{domain}/special-events/")
                 .ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();

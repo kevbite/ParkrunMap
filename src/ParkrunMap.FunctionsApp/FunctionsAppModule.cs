@@ -97,8 +97,9 @@ namespace ParkrunMap.FunctionsApp
             builder.RegisterType<UpdateParkrunFeaturesQueueFunction>().AsSelf();
             builder.RegisterType<UpdateParkrunStatisticsFunction>().AsSelf();
             builder.RegisterType<ParseStatisticsFunction>().AsSelf();
-            builder.RegisterType<DownloadSpecialEventsPageFunction>().AsSelf();
+            builder.RegisterType<QueueSpecialEventsPageDownloadFunction>().AsSelf();
             builder.RegisterType<UpdateParkrunSpecialEventsQueueFunction>().AsSelf();
+            builder.RegisterType<DownloadSpecialEventsPageFunction>().AsSelf();
             builder.RegisterType<SpecialEventsPageDownloader>().AsSelf();
             builder.RegisterType<SpecialEventsParser>().AsSelf();
             builder.RegisterType<ParseSpecialEventsPageFunction>().AsSelf();

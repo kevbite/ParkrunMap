@@ -1,44 +1,40 @@
-using System;
 using System.IO;
 using System.Threading.Tasks;
-using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
+using MediatR;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Blob;
 using ParkrunMap.Scraping.SpecialEvents;
 
-namespace ParkrunMap.FunctionsApp.SpecialEvents
+namespace ParkrunMap.FunctionsApp.SpecialEvents;
+
+public class DownloadSpecialEventsPageFunction
 {
-    public class DownloadSpecialEventsPageFunction
+    private readonly SpecialEventsPageDownloader _specialEventsPageDownloader;
+    private readonly CloudBlockBlobUpdater _cloudBlockBlobUpdater;
+
+    public DownloadSpecialEventsPageFunction(SpecialEventsPageDownloader specialEventsPageDownloader, CloudBlockBlobUpdater cloudBlockBlobUpdater)
     {
-        private readonly SpecialEventsPageDownloader _specialEventsPageDownloader;
-        private readonly CloudBlockBlobUpdater _cloudBlockBlobUpdater;
+        _specialEventsPageDownloader = specialEventsPageDownloader;
+        _cloudBlockBlobUpdater = cloudBlockBlobUpdater;
+    }
 
-        public DownloadSpecialEventsPageFunction(SpecialEventsPageDownloader specialEventsPageDownloader, Func<ILogger, CloudBlockBlobUpdater> cloudBlockBlobUpdater, ILogger logger)
-        {
-            _specialEventsPageDownloader = specialEventsPageDownloader;
-            _cloudBlockBlobUpdater = cloudBlockBlobUpdater(logger);
-        }
- 
-        [FunctionName(nameof(DownloadSpecialEventsPageFunction))]
-        public static async Task Run([TimerTrigger("15 7 * 12 1-7 *")]TimerInfo myTimer,
-            [Blob(DownloadFilePaths.UKSpecialEventsHtml, FileAccess.ReadWrite, Connection = "AzureWebJobsStorage")]
-            BlockBlobClient specialEventsHtml,
-            ILogger logger)
-        {
-            var func = Container.Instance.Resolve<DownloadSpecialEventsPageFunction>(logger);
+    [FunctionName(nameof(DownloadSpecialEventsPageFunction))]
+    public static async Task Run([QueueTrigger(QueueNames.DownloadSpecialEventsPage, Connection = "AzureWebJobsStorage")]
+        DownloadSpecialEventsPageMessage message,
+        [Blob(DownloadFilePaths.SpecialEventsHtml, FileAccess.ReadWrite, Connection = "AzureWebJobsStorage")]
+        BlockBlobClient specialEventsHtml,
+        ILogger logger)
+    {
+        await Container.Instance.Resolve<DownloadSpecialEventsPageFunction>(logger).Run(message, specialEventsHtml);
+    }
 
-            await func.Run(specialEventsHtml)
-                .ConfigureAwait(false);
-        }
-
-        private async Task Run(BlockBlobClient blob)
-        {
-            var bytes = await _specialEventsPageDownloader.DownloadAsync()
-                .ConfigureAwait(false);
-
-            await _cloudBlockBlobUpdater.UpdateAsync(blob, bytes);
-        }
+    private async Task Run(DownloadSpecialEventsPageMessage message,
+        BlockBlobClient blob)
+    {
+        var bytes = await _specialEventsPageDownloader.DownloadAsync(message.WebsiteDomain)
+            .ConfigureAwait(false);
+        
+        await _cloudBlockBlobUpdater.UpdateAsync(blob, bytes);
     }
 }
