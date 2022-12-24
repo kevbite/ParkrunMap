@@ -17,18 +17,6 @@ namespace ParkrunMap.FunctionsApp
 
         public async Task UpdateAsync(BlockBlobClient blob, byte[] bytes)
         {
-            if (await blob.ExistsAsync().ConfigureAwait(false))
-            {
-                var properties = await blob.GetPropertiesAsync().ConfigureAwait(false);
-
-                var md5 = CalculateMd5(bytes);
-                if (properties.Value.ContentHash.SequenceEqual(md5))
-                {
-                   _logger.LogInformation("Current MD5 '{MD5}' matches previously downloaded file of {BlobUri}", md5, blob.Uri);
-                    return;
-                }
-            }
-
             _logger.LogInformation("Uploading changed for {BlobUri}", blob.Uri);
 
             await using var writeStream = await blob.OpenWriteAsync(true)
