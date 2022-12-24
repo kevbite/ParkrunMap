@@ -36,13 +36,19 @@ namespace ParkrunMap.FunctionsApp.Course
             ILogger logger,
             CancellationToken cancellationToken)
         {
-            await Container.Instance.Resolve<QueueUpCourseDownloadsFunction>(logger).Run(collector, courseDownloadsStartedTable, cancellationToken);
+            await Container.Instance.Resolve<QueueUpCourseDownloadsFunction>(logger)
+                .Run(collector, courseDownloadsStartedTable, cancellationToken);
         }
 
-        private async Task Run(IAsyncCollector<DownloadCourseMessage> collector, TableClient courseDownloadsStartedTable, CancellationToken cancellationToken)
+        private async Task Run(IAsyncCollector<DownloadCourseMessage> collector,
+            TableClient courseDownloadsStartedTable, CancellationToken cancellationToken)
         {
             var alreadyStarted = await GetAlreadyStarted(courseDownloadsStartedTable).ConfigureAwait(false);
-            var response = await _mediator.Send(new QueryFirstParkrunForWebsite.Request() { ExceptIds = alreadyStarted.GetAllStartedIds().Select(ObjectId.Parse).ToArray() }, cancellationToken);
+            var response =
+                await _mediator.Send(
+                    new QueryFirstParkrunForWebsite.Request()
+                        { ExceptIds = alreadyStarted.GetAllStartedIds().Select(ObjectId.Parse).ToArray() },
+                    cancellationToken);
 
             if (response.Parkrun != null)
             {
@@ -54,12 +60,12 @@ namespace ParkrunMap.FunctionsApp.Course
 
                 alreadyStarted.AddStartedId(response.Parkrun.Id.ToString());
 
-                await courseDownloadsStartedTable.UpsertEntityAsync(alreadyStarted, cancellationToken: cancellationToken).ConfigureAwait(false);
+                await courseDownloadsStartedTable
+                    .UpsertEntityAsync(alreadyStarted, cancellationToken: cancellationToken).ConfigureAwait(false);
             }
             else
             {
                 _logger.LogInformation("No parkruns left to queue up to download course page");
-
             }
         }
 
@@ -70,14 +76,16 @@ namespace ParkrunMap.FunctionsApp.Course
             var rowKey = CreateRowKey(dateTime);
 
             var retrievedResult =
-                await courseDownloadsStartedTable.GetEntityAsync<AlreadyStartedTableEntity>(partitionKey, rowKey);
+                await courseDownloadsStartedTable.GetEntityIfExistsAsync<AlreadyStartedTableEntity>(partitionKey,
+                    rowKey);
 
-            return retrievedResult.Value
-                   ?? new AlreadyStartedTableEntity()
-                   {
-                       PartitionKey = partitionKey,
-                       RowKey = rowKey
-                   };
+            return retrievedResult.HasValue
+                ? retrievedResult.Value
+                : new AlreadyStartedTableEntity()
+                {
+                    PartitionKey = partitionKey,
+                    RowKey = rowKey
+                };
         }
 
         private static string CreateParitionKey(DateTime utcNow)
@@ -114,7 +122,7 @@ namespace ParkrunMap.FunctionsApp.Course
 
         public IReadOnlyCollection<string> GetAllStartedIds()
         {
-            return StartedIds.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+            return StartedIds.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         public string PartitionKey { get; set; }
