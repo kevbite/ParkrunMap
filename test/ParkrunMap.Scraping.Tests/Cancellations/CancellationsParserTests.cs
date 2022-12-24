@@ -32,17 +32,5 @@ namespace ParkrunMap.Scraping.Tests.Cancellations
                 });
             }
         }
-
-        [Fact]
-        public void ShouldParseCancellationsAndExcludeJuniorPakruns()
-        {
-            using (var cancellationsPage = File.OpenRead(@"data/cancellations.1.html"))
-            {
-                var parser = new CancellationsParser();
-                var cancellations = parser.Parse(cancellationsPage);
-
-                cancellations.Should().BeEmpty();
-            }
-        }
     }
 }
