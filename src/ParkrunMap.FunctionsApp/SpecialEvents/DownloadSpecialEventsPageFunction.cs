@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs.Specialized;
@@ -12,10 +13,10 @@ public class DownloadSpecialEventsPageFunction
     private readonly SpecialEventsPageDownloader _specialEventsPageDownloader;
     private readonly CloudBlockBlobUpdater _cloudBlockBlobUpdater;
 
-    public DownloadSpecialEventsPageFunction(SpecialEventsPageDownloader specialEventsPageDownloader, CloudBlockBlobUpdater cloudBlockBlobUpdater)
+    public DownloadSpecialEventsPageFunction(SpecialEventsPageDownloader specialEventsPageDownloader, Func<ILogger, CloudBlockBlobUpdater> cloudBlockBlobUpdater, ILogger logger)
     {
         _specialEventsPageDownloader = specialEventsPageDownloader;
-        _cloudBlockBlobUpdater = cloudBlockBlobUpdater;
+        _cloudBlockBlobUpdater = cloudBlockBlobUpdater(logger);
     }
 
     [FunctionName(nameof(DownloadSpecialEventsPageFunction))]
