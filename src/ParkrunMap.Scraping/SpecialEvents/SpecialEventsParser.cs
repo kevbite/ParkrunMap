@@ -18,9 +18,12 @@ public class SpecialEventsParser
 
         var contentHtml = htmlDoc.DocumentNode.SelectSingleNode("//div[@id='content']");
         var h1 = contentHtml.SelectSingleNode(".//h1");
-        var yearsMatch = Regex.Match(h1.InnerText, @"(\d\d\d\d)/(\d\d)");
+        var yearsMatch = Regex.Match(h1.InnerText, @"(\d{2,4})[\D]+(\d{2,4})");
         var christmasDayYear = yearsMatch.Groups[1].Value;
-        var newYearsDayYear = christmasDayYear.Substring(0, 2) + yearsMatch.Groups[2].Value;
+        var newYearsDayYear = christmasDayYear.Substring(0, 2) + (
+            yearsMatch.Groups[2].Value.Length == 4
+                ? yearsMatch.Groups[2].Value.Substring(2)
+                : yearsMatch.Groups[2].Value);
         
         var rows = contentHtml.SelectNodes(".//table[@id='results']/tr");
 

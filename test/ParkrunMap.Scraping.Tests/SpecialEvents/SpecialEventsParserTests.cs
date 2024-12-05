@@ -31,5 +31,17 @@ namespace ParkrunMap.Scraping.Tests.SpecialEvents
                 });
             }
         }
+        
+        [Fact]
+        public void ShouldParseSpecialEvents_2024()
+        {
+            using (var cancellationsPage = File.OpenRead(@"data/uk.special-events-2024.html"))
+            {
+                var parser = new SpecialEventsParser();
+                var specialEvents = parser.Parse(cancellationsPage);
+
+                specialEvents.Should().NotBeEmpty();
+            }
+        }
     }
 }
