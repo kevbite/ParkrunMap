@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-ParkrunMap.Scheduler-9398d26b-9f6d-4edf-89ab-42f557a2d8c5</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.*" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.5" />
+    <PackageReference Include="NCronJob" Version="4.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ParkrunMap.ServiceDefaults\ParkrunMap.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Contracts\ParkrunMap.Contracts.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Data.Mongo\ParkrunMap.Data.Mongo.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Scraping\ParkrunMap.Scraping.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,83 @@
+name: Deploy to Azure Container Apps
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write  # Required for OIDC authentication to Azure
+  contents: read
+
+jobs:
+  test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run unit tests
+        run: |
+          dotnet test --no-build --configuration Release \
+            --filter "FullyQualifiedName!~Integration" \
+            --logger "trx;LogFileName=test-results.trx"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: "**/*.trx"
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: test
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Install azd
+        uses: azure/setup-azd@v2
+
+      - name: Log in to Azure (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Set azd environment
+        run: |
+          azd env new ${{ vars.AZD_ENVIRONMENT_NAME || 'parkrun-map-prod' }} \
+            --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }} \
+            --location ${{ vars.AZURE_LOCATION || 'uksouth' }}
+
+      - name: Configure external connection strings
+        run: |
+          azd env set CONNECTIONSTRINGS__PARKRUN-MAP "${{ secrets.MONGODB_CONNECTION_STRING }}"
+          azd env set CONNECTIONSTRINGS__RABBITMQ "${{ secrets.RABBITMQ_CONNECTION_STRING }}"
+
+      - name: Deploy with azd
+        run: azd deploy --no-prompt
+        env:
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}

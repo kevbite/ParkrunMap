@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-ParkrunMap.Worker-de16efe2-ff29-4472-92b2-3ffdfe483780</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.*" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ParkrunMap.ServiceDefaults\ParkrunMap.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Domain\ParkrunMap.Domain.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Data.Mongo\ParkrunMap.Data.Mongo.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Contracts\ParkrunMap.Contracts.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Scraping\ParkrunMap.Scraping.csproj" />
+  </ItemGroup>
+
+</Project>

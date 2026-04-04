@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.*" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ParkrunMap.ServiceDefaults\ParkrunMap.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Domain\ParkrunMap.Domain.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Data.Mongo\ParkrunMap.Data.Mongo.csproj" />
+    <ProjectReference Include="..\ParkrunMap.Contracts\ParkrunMap.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

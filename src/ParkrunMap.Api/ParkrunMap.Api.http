@@ -1,0 +1,6 @@
+@ParkrunMap.Api_HostAddress = http://localhost:5123
+
+GET {{ParkrunMap.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
